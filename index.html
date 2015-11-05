@@ -1,0 +1,2735 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1 user-scalable=no" />
+    <link href="themes/a.min.css" rel="stylesheet" type="text/css" />
+    <link href="themes/jquery.mobile.icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery.mobile.structure-1.4.2.min.css" rel="stylesheet" type="text/css" />
+    <script src="Js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).on("mobileinit", function () {
+            $.mobile.defaultPageTransition = 'none';
+            $.mobile.transitionFallbacks = 'none';
+        });
+        $(document).bind("mobileinit", function () {
+
+            $.mobile.allowCrossDomainPages = true;
+        });
+    </script>
+    <script src="Js/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
+    <!--Go Mobile-->
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="colors/green/green.css" />
+    <link type="text/css" rel="stylesheet" href="css/idangerous.swiper.css" />
+    <link type="text/css" rel="stylesheet" href="css/swipebox.css" />
+    <link href="css/hkStyle.css" rel="stylesheet" type="text/css" />
+    <script src="Js/hkScript.js" type="text/javascript"></script>
+    <!--  If Want to build Mobile app remove cordova.js comment below-->
+     <!--  <script src="Js/cordova.js" type="text/javascript"></script> -->
+	 <script src="phonegap.js"></script>
+    <style type="text/css">
+        .ui-loader-background
+        {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            padding: 0;
+            margin: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: block;
+            position: fixed;
+            z-index: 100;
+        }
+        
+        .ui-page
+        {
+            -webkit-backface-visibility: hidden;
+        }
+        .ui-listview > .ui-li-static.ui-last-child, .ui-listview > .ui-li-divider.ui-last-child, .ui-listview > li.ui-last-child > a.ui-btn
+        {
+            border-bottom-width: 0;
+        }
+        .ui-listview > .ui-li-static, .ui-listview > .ui-li-divider, .ui-listview > li > a.ui-btn
+        {
+            border-style: none;
+            border-width: 1px 0 0;
+        }
+        .ui-btn .ui-corner-all .ui-btn-inherit .ui-btn-active .ui-checkbox-on
+        {
+            color: Green;
+        }
+        .ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head + body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on:after, html .ui-bar-a .ui-checkbox-on:after, html .ui-body-a .ui-checkbox-on:after, html body .ui-group-theme-a .ui-checkbox-on:after, .ui-btn.ui-checkbox-on.ui-btn-a:after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active
+        {
+            background-color: #8CC63F;
+        }
+        #index .ui-listview > .ui-li-static, .ui-listview > .ui-li-divider, .ui-listview > li > a.ui-btn
+        {
+            border-style: solid;
+            border-width: 1px 0 0;
+        }
+        .noCorner .ui-corner-all
+        {
+            border-radius: 0 !important;
+        }
+        .ui-selectmenu .ui-header
+        {
+            border-width: 0;
+            margin: 0;
+            padding: 5px;
+        }
+        .ui-dialog .ui-header .ui-btn-icon-notext
+        {
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+
+        // Back Button Logic Start
+        var isPopupActive = false;
+        function onLoad() {
+            document.addEventListener('deviceready', deviceReady, false);
+
+        }
+
+        function deviceReady() {
+            document.addEventListener("backbutton", function (e) {
+                if ($.mobile.activePage.is('#grouptype')) {
+                    e.preventDefault();
+                    backButtonCallback();
+                }
+                else {
+                    pageChange = true;
+                    navigator.app.backHistory()
+                }
+            }, false);
+
+            // navigator.network.isReachable("phonegap.com", reachableCallback, {});
+
+        }
+
+        function backButtonCallback() {
+            navigator.notification.confirm('do you want to exit the HK GS3?', confirmCallback);
+        }
+        function confirmCallback(buttonIndex) {
+            if (buttonIndex == 1) {
+                token = "";
+                navigator.app.exitApp();
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
+        function chkConnection() {
+
+            setTimeout(function () {
+                if (ip != "" && port != "") {
+
+                    $.ajax({ url: 'http://' + ip + ':' + port,
+                        type: "HEAD",
+                        timeout: 10000,
+                        statusCode: {
+                            200: function (response) {
+
+                            },
+                            400: function (response) {
+                                alert('Can not connect to ALS Server,Please check Wi-Fi Connection.');
+                            },
+                            0: function (response) {
+                                alert('Can not connect to ALS Server,Please check Wi-Fi Connection.');
+                            }
+                        }
+                    });
+
+                }
+                chkConnection();
+
+            }, coonectionDelay);
+        }
+
+
+
+        //Global Variables
+
+        var isBrowser = false; //If Used in browser then 'true' and for mobile app make it 'false'.
+
+        var timer;
+
+        var coonectionDelay = 10000;
+
+        var delay = localStorage.getItem('Delay');
+
+        if (delay == 0 || delay == undefined) {
+            delay = 3000;
+        }
+
+        console.log(delay);
+
+        var token = "";                     //Token
+        var username = "";                  //Username
+        var password = "";                  //Password
+        var ip = "";                        //IP
+        var port = "";                     //Port        
+        var tagflag = false;                //For recurcivly upadate Tag's Value on TagPage
+        var tagIds = [];                    //TagID Array       
+        var t_gid = "";                     //Temp GroupID
+        var t_gname = "";                   //Temp GroupName    
+        var activePage = "";                //Set ActivePage id/name
+        var wDimmerTagID = -1;              //Set When Dimmer Write Window open.
+        var chkDimmersValue = true;         //For recurcivly upadate Dimmer Dialog Tag's Value
+        var pageChange = false;             //If Page Change then clearTimeout
+        // var isLogout = false;
+        //Global Varibales Ends.
+
+        // Pagechange Event to cleatTimeout
+
+        $(document).on('pagechange', function (event) {
+
+            var page = $(':mobile-pagecontainer').pagecontainer('getActivePage')[0].id;
+
+            if (page == "grouptype" || page == "group") {
+                window.clearTimeout(timer);
+            }
+
+            if (pageChange) {
+                window.clearTimeout(timer);
+
+                if (page == "tag") {
+                    Group_Click(t_gid);
+                    pageChange = false;
+                }
+                else if (page == "ataglance") {
+                    pageChange = false;
+                    tagflag = true;
+                    openAtaGlance();
+                }
+                else {
+                    pageChange = false;
+                }
+
+                isPopupActive = false;              //Represent that No Dialog is opened now
+                chkDimmersValue = false;            //For recurcivly upadate Dimmer Dialog Tag's Value
+                simpleTagRefresh = false;           //For recurcivly upadate Simple Write Tag Dialog's values
+                tempTagRefresh = false;             //For recurcivly upadate Temp Tag Write Tag Dialog's values
+                simpleTagfirstTime = true;          //For Show Dialog once only (not recurcivly)
+                tempTagfirstTime = true;            //For Show Dialog once only (not recurcivly)
+
+            }
+
+
+        });
+
+        //Document Ready Event
+
+        $(document).ready(function () {
+
+            // Load IP/Port Setiings
+
+            LoadSettings();
+
+            // Check SCADA Website Response is OK or Not.
+
+            chkConnection();
+        });
+
+
+        //Authenticate User and Set Token
+
+        function SettingsAuth(callback) {
+
+            username = $('#username').val();
+            password = $('#password').val();
+            var method = "AuthenticateUser";
+            ip = $('#ip').val();
+            port = $('#port').val();
+            var machine_array = [];
+            var length = 0;
+            var i = 0;
+            if (username != "" && password != "") {
+                if (ip != "" && port != "") {
+                    signin(username, password, method, ip, port, token, function (data) {
+                        token = data;
+                        if (token != null) {
+                            //  $.mobile.changePage("index.html#grouptype");
+                            return true;
+                        }
+
+                    });
+                }
+                else {
+                    alert('Oops Authentication Error,Please Check Settings.');
+                    return false;
+                }
+            }
+            else {
+                alert('Oops Authentication Error,Please Check Settings.');
+                return false;
+            }
+
+        }
+
+        //Get Group Based on Group Type
+
+        function GroupType_Click(elem) {
+
+            var wait = 1000;            //wait is to wait for loading mask to hide.
+
+            $.mobile.loading("show", {
+                text: 'Wait..',
+                textVisible: true,
+                theme: 'a',
+                html: ""
+            });
+
+            $('body').append("<div id=loaddiv class='ui-loader-background'> </div>");
+            if (token == "") {
+                SettingsAuth();
+                wait = 5000;
+            }
+            else {
+                wait = 1000;
+            }
+            setTimeout(function () {
+                if (token != "") {
+                   
+                    var first = true;
+                    var method = "GetGroups";
+                    var gid = [];
+                    var gname = [];
+                    var count = 0;
+                    var gtid = elem.id.substring(2);
+
+                    if (gtid == "10") {
+                        GetAllSchedule1();
+                    }
+                    else {
+                        $("#cg_groups").html('');
+                        GroupGetByGroupType(username, password, method, ip, port, token, gtid, function (data) {                           
+
+                            $.each(data.Id, function (key, value) {
+                                gid.push(value);
+                                count++;
+                            });
+                            $.each(data.Nm, function (key, value) {
+                                gname.push(value);
+                            });
+                            for (var i = 0; i < count; i++) {
+                                $('#cg_groups').append(' <li class="ui-li-has-alt"><a class="ui-btn" href="#">' + gname[i] + '</a><a id=G' + gid[i] + ' href=# data-role=button name="' + gname[i] + '" data-icon=arrow-r data-iconpos=right class="ui-btn ui-icon-arrow-r ui-btn-icon-right groupAnchor" onclick=openTagPage(' + gid[i] + ')></a></li>');
+                            }
+
+                            if (data != null) {
+
+                                document.getElementById('g_header').innerHTML = elem.name;
+                                $.mobile.changePage("index.html#group");
+                                activePage = "group";
+                                if (count > 0) {
+                                    $("#lblNoGrp").html("");
+                                }
+                                else {
+                                    $("#lblNoGrp").html("No records found");
+                                }
+                            }
+
+                        });
+                    }
+                }
+                else {
+
+                }
+                $.mobile.loading("hide");
+                var elem1 = document.getElementById('loaddiv');
+                elem1.parentNode.removeChild(elem1);
+            }, wait);
+        };
+
+
+        //Get Tag Based on GroupID
+
+        var tagPageFirstTime = false;           //Tag Page shown once (not recurcively)/
+
+        function openTagPage(id) {
+            activePage = "tag";
+            tagflag = true;
+            $("#cg_tags").html('');
+            $.mobile.changePage("index.html#tag");
+            var element = document.getElementById("G" + id);
+            t_gname = element.getAttribute("name");
+            var name = t_gname;
+            document.getElementById('t_header').innerHTML = name;
+            Group_Click(id);
+            tagPageFirstTime = true;
+        }
+
+
+
+        function Group_Click(id) {
+            var gid = id;           //Group ID           
+            t_gid = gid;
+            var element = document.getElementById("G" + id);
+            t_gname = element.getAttribute("name");
+            var name = t_gname;
+            var method = "GetIVByGroup";
+            var tagName = [];
+            var Mn = [];
+            var Mx = [];
+            var PV = [];
+            var TT = [];
+            var count = 0;
+            GetIVByGroup(username, password, method, ip, port, token, gid, name, function (data) {
+
+                $.each(data.PV, function (key, value) {
+                    PV.push(value);
+                    count++;
+                });
+
+                if (data == null) {
+                    $("#lblNoTag").html('No records found');
+                }
+
+                if (data != null && tagPageFirstTime) {
+
+                    tagIds = [];
+                    tagPageFirstTime = false;
+
+                    if (count > 0) {
+                        $("#lblNoTag").html('');
+                    }
+                    else {
+                        $("#lblNoTag").html('No records found');
+                    }
+
+                    $.each(data.TID, function (key, value) {
+                        tagIds.push(value);
+                    });
+
+                    $.each(data.TN, function (key, value) {
+                        tagName.push(value);
+                    });
+
+                    $.each(data.Mn, function (key, value) {
+                        Mn.push(value);
+                    });
+
+                    $.each(data.Mx, function (key, value) {
+                        Mx.push(value);
+                    });
+
+                    $.each(data.TT, function (key, value) {
+                        TT.push(value);
+                    });
+
+                    $("#cg_tags").html('');
+                    for (var i = 0; i < count; i++) {
+
+                        // Dimmer Type Tag
+                        if (TT[i] == "2") {
+                            if (PV[i] == 0) {
+                                $('#cg_tags').append(' <li class="ui-li-has-alt ui-first-child ui-last-child"><a id="d' + tagIds[i] + '"  name="' + tagName[i] + ':' + PV[i] + '" class="ui-btn tap" href="#">' + tagName[i] + '</a><a href="#" id=T' + tagIds[i] + ' name="' + tagName[i] + ':' + PV[i] + '" onclick="writeDimmer(T' + tagIds[i] + ',-1,1)"; class="ui-btn ui-icon-red ui-nodisc-icon ui-btn-icon-right" style="text-align: left"></a></li>');
+                            }
+                            else {
+                                $('#cg_tags').append(' <li class="ui-li-has-alt ui-first-child ui-last-child"><a id="d' + tagIds[i] + '"  name="' + tagName[i] + ':' + PV[i] + '" class="ui-btn tap" href="#">' + tagName[i] + '</a><a href="#" id=T' + tagIds[i] + ' name="' + tagName[i] + ':' + PV[i] + '" onclick="writeDimmer(T' + tagIds[i] + ',-1,1)"; class="ui-btn ui-icon-green ui-nodisc-icon ui-btn-icon-right" style="text-align: left"></a></li>');
+                            }
+                        }
+                        // Temp Type Tag
+                        else if (TT[i] == "6") {
+
+                            if (PV[i] == 0) {
+
+                                $('#cg_tags').append(' <li class="ui-li-has-alt ui-first-child ui-last-child"><a id="t' + tagIds[i] + '"  name="' + tagName[i] + ':' + PV[i] + '" class="ui-btn tap" href="#">' + tagName[i] + '</a><a href="#" id=T' + tagIds[i] + ' name="' + tagName[i] + ':' + PV[i] + '" onclick="writeTempTag(' + tagIds[i] + ');" class="ui-btn ui-icon-red ui-nodisc-icon ui-btn-icon-right" style="text-align: left"></a></li>');
+
+                            }
+                            else {
+
+                                $('#cg_tags').append(' <li class="ui-li-has-alt ui-first-child ui-last-child"><a id="t' + tagIds[i] + '"  name="' + tagName[i] + ':' + PV[i] + '" class="ui-btn tap" href="#">' + tagName[i] + '</a><a href="#" id=T' + tagIds[i] + ' name="' + tagName[i] + ':' + PV[i] + '" onclick="writeTempTag(' + tagIds[i] + '); " class="ui-btn ui-icon-green ui-nodisc-icon ui-btn-icon-right" style="text-align: left"></a></li>');
+                            }
+                        }
+                        // Simple Type Tag
+                        else {
+
+                            if (PV[i] == 0) {
+
+                                $('#cg_tags').append(' <li class="ui-li-has-alt ui-first-child ui-last-child"><a id="s' + tagIds[i] + '"  name="' + tagName[i] + ':' + PV[i] + '" class="ui-btn tap" href="#">' + tagName[i] + '</a><a href="#" id=T' + tagIds[i] + ' name="' + tagName[i] + ':' + PV[i] + '" onclick="writeSimpleTag(' + tagIds[i] + ');" class="ui-btn ui-icon-red ui-nodisc-icon ui-btn-icon-right" style="text-align: left"></a></li>');
+
+                            }
+                            else {
+
+                                $('#cg_tags').append(' <li class="ui-li-has-alt ui-first-child ui-last-child"><a id="s' + tagIds[i] + '"  name="' + tagName[i] + ':' + PV[i] + '" class="ui-btn tap" href="#">' + tagName[i] + '</a><a href="#" id=T' + tagIds[i] + ' name="' + tagName[i] + ':' + PV[i] + '" onclick="writeSimpleTag(' + tagIds[i] + ');" class="ui-btn ui-icon-green ui-nodisc-icon ui-btn-icon-right" style="text-align: left"></a></li>');
+                            }
+                        }
+
+                    }
+                    $(".tap").on("taphold", function (event) {
+                        var type = this.id.substring(0);
+
+                        if (!isPopupActive) {
+                            isPopupActive = true;
+                            switch (type[0]) {
+                                case "d":
+                                    openDimmersWin(this);
+                                    break;
+                                case "s":
+                                    simpleTagfirstTime = true;
+                                    openSimpleTagWriteWin(this);
+                                    break;
+                                case "t":
+                                    tempTagfirstTime = true;
+                                    openTempTagWriteWin(this);
+                                    break;
+                            }
+                        }
+
+                    })
+                }
+                try {
+                    if (tagflag) {
+                        window.clearTimeout(timer);
+                        timer = setTimeout(function () {
+                            if (!isPopupActive) {
+                                for (var i = 0; i < count; i++) {
+                                    if (PV[i] == '0') {
+                                        if ($("#T" + tagIds[i]).hasClass('ui-icon-green')) {
+                                            $("#T" + tagIds[i]).removeClass('ui-icon-green');
+                                            $("#T" + tagIds[i]).addClass('ui-icon-red');
+                                        }
+                                    }
+                                    else {
+                                        if ($("#T" + tagIds[i]).hasClass('ui-icon-red')) {
+
+                                            $("#T" + tagIds[i]).removeClass('ui-icon-red');
+                                            $("#T" + tagIds[i]).addClass('ui-icon-green');
+                                        }
+                                    }
+                                }
+                                Group_Click(id);
+                            }
+
+                        }, delay);
+                    }
+                    else {
+                        // btnBack_Click();
+                        tagflag = false;
+                        tagIds = [];
+                    }
+                }
+                catch (err) {
+                    window.clearTimeout(timer);
+                    timer = setTimeout(function () {
+
+                        Group_Click(id);
+                    }, delay);
+                }
+
+            });
+
+
+
+        };
+
+
+
+        //Write Tag
+
+        function WriteTag(id) {
+            var method = "WriteTag";
+            var value = 1;
+            var type = 1;
+
+            WriteTag_Toggle(username, password, method, ip, port, token, id, value, type, function (data) {
+
+            });
+        }
+
+
+        //Open Dimmer Write Window
+
+        var reloadDimmertxt = true;
+
+        function openDimmersWin(elem) {
+            dimmervalue = 0;
+            chkDimmersValue = true;
+            reloadDimmertxt = true;
+            var array = elem.name.split(':');
+
+            $("#dimmer_Header").html(array[0]);
+            method = "GetALSTagInfo";
+            wDimmerTagID = parseInt(elem.id.substring(1));
+            var opType = 2; //Dimmer
+            var pv = [];
+            var tagIDs = [];
+
+            GetALSTagInfo(username, password, method, ip, port, token, wDimmerTagID, opType, function (data) {
+
+                $.each(data.TID, function (key, value) {
+                    tagIDs.push(value);
+                });
+
+                $.each(data.PV, function (key, value) {
+                    pv.push(value);
+                });
+
+
+                if (pv.length > 1) {
+                    $.mobile.changePage("index.html#writeDimmers");
+
+                    outputIndex = tagIDs.indexOf(wDimmerTagID);
+
+                    if (outputIndex == 0) {
+                        $("#txtDimmerValue").val(pv[0]);
+                        setDimmerIndication(pv[0]);
+                        modeID = tagIDs[1];
+                        //console.log(pv[1]);
+                        $('[name=d_Mode]').val(pv[1]);
+                        $('[name=d_Mode]').selectmenu("refresh");
+                        modeValue = pv[1];
+
+                    }
+                    else {
+                        $("#txtDimmerValue").val(pv[1]);
+                        setDimmerIndication(pv[1]);
+                        modeID = tagIDs[0];
+                        //console.log(pv[0]);
+                        $('[name=d_Mode]').val(pv[0]);
+                        $('[name=d_Mode]').selectmenu("refresh");
+                        modeValue = pv[0];
+
+                    }
+
+                    dimmervalue = $("#txtDimmerValue").val();
+                    setDimmerValue(wDimmerTagID);
+
+                }
+                else {
+                    console.log("No Data to update.");
+                }
+
+            });
+
+            isPopupActive = true;
+
+        }
+
+        //Dimmer LED Indication
+
+        function setDimmerIndication(value) {
+            var val = value.toString();
+            switch (val) {
+                case "10":
+                    $('#dimmerindication').html('<div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 30px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 26px; padding-top: 8px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 22px; padding-top: 16px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 18px; padding-top: 22px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 14px; padding-top: 28px;"></div>');
+                    break;
+                case "8":
+                    $('#dimmerindication').html('<div style="height: 5px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 26px; padding-top: 8px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 22px; padding-top: 16px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 18px; padding-top: 22px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 14px; padding-top: 28px;"></div>');
+                    break;
+                case "6":
+                    $('#dimmerindication').html('<div style="height: 5px;"></div><div style="height: 5px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 22px; padding-top: 16px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 18px; padding-top: 22px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 14px; padding-top: 28px;"></div>');
+                    break;
+                case "4":
+                    $('#dimmerindication').html('<div style="height: 5px;"></div><div style="height: 5px;"></div><div style="height: 5px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 18px; padding-top: 22px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 14px; padding-top: 28px;"></div>');
+                    break;
+                case "2":
+                    $('#dimmerindication').html('<div style="height: 5px;"></div><div style="height: 5px;"></div><div style="height: 5px;"></div><div style="height: 5px;"></div><div style="height: 5px;"><img src="css/images/extra/redLed_1.png" style="width: 14px; padding-top: 28px;"></div>');
+                    break;
+                case "0":
+                    $('#dimmerindication').html('');
+                    break;
+            }
+        }
+
+        // Dimmer Back Button Click
+        function Dimmer_Back_Click() {
+            window.clearTimeout(timer);
+            pageChange = true;
+            isPopupActive = false;
+            chkDimmersValue = false;
+            simpleTagRefresh = false;
+            tempTagRefresh = false;
+            timer = setTimeout(function () {
+                simpleTagfirstTime = true;
+                tempTagfirstTime = true;
+            }, 1000);
+        }
+
+        // Open Simple Tag Write Window
+        var modeID = "-1";
+        var modeValue = -1;
+        var simpleTagRefresh = true;
+        var simpleTagfirstTime = true;
+        var outputIndex = "-1";
+
+        function openSimpleTagWriteWin(elem) {
+
+            var array = elem.name.split(':');
+            wSimpleTagID = parseInt(elem.id.substring(1));
+            method = "GetALSTagInfo";
+            var opType = 1; // Not Dimmer Tag (Simple Tag)
+            var pv = [];
+            var tagIDs = [];
+
+            GetALSTagInfo(username, password, method, ip, port, token, wSimpleTagID, opType, function (data) {
+
+                $.each(data.TID, function (key, value) {
+                    tagIDs.push(value);
+                });
+
+                $.each(data.PV, function (key, value) {
+                    pv.push(value);
+                });
+
+                if (pv.length > 1) {
+
+                    if (simpleTagfirstTime) {
+                        isPopupActive = true;
+                        simpleTagRefresh = true;
+                        $.mobile.changePage("index.html#writeSimpleTag");
+                        $("#simpleTag_header").html(array[0]);
+                    }
+
+                    outputIndex = tagIDs.indexOf(wSimpleTagID);
+
+                    var str1 = $('#imgSimpleTag').attr('src');
+
+
+                    if (outputIndex == 0) {
+                        if (str1 == null) {
+
+                            if (pv[0] == "10") {
+                                $("#simpleTagWinMainDiv").html('<img id="imgSimpleTag" style="height: 100%; width: 100%;" src="css/images/extra/bulb_on.png"/>');
+                            }
+                            else {
+                                $("#simpleTagWinMainDiv").html('<img id="imgSimpleTag" style="height: 100%; width: 100%;" src="css/images/extra/bulb_off.png"/>');
+                            }
+                        }
+                        else {
+
+                            if (pv[0] == "10" && str1.search("off") != '-1') {
+                                $("#simpleTagWinMainDiv").html('<img id="imgSimpleTag" style="height: 100%; width: 100%;" src="css/images/extra/bulb_on.png"/>');
+                            }
+                            else if (pv[0] == "0" && str1.search("on") != '-1') {
+                                $("#simpleTagWinMainDiv").html('<img id="imgSimpleTag" style="height: 100%; width: 100%;" src="css/images/extra/bulb_off.png" />');
+                            }
+                        }
+
+                        $('#imgSimpleTag').attr('onclick', "writeSimpleTag(" + wSimpleTagID + ");");
+
+                        if (simpleTagfirstTime) {
+                            // console.log("Mode:" + pv[1]);
+                            $('[name=s_Mode]').val(pv[1]);
+                            $('[name=s_Mode]').selectmenu("refresh");
+                            modeValue = pv[1];
+                            modeID = tagIDs[1];
+                            $('#s_mode_done').attr('name', wSimpleTagID + ':' + modeID);
+                        }
+                    }
+                    else {
+
+                        if (str1 == null) {
+
+                            if (pv[1] == "10") {
+                                $("#simpleTagWinMainDiv").html('<img id="imgSimpleTag"  style="height: 100%; width: 100%;" src="css/images/extra/bulb_on.png" onclick="writeSimpleTag(' + wSimpleTagID + ');" />');
+                            }
+                            else if (pv[1] == "0") {
+                                $("#simpleTagWinMainDiv").html('<img id="imgSimpleTag"  style="height: 100%; width: 100%;" src="css/images/extra/bulb_off.png" onclick="writeSimpleTag(' + wSimpleTagID + ');" />');
+                            }
+
+                        }
+                        else {
+
+                            if (pv[1] == "10" && str1.search("off") != '-1') {
+                                $("#simpleTagWinMainDiv").html('<img id="imgSimpleTag"  style="height: 100%; width: 100%;" src="css/images/extra/bulb_on.png" onclick="writeSimpleTag(' + wSimpleTagID + ');" />');
+                            }
+                            else if (pv[1] == "0" && str1.search("on") != '-1') {
+                                $("#simpleTagWinMainDiv").html('<img id="imgSimpleTag"  style="height: 100%; width: 100%;" src="css/images/extra/bulb_off.png" onclick="writeSimpleTag(' + wSimpleTagID + ');" />');
+                            }
+
+                        }
+
+                        $('#imgSimpleTag').attr('onclick', "writeSimpleTag(" + wSimpleTagID + ");");
+
+                        if (simpleTagfirstTime) {
+                            // console.log("Mode:" + pv[0]);
+                            $('[name=s_Mode]').val(pv[0]);
+                            $('[name=s_Mode]').selectmenu("refresh");
+                            modeValue = pv[0];
+                            modeID = tagIDs[0];
+                            $('#s_mode_done').attr('name', wSimpleTagID + ':' + modeID);
+                        }
+                    }
+
+                }
+                else {
+                    console.log("No Data to update.");
+                }
+
+            });
+
+
+        }
+
+        var tempTagRefresh = true;
+        var tempTagfirstTime = true;
+
+        function openTempTagWriteWin(elem) {
+
+            var array = elem.name.split(':');
+            wTempTagID = parseInt(elem.id.substring(1));
+            method = "GetALSTagInfo";
+            var opType = 1; // Not Dimmer Tag (Simple Tag)
+            var pv = [];
+            var tagIDs = [];
+
+            GetALSTagInfo(username, password, method, ip, port, token, wTempTagID, opType, function (data) {
+
+                $.each(data.TID, function (key, value) {
+                    tagIDs.push(value);
+                });
+
+                $.each(data.PV, function (key, value) {
+                    pv.push(value);
+                });
+
+                if (pv.length > 1) {
+
+                    if (tempTagfirstTime) {
+                        isPopupActive = true;
+                        tempTagRefresh = true;
+                        $.mobile.changePage("index.html#writeTempTag");
+                        $("#tempTag_header").html(array[0]);
+                    }
+
+
+                    outputIndex = tagIDs.indexOf(wTempTagID);
+
+                    if (outputIndex == 0) {
+                        if (pv[0] == "10") {
+                            $("#tempTagWinMainDiv").html('<img id="imgTempTag"  style="height: 100%; width: 100%;" src="css/images/extra/temp_on.png" onclick="writeTempTag(' + wTempTagID + ');" />');
+                        }
+                        else {
+                            $("#tempTagWinMainDiv").html('<img id="imgTempTag"  style="height: 100%; width: 100%;" src="css/images/extra/temp_off.png" onclick="writeTempTag(' + wTempTagID + ');" />');
+                        }
+                        if (tempTagfirstTime) {
+                            $('[name=t_Mode]').val(pv[1]);
+                            $('[name=t_Mode]').selectmenu("refresh");
+                            modeValue = pv[1];
+                            modeID = tagIDs[1];
+                            $('#s_mode_done').attr('name', wTempTagID + ':' + modeID);
+                        }
+                    }
+                    else {
+                        if (pv[1] == "10") {
+                            $("#tempTagWinMainDiv").html('<img id="imgTempTag"  style="height: 100%; width: 100%;" src="css/images/extra/temp_on.png" onclick="writeTempTag(' + wTempTagID + ');" />');
+                        }
+                        else {
+                            $("#tempTagWinMainDiv").html('<img id="imgTempTag"  style="height: 100%; width: 100%;" src="css/images/extra/temp_off.png" onclick="writeTempTag(' + wTempTagID + ');" />');
+                        }
+                        if (tempTagfirstTime) {
+                            $('[name=t_Mode]').val(pv[0]);
+                            $('[name=t_Mode]').selectmenu("refresh");
+                            modeValue = pv[1];
+                            modeID = tagIDs[0];
+                            $('#s_mode_done').attr('name', wSimpleTagID + ':' + modeID);
+                        }
+                    }
+                    tempTagfirstTime = false;
+
+                    if (tempTagRefresh && !tempTagfirstTime && $.mobile.activePage[0].id == "writeTempTag") {
+                        window.clearTimeout(timer);
+                        timer = setTimeout(function () {
+                            //console.log('For delay');
+                            openTempTagWriteWin(elem);
+                        }, delay);
+                    }
+                    else {
+                        isPopupActive = false;
+                        tempTagfirstTime = true;
+                    }
+
+                }
+                else {
+                    console.log("No Data to update.");
+                }
+            });
+
+
+        }
+
+        // Write Simple Tag
+
+        function writeSimpleTag(id) {
+            var method = "WriteTag";
+            var value = 1;
+            var type = 1;
+
+            WriteTag_Toggle(username, password, method, ip, port, token, id, value, type, function (data) {
+
+            });
+        }
+
+        // Write Temp Tag
+
+        function writeTempTag(id) {
+            var method = "WriteTag";
+            var value = 1;
+            var type = 1;
+
+            WriteTag_Toggle(username, password, method, ip, port, token, id, value, type, function (data) {
+
+            });
+        }
+
+
+        function writeDimmer(elem, writevalue, type) {
+
+            var id = elem;
+            var method = "WriteDimmer";
+
+
+            if (type == "1") {
+
+                if ($('#' + elem.id).hasClass('ui-icon-green')) {
+                    writevalue = 0;
+                }
+                else {
+                    writevalue = 10;
+                }
+
+                id = elem.id.substring(1);
+            }
+
+            WriteTag_Dimmer(username, password, method, ip, port, token, id, writevalue, function (data) {
+
+            });
+
+        }
+
+        // Write mode
+
+        function writeMode(elem) {
+            var method = "WriteMode";
+            var ID = elem.name.split(':');
+            var value = $('[name=s_Mode]').val();
+            if (value != modeValue) {
+                WriteMode(username, password, method, ip, port, ID[0], ID[1], value, function (data) {
+                    Dimmer_Back_Click();
+                });
+            }
+            else {
+                Dimmer_Back_Click();
+            }
+        }
+
+
+        // Write mode for Temp Tag
+
+        function writeTempMode(elem) {
+            var method = "WriteMode";
+            var ID = elem.name.split(':');
+            var value = $('[name=t_Mode]').val();
+            if (value != modeValue) {
+                WriteMode(username, password, method, ip, port, ID[0], ID[1], value, function (data) {
+                    Dimmer_Back_Click();
+                });
+            }
+            else {
+                Dimmer_Back_Click();
+            }
+
+        }
+
+        //Save Settings
+        function SaveSettings() {
+            if (typeof (Storage) !== "undefined") {
+                token = "";
+                var u = $('#username').val();
+                var pa = $('#password').val();
+                var i = $('#ip').val();
+                var p = $('#port').val();
+                var d = $('#delay').val();
+                localStorage.setItem('Username', u);
+                localStorage.setItem('Password', pa);
+                localStorage.setItem('Port', p);
+                localStorage.setItem('Ip', i);
+                localStorage.setItem('Delay', d);
+                if (d == 0 || d == null) {
+                    delay = 3000;
+                }
+                else {
+                    delay = d;
+                }
+                console.log(delay);
+                SettingsAuth();
+            }
+
+        }
+
+        /// Load Saved Setting
+        function LoadSettings() {
+            if (typeof (Storage) !== "undefined") {
+                $('#username').attr('value', localStorage.getItem('Username'));
+                $('#password').attr('value', localStorage.getItem('Password'));
+                $('#port').attr('value', localStorage.getItem('Port'));
+                $('#ip').attr('value', localStorage.getItem('Ip'));
+                $('#delay').attr('value', localStorage.getItem('Delay'));
+
+                SettingsAuth();
+            }
+        }
+
+        //Change PAssword
+
+        function openchangePasswordWin() {
+            $.mobile.loading("show", {
+                text: 'Wait..',
+                textVisible: true,
+                theme: 'a',
+                html: ""
+            });
+
+            $('body').append("<div id=loaddiv class='ui-loader-background'> </div>");
+
+            var wait = 1000;
+            if (token == "") {
+                SettingsAuth();
+                wait = 5000;
+            }
+            else {
+                wait = 1000;
+            }
+            setTimeout(function () {
+
+                if (token != "") {
+                    $("#lblPass").html('');
+                    // $("#txtOldPwd").val('');
+                    $("#txtNewPwd").val('');
+                    $("#txtConfirmPwd").val('');
+                    $.mobile.changePage("index.html#changePassword");
+                }
+                $.mobile.loading("hide");
+                var elem1 = document.getElementById('loaddiv');
+                elem1.parentNode.removeChild(elem1);
+            }, wait);
+
+
+        }
+
+        // Change Password
+
+        function changePwd() {
+
+            var method = "UserChangePassword";
+            var oldpass = "password";
+            $("#lblPass").html('');
+
+            if ($("#txtNewPwd").val().length < 7) {
+                $("#lblPass").html('Password must be greater than 7 digits.');
+            }
+            else if ($("#txtNewPwd").val() != $("#txtConfirmPwd").val()) {
+                $("#lblPass").html('Password doesn\'t match.');
+            }
+            else {
+
+                ChangePassword(username, password, ip, port, token, method, $("#txtNewPwd").val(), oldpass, function (data) {
+
+                });
+            }
+
+        }
+
+        // Return Handler Path
+
+        function GetHandler() {
+            return "http://" + ip + ":" + port + "/ALSScheduler/ALSHandler.ashx";
+            //return "ALSHandler.ashx";
+        }
+
+        // Dimmer Write Value with Type
+
+        var tempDimmerValue = 0;
+        var dimmervalue = 0;
+
+        function setDimmerValue(wDimmerTagID) {
+            method = "GetIVByTag";
+            GetIVByTag(username, password, method, ip, port, token, wDimmerTagID, function (data) {
+                $("#txtDimmerValue").val(data.PV);
+                tempDimmerValue = data.PV[0];
+                setDimmerIndication(data.PV);
+            });
+        }
+
+        // Dimmer Type Tag Write
+
+        function Dimmer_Write_Click(type) {
+            var value = 1;
+            var method = "WriteTag";
+
+            // Write mode
+            if (type == "4") {
+
+                if (tempDimmerValue != dimmervalue) {
+                    writeDimmer(wDimmerTagID, dimmervalue, 0);
+                    Dimmer_Back_Click();
+                }
+                else {
+                    Dimmer_Back_Click();
+                }
+
+                // Write Dimmer Mode
+
+                //                var method = "WriteMode";
+                //                var value = $('[name=d_Mode]').val();
+                //                if (value != modeValue) {
+                //                    //                    WriteMode(username, password, method, ip, port, wDimmerTagID, modeID, value, function (data) {
+                //                    //                        Dimmer_Back_Click();
+                //                    //                    });
+                //                }
+                //                else {
+                //                    Dimmer_Back_Click();
+                //                }
+
+            }
+            else {
+                if (type == "3") {
+                    dimmervalue = parseInt($("#txtDimmerValue").val()) + 2;
+                    if (dimmervalue > 10) {
+                        dimmervalue = 10;
+                    }
+                    $("#txtDimmerValue").val(dimmervalue);
+                    setDimmerIndication(dimmervalue);
+                }
+                else {
+                    dimmervalue = parseInt($("#txtDimmerValue").val()) - 2;
+                    if (dimmervalue < 0) {
+                        dimmervalue = 0;
+                    }
+                    $("#txtDimmerValue").val(dimmervalue);
+                    setDimmerIndication(dimmervalue);
+                }
+
+
+            }
+
+        }
+
+
+        //Active GroupPage and closed setTimeout recursion for Tag IV 
+        function setTagFlagFalse(elem) {
+            tagflag = false;
+            btnBack();
+        }
+
+
+        // Logout
+        function Logout() {
+            if (isBrowser) {
+                tagflag = false;
+                window.clearTimeout(timer);
+                token = "";
+                $.mobile.changePage("index.html");
+            }
+            else {
+                tagflag = false;
+                //token = "";
+                backButtonCallback();
+            }
+        }
+
+        //Go Home
+
+        function GoToHome() {
+            //            $.mobile.loading("show");
+            //            $('body').append("<div id=loaddiv class='ui-loader-background'> </div>");
+            tagflag = false;
+            $.mobile.changePage("index.html#grouptype");
+            //setTagFlagFalse();
+            //            window.clearTimeout(timer);
+            //            timer = setTimeout(function () {
+            //               
+            //                $.mobile.loading("hide");
+            //                var elem = document.getElementById('loaddiv');
+            //                elem.parentNode.removeChild(elem);
+            //            }, 3500);
+
+        }
+
+        //Back Button Click
+
+        function btnBack_Click(id) {
+
+            $("#" + id).data('disabled', false);
+
+            btnBack();
+        }
+
+        // History Back
+
+        function btnBack() {
+            // var path = window.location.toString();
+            //            var path = $.mobile.activePage.attr('id')
+            //            if (!path.contains("grouptype")) {
+            history.back();
+            //            }
+        }
+
+        //Global Scenes
+
+        function openGlobalScenesWin() {
+            method = "GetGlobalScenes";
+
+            $.mobile.loading("show", {
+                text: 'Wait..',
+                textVisible: true,
+                theme: 'a',
+                html: ""
+            });
+
+            $('body').append("<div id=loaddiv class='ui-loader-background'> </div>");
+
+            var wait = 1000;
+            if (token == "") {
+                SettingsAuth();
+                wait = 5000;
+            }
+            else {
+                wait = 1000;
+            }
+            setTimeout(function () {
+
+                if (token != "") {
+
+                    GetGlobalScenes(username, password, method, ip, port, token, function (data) {
+                        $('#globalscenesList').html('');
+                        $.each(data, function (key, value) {
+                            if (this['Type'] == true) {                              
+                                $('#globalscenesList').append(' <li class="ui-li-has-alt "><a id="gs_' + this['SceneID'] + '" name="' + this['Name'] + '" class="ui-btn" onclick="viewscene(this);" href="#">' + this['Name'] + '</a><a id="gs' + this['SceneID'] + '" class="ui-icon-red ui-btn ui-btn-icon-notext ui-nodisc-icon ui-icon-carat-r" onclick="sceneOnOff(this);" href="#" style="text-align: left"></a></li>');
+                            }
+                        });
+                        $.mobile.changePage("index.html#globalscenes");
+                    });
+
+                }
+                $.mobile.loading("hide");
+                var elem1 = document.getElementById('loaddiv');
+                elem1.parentNode.removeChild(elem1);
+            }, wait);
+        }
+
+        // SceneOnOff (Applicable in Global Scenes)
+
+        function sceneOnOff(elem) {
+            var method = "WriteGlobalScenes";
+            var sceneID = elem.id.substring(2);
+            if ($("#" + elem.id).hasClass('ui-icon-red')) {
+                WriteGlobalScenes(username, password, method, ip, port, token, sceneID, function (data) {
+                    if (data != null) {
+                        $("#" + elem.id).removeClass('ui-icon-red');
+                        $("#" + elem.id).addClass('ui-icon-green');
+                    }
+                });
+            }
+            else {
+                WriteGlobalScenes(username, password, method, ip, port, token, sceneID, function (data) {
+                    if (data != null) {
+                        $("#" + elem.id).removeClass('ui-icon-green');
+                        $("#" + elem.id).addClass('ui-icon-red');
+                    }
+                });
+            }
+        }
+
+        // View Scene (Load Global Scenes) 
+        function viewscene(elem) {
+            var method = "GetIVByScenes";
+            var sceneID = [];
+            var sceneName = [];
+            var Mn = [];
+            var Mx = [];
+            var PV = [];
+            var TT = [];
+            var count = 0;
+            var sceneID1 = elem.id.substring(3);
+            $("#scene_header").html(elem.name);
+            GetIVByScenes(username, password, method, ip, port, token, sceneID1, function (data) {
+
+                if (data == null) {
+                    $("#lblNoTagScene").html('No records found');
+                }
+
+                $.each(data.PV, function (key, value) {
+                    PV.push(value);
+                    count++;
+                });
+
+                if (count > 0) {
+                    $("#lblNoTagScene").html('');
+                }
+                else {
+                    $("#lblNoTagScene").html('No records found');
+                }
+                $.each(data.TID, function (key, value) {
+                    sceneID.push(value);
+                });
+
+                $.each(data.TN, function (key, value) {
+                    sceneName.push(value);
+                });
+
+                $.each(data.Mn, function (key, value) {
+                    Mn.push(value);
+                });
+
+                $.each(data.Mx, function (key, value) {
+                    Mx.push(value);
+                });
+
+                $.each(data.TT, function (key, value) {
+                    TT.push(value);
+                });
+
+                $("#sceneTagList").html('');
+
+                for (var i = 0; i < count; i++) {
+
+                    if (TT[i] == "2") {
+                        if (i == 0) {
+
+                            $("#sceneTagList").append("<li class=ui-li-has-alt ui-first-child ui-last-child><a href=# id=C" + sceneID[i] + " name=" + sceneName[i] + ":" + PV[i] + " data-role=button data-mini=true class=tagAnchor ><div data-role=fieldcontain><label for=slider-2><img src=css/images/extra/light.png class=tagImg/>&nbsp;&nbsp; " + sceneName[i] + "</label><input disabled=disabled name=slider-2 id=S" + tagIds[i] + " class=slider  data-highlight=true min=" + Mn[i] + " max=" + Mx[i] + " value=" + PV[i] + " step=2 type=range data-mini=true></div></a></li>");
+
+                            $("#sceneTagList").trigger('create');
+
+                            if (i == count - 1) {
+                                $("#C" + sceneID[i]).addClass('ui-last-child');
+                            }
+                        }
+                        else {
+
+                            $("#sceneTagList").append("<li class=ui-li-has-alt ui-first-child ui-last-child><a href=# id=C" + sceneID[i] + " name=" + sceneName[i] + ":" + PV[i] + " data-role=button data-mini=true class=tagAnchor ><div data-role=fieldcontain><label for=slider-2><img src=css/images/extra/light.png class=tagImg/>&nbsp;&nbsp; " + sceneName[i] + "</label><input disabled=disabled name=slider-2 id=S" + sceneID[i] + " class=slider  data-highlight=true min=" + Mn[i] + " max=" + Mx[i] + " value=" + PV[i] + " step=2 type=range data-mini=true></div></a></li>");
+
+                            if (i == count - 1) {
+                                $("#C" + sceneID[i]).addClass('ui-link ui-btn ui-shadow ui-corner-all ui-mini ui-last-child');
+                            }
+
+                            $("#sceneTagList").trigger('create');
+                        }
+                    }
+                    else {
+                        if (i == 0) {
+                            if (PV[i] == 0) {
+
+                                $("#sceneTagList").append('<li class=ui-li-has-alt ui-first-child ui-last-child><a href="#" id=C' + sceneID[i] + ' class="ui-btn  ui-icon-red ui-btn-icon-right" style="text-align: left">' + sceneName[i] + '</a></li>');
+                                $("#C" + sceneID[i]).addClass(' ui-first-child');
+                                $("#sceneTagList").trigger('create');
+                                if (i == count - 1) {
+                                    $("#C" + sceneID[i]).addClass('ui-last-child');
+                                }
+
+                            }
+                            else {
+
+                                $("#sceneTagList").append('<li class=ui-li-has-alt ui-first-child ui-last-child><a href="#" id=C' + sceneID[i] + ' class="ui-btn  ui-icon-green ui-btn-icon-right" style="text-align: left">' + sceneName[i] + '</a></li>');
+                                $("#C" + sceneID[i]).addClass('ui-first-child');
+                                $("#sceneTagList").trigger('create');
+                                if (i == count - 1) {
+                                    $("#C" + sceneID[i]).addClass('ui-last-child');
+                                }
+                            }
+                        }
+                        else {
+                            if (PV[i] == 0) {
+
+                                $("#sceneTagList").append('<li class=ui-li-has-alt ui-first-child ui-last-child><a href="#" id=C' + sceneID[i] + ' class="ui-btn   ui-icon-red ui-btn-icon-right" style="text-align: left">' + sceneName[i] + '</a></li>');
+                                if (i == count - 1) {
+                                    $("#C" + sceneID[i]).addClass('ui-last-child');
+                                }
+
+                                $("#sceneTagList").trigger('create');
+                            }
+                            else {
+                                $("#sceneTagList").append('<li class=ui-li-has-alt ui-first-child ui-last-child><a href="#" id=C' + sceneID[i] + ' class="ui-btn  ui-icon-green ui-btn-icon-right" style="text-align: left">' + sceneName[i] + '</a></li>');
+                                if (i == count - 1) {
+                                    $("#C" + sceneID[i]).addClass('ui-last-child');
+                                }
+                                $("#sceneTagList").trigger('create');
+                            }
+                        }
+                    }
+                }
+
+                document.getElementById('scene_header').innerHTML = elem.name;
+
+
+            });
+            $.mobile.changePage("index.html#globalsceneTags");
+        }
+        // Global Scenes Ends
+
+
+        // At a Glance Start
+
+
+        function openAtaGlanceWin() {
+            $.mobile.loading("show", {
+                text: 'Wait..',
+                textVisible: true,
+                theme: 'a',
+                html: ""
+            });
+
+            $('body').append("<div id=loaddiv class='ui-loader-background'> </div>");
+
+            var wait = 1000;
+            if (token == "") {
+                SettingsAuth();
+                wait = 5000;
+            }
+            else {
+                wait = 1000;
+            }
+            setTimeout(function () {
+
+                if (token != "") {
+
+                    openAtaGlance();
+
+                    $.mobile.changePage("index.html#ataglance");
+                }
+                $.mobile.loading("hide");
+                var elem1 = document.getElementById('loaddiv');
+                elem1.parentNode.removeChild(elem1);
+            }, wait);
+
+        }
+
+        function openAtaGlance() {
+
+            method = "GetIVByValue";
+            var tagids = [];
+            var tagName = [];
+            var Mn = [];
+            var Mx = [];
+            var PV = [];
+            var TT = [];
+            var count = 0;
+            GetIVByValue(username, password, method, ip, port, token, function (data) {
+
+                $.each(data.PV, function (key, value) {
+                    PV.push(value);
+                    count++;
+                });
+
+                if (data == null) {
+                    $("#lblNoAtTag").html('No records found');
+                }
+                else {
+                    $("#lblNoAtTag").html('');
+                }
+
+
+                if (data != null) { //&& $.mobile.activePage[0].id != "ataglance"
+                    tagids = [];
+                    $.each(data.TID, function (key, value) {
+                        tagids.push(value);
+                    });
+
+                    $.each(data.TN, function (key, value) {
+                        tagName.push(value);
+                    });
+
+                    $.each(data.Mn, function (key, value) {
+                        Mn.push(value);
+                    });
+
+                    $.each(data.Mx, function (key, value) {
+                        Mx.push(value);
+                    });
+
+                    $.each(data.TT, function (key, value) {
+                        TT.push(value);
+                    });
+
+                    $("#glanceList").html('');
+
+                    for (var i = 0; i < count; i++) {
+
+                        if (TT[i] == "2") {
+                            if (PV[i] == 0) {
+                                $("#glanceList").append(' <li class="ui-li-has-alt ui-first-child ui-last-child"><a id="d' + tagids[i] + '"  name="' + tagName[i] + ':' + PV[i] + '" class="ui-btn tap" href="#">' + tagName[i] + '</a><a href="#" id=L' + tagids[i] + ' name="' + tagName[i] + ':' + PV[i] + '" onclick="writeDimmer(L' + tagids[i] + ',-1,1)"; class="ui-btn ui-icon-red ui-nodisc-icon ui-btn-icon-right" style="text-align: left"></a></li>');
+                            }
+                            else {
+                                $("#glanceList").append(' <li class="ui-li-has-alt ui-first-child ui-last-child"><a id="d' + tagids[i] + '"  name="' + tagName[i] + ':' + PV[i] + '" class="ui-btn tap" href="#">' + tagName[i] + '</a><a href="#" id=L' + tagids[i] + ' name="' + tagName[i] + ':' + PV[i] + '" onclick="writeDimmer(L' + tagids[i] + ',-1,1)"; class="ui-btn ui-icon-green ui-nodisc-icon ui-btn-icon-right" style="text-align: left"></a></li>');
+                            }
+                        }
+
+                        else if (TT[i] == "6") {
+                            if (PV[i] == 0) {
+                                $("#glanceList").append(' <li class="ui-li-has-alt ui-first-child ui-last-child"><a id="t' + tagids[i] + '"  name="' + tagName[i] + ':' + PV[i] + '" class="ui-btn tap" href="#">' + tagName[i] + '</a><a href="#" id=L' + tagids[i] + ' name="' + tagName[i] + ':' + PV[i] + '" onclick="writeTempTag(' + tagids[i] + ');" class="ui-btn ui-icon-red ui-nodisc-icon ui-btn-icon-right" style="text-align: left"></a></li>');
+                            }
+                            else {
+
+                                $("#glanceList").append(' <li class="ui-li-has-alt ui-first-child ui-last-child"><a id="t' + tagids[i] + '"  name="' + tagName[i] + ':' + PV[i] + '" class="ui-btn tap" href="#">' + tagName[i] + '</a><a href="#" id=L' + tagids[i] + ' name="' + tagName[i] + ':' + PV[i] + '" onclick="writeTempTag(' + tagids[i] + ');" class="ui-btn ui-icon-green ui-nodisc-icon ui-btn-icon-right" style="text-align: left"></a></li>');
+                            }
+                        }
+                        else {
+
+                            if (PV[i] == 0) {
+                                $("#glanceList").append(' <li class="ui-li-has-alt ui-first-child ui-last-child"><a id="s' + tagids[i] + '"  name="' + tagName[i] + ':' + PV[i] + '" class="ui-btn tap" href="#">' + tagName[i] + '</a><a href="#" id=L' + tagids[i] + ' name="' + tagName[i] + ':' + PV[i] + '" onclick="writeSimpleTag(' + tagids[i] + ');" class="ui-btn ui-icon-red ui-nodisc-icon ui-btn-icon-right" style="text-align: left"></a></li>');
+                            }
+                            else {
+
+                                $("#glanceList").append(' <li class="ui-li-has-alt ui-first-child ui-last-child"><a id="s' + tagids[i] + '"  name="' + tagName[i] + ':' + PV[i] + '" class="ui-btn tap" href="#">' + tagName[i] + '</a><a href="#" id=L' + tagids[i] + ' name="' + tagName[i] + ':' + PV[i] + '" onclick="writeSimpleTag(' + tagids[i] + ');" class="ui-btn ui-icon-green ui-nodisc-icon ui-btn-icon-right" style="text-align: left"></a></li>');
+                            }
+                        }
+                    }
+
+                    $(".tap").on("taphold", function (event) {
+                        var type = this.id.substring(0);
+
+                        if (!isPopupActive) {
+                            isPopupActive = true;
+                            switch (type[0]) {
+                                case "d":
+                                    openDimmersWin(this);
+                                    break;
+                                case "s":
+                                    simpleTagfirstTime = true;
+                                    openSimpleTagWriteWin(this);
+                                    break;
+                                case "t":
+                                    tempTagfirstTime = true;
+                                    openTempTagWriteWin(this);
+                                    break;
+                            }
+                        }
+
+                        //open write Dailog
+                    })
+
+                }
+                try {
+                    //                    if (tagflag) {
+                    window.clearTimeout(timer);
+                    timer = setTimeout(function () {
+                        if (!isPopupActive) {
+                            for (var i = 0; i < count; i++) {
+                                if (PV[i] == '0') {
+                                    if ($("#L" + tagids[i]).hasClass('ui-icon-green')) {
+                                        $("#L" + tagids[i]).removeClass('ui-icon-green');
+                                        $("#L" + tagids[i]).addClass('ui-icon-red');
+                                    }
+                                }
+                                else {
+                                    if ($("#L" + tagids[i]).hasClass('ui-icon-red')) {
+
+                                        $("#L" + tagids[i]).removeClass('ui-icon-red');
+                                        $("#L" + tagids[i]).addClass('ui-icon-green');
+                                    }
+                                }
+                            }
+                            openAtaGlance();
+                        }
+
+                    }, delay);
+                    //                    }
+                    //                    else {
+                    //                        // btnBack_Click();
+                    //                        tagflag = false;
+                    //                        tagids = [];
+                    //                    }
+                }
+                catch (err) {
+                    window.clearTimeout(timer);
+                    timer = setTimeout(function () {
+                        openAtaGlance();
+                    }, delay);
+                }
+
+            });
+        }
+
+    </script>
+    <script type="text/javascript">
+
+        //    Schedule Page Functions
+
+        var WD = "";
+        var onofficon = "ui-icon-red";
+        var gid = 0;
+
+        //Get All Schedule
+        function GetAllSchedule1() {
+            method = "GetAllSchedule";
+            $("#schedulelist").html('');
+            GetAllSchedule(username, password, method, ip, port, token, function (data) {
+                $.each(data, function (key, value) {
+                    WeekDayStr(this);
+                    var d = new Date(parseInt(this['STime'].substr(6)));
+
+                    var hours = d.getHours();
+                    var minutes = d.getMinutes();
+                    var ampm = hours >= 12 ? 'PM' : 'AM';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12;
+
+                    IsActive(this['IsActive']);
+
+                    if (this['TypeName'] == "Tag") {
+                        var a = this['Name'].toString();
+                        $("#schedulelist").append('<li class="ui-li-has-alt ui-first-child ui-last-child"><a class="ui-btn" name=' + this['ID'] + ';\'' + this['Name'] + '\'   onclick="EditSchedule(' + this['ID'] + ',\'' + this['Name'] + '\',\'' + this['STime'] + '\',' + this['Mon'] + ',' + this['Tue'] + ',' + this['Wed'] + ',' + this['Thu'] + ',' + this['Fri'] + ',' + this['Sat'] + ',' + this['Sun'] + ',' + this['Value'] + ',' + this['Type'] + ');" href="#"><div style="float: left; font-size: 10px; font-weight: bold; width: 63%"><div><div style="float: left; font-size: 16px; padding: 5px; color: Lime"> P </div><div><label style="padding: 5px; font-size: 14px; font-family: Courier New; font-weight: bold">' + this['Name'] + '</label></div></div><div style="font-size: 16px; font-weight: bolder; padding-left: 5px;">' + hours + ':' + minutes + ' ' + ampm + '</div><p style="font-weight: bold; padding-left: 5px; font-family: Times New Roman; font-size: 11px; color: #8CC63F; letter-spacing: 3px;">' + WD + '</p></div></a><a id=on_' + this['ID'] + ' class="' + onofficon + ' ui-btn ui-btn-icon-notext ui-nodisc-icon ui-icon-carat-r" onclick="changeOnOff(this);" href="#" title=""></a></li>');
+                    }
+                    else if (this['TypeName'] == "Group") {
+                        var a = this['Name'].toString();
+                        $("#schedulelist").append('<li class="ui-li-has-alt ui-first-child ui-last-child"><a class="ui-btn" name=' + this['ID'] + ';\'' + this['Name'] + '\'   onclick="EditSchedule(' + this['ID'] + ',\'' + this['Name'] + '\',\'' + this['STime'] + '\',' + this['Mon'] + ',' + this['Tue'] + ',' + this['Wed'] + ',' + this['Thu'] + ',' + this['Fri'] + ',' + this['Sat'] + ',' + this['Sun'] + ',' + this['Value'] + ',' + this['Type'] + ');" href="#"><div style="float: left; font-size: 10px; font-weight: bold; width: 63%"><div><div style="float: left; font-size: 16px; padding: 5px; color: Lime"> G </div><div><label style="padding: 5px; font-size: 14px; font-family: Courier New; font-weight: bold">' + this['Name'] + '</label></div></div><div style="font-size: 16px; font-weight: bolder; padding-left: 5px;">' + hours + ':' + minutes + ' ' + ampm + '</div><p style="font-weight: bold; padding-left: 5px; font-family: Times New Roman; font-size: 11px; color: #8CC63F; letter-spacing: 3px;">' + WD + '</p></div></a><a id=on_' + this['ID'] + ' class="' + onofficon + ' ui-btn ui-btn-icon-notext ui-nodisc-icon ui-icon-carat-r" onclick="changeOnOff(this);" href="#" title=""></a></li>');
+                    }
+                    else if (this['TypeName'] == "Scene") {
+                        var a = this['Name'].toString();
+                        $("#schedulelist").append('<li class="ui-li-has-alt ui-first-child ui-last-child"><a class="ui-btn" name=' + this['ID'] + ';\'' + this['Name'] + '\'   onclick="EditSchedule(' + this['ID'] + ',\'' + this['Name'] + '\',\'' + this['STime'] + '\',' + this['Mon'] + ',' + this['Tue'] + ',' + this['Wed'] + ',' + this['Thu'] + ',' + this['Fri'] + ',' + this['Sat'] + ',' + this['Sun'] + ',' + this['Value'] + ',' + this['Type'] + ');" href="#"><div style="float: left; font-size: 10px; font-weight: bold; width: 63%"><div><div style="float: left; font-size: 16px; padding: 5px; color: Lime"> S </div><div><label style="padding: 5px; font-size: 14px; font-family: Courier New; font-weight: bold">' + this['Name'] + '</label></div></div><div style="font-size: 16px; font-weight: bolder; padding-left: 5px;">' + hours + ':' + minutes + ' ' + ampm + '</div><p style="font-weight: bold; padding-left: 5px; font-family: Times New Roman; font-size: 11px; color: #8CC63F; letter-spacing: 3px;">' + WD + '</p></div></a><a id=on_' + this['ID'] + ' class="' + onofficon + ' ui-btn ui-btn-icon-notext ui-nodisc-icon ui-icon-carat-r" onclick="changeOnOff(this);" href="#" title=""></a></li>');
+                    }
+                });
+
+                $.mobile.changePage("index.html#schedulehome");
+            });
+        }
+
+        function addSchedulePage() {
+
+            setTime();
+            GetGroup();
+
+            $("#sName").val('');
+            if ($("#flip-6").val() == "10") {
+                $("#flip-6").val("0").slider('refresh');
+            }
+
+            $("#tagList").html("<div class=ui-controlgroup-controls id=taglist1>");
+
+            unCheckWeekDay();
+
+            $.mobile.changePage("index.html#schedule");
+            $("#schedule_header_r").html("<a href=# data-role=button onclick=saveSchedule(); data-mini=true data-icon=check>Save</a>").trigger('create');
+
+        }
+
+        function unCheckWeekDay() {
+            if ($('#chksun').is(':checked')) {
+                $("#chksun").attr({
+                    'checked': false
+                }).checkboxradio('refresh');
+            }
+            if ($('#chkmon').is(':checked')) {
+                $("#chkmon").attr({
+                    'checked': false
+                }).checkboxradio('refresh');
+            }
+            if ($('#chktue').is(':checked')) {
+                $("#chktue").attr({
+                    'checked': false
+                }).checkboxradio('refresh');
+            }
+            if ($('#chkwed').is(':checked')) {
+                $("#chkwed").attr({
+                    'checked': false
+                }).checkboxradio('refresh');
+            }
+            if ($('#chkthu').is(':checked')) {
+                $("#chkthu").attr({
+                    'checked': false
+                }).checkboxradio('refresh');
+            }
+            if ($('#chkfri').is(':checked')) {
+                $("#chkfri").attr({
+                    'checked': false
+                }).checkboxradio('refresh');
+            }
+            if ($('#chksat').is(':checked')) {
+                $("#chksat").attr({
+                    'checked': false
+                }).checkboxradio('refresh');
+            }
+
+        }
+
+        $(document).ready(function () {
+
+            $("#GroupSelectionSchedule").on("change", function (event, ui) {
+                gid = $("#GroupSelectionSchedule").val();
+                var firstchild = true;
+                if ($('#rdoTag').is(':checked')) {
+                    method = "GetTagsByGroupID";
+
+                    if (gid != "-1") {
+                        TagGetByGroup(username, password, method, ip, port, token, gid, function (data) {
+                            $("#tagList").trigger('create');
+
+                            $("#tagList").html("<div class=ui-controlgroup-controls id=taglist1>");
+
+                            $.each(data, function (key, value) {
+                                if (firstchild) {
+                                    $("#taglist1").append("<div class=ui-radio><label class=ui-btn id=lbl_" + this['TagID'] + " for=tag-rdo-" + this['TagID'] + "> " + this['TagName'] + "</label><input id=tag-rdo-" + this['TagID'] + "   type=radio  value=" + this['TagID'] + " name=tag-rdo--v-2 checked></div>").trigger('create'); ;
+
+                                    firstchild = false;
+                                }
+                                else {
+                                    $("#taglist1").append("<div class=ui-radio><label class=ui-btn id=lbl_" + this['TagID'] + " for=tag-rdo-" + this['TagID'] + "> " + this['TagName'] + "</label><input id=tag-rdo-" + this['TagID'] + " type=radio  value=" + this['TagID'] + " name=tag-rdo--v-2></div>").trigger('create'); ;
+
+                                }
+
+                            });
+
+                        });
+                    }
+
+                }
+
+            });
+
+
+        });
+
+        function GetGroup() {
+
+            method = "GetAllGroups";
+            var first = true;
+            var Id = [];
+            var Nm = [];
+            var count = 0;
+            GetGroups(username, password, method, ip, port, token, function (data) {
+
+                $.each(data.Id, function (key, value) {
+                    if (first) {
+                        first = false;
+                        $("#GroupSelectionSchedule").html("<option value=-1 data-placeholder=true>Select Group...</option>").trigger('change');
+
+                    }
+                    Id.push(value);
+                    count++;
+                });
+
+                $.each(data.Nm, function (key, value) {
+
+                    Nm.push(value);
+
+                });
+
+                for (var i = 0; i < count; i++) {
+                    $("#GroupSelectionSchedule").append("<option value=" + Id[i] + " >" + Nm[i] + "</option>").trigger('change');
+                }
+            });
+        }
+
+        //Schedule Parameters
+
+        var sTime = new Date(2014, 04, 01, 00, 00, 00);
+        var mon = false;
+        var tue = false;
+        var wed = false;
+        var thu = false;
+        var fri = false;
+        var sat = false;
+        var sun = false;
+        var name = "";
+        var value = "0";
+        var type = 0;
+        var typeref = -1;
+        var isactive = true;
+        var Time = "";
+        var d = new Date()
+        var timeOffset = d.getTimezoneOffset();
+
+        function saveSchedule() {
+
+            var method = "AddSchedule";
+
+            GetScheduleParamValues();
+
+            if (name != "" && typeref != -1) {
+                AddSchedule(username, password, method, ip, port, token, name, type, typeref, sTime, mon, tue, wed, thu, fri, sat, sun, value, isactive, timeOffset, function () {
+                    $.mobile.back();
+                    GetAllSchedule1();
+                });
+            }
+            else {
+                $.mobile.changePage("index.html#errorDialog");
+                $('#lbl_errordia').html('Please fill required information.');
+                // alert("Please fill check inputs.");
+            }
+        }
+
+        function GetScheduleParamValues() {
+
+            name = $("#sName").val();
+            value = $("#flip-6").val();
+
+            if ($("#ampm").text().trim() == "AM") {
+                sTime.setHours(parseInt($("#hour").text().trim()), parseInt($("#minute").text().trim()));
+
+            }
+            else {
+                sTime.setHours(parseInt($("#hour").text().trim()) + 12, parseInt($("#minute").text().trim()));
+            }
+            if ($('#chksun').is(':checked')) {
+                sun = true;
+            }
+            else {
+                sun = false;
+            }
+
+            if ($('#chkmon').is(':checked')) {
+                mon = true;
+            }
+            else {
+                mon = false;
+            }
+
+            if ($('#chktue').is(':checked')) {
+                tue = true;
+            }
+            else {
+                tue = false;
+            }
+
+            if ($('#chkwed').is(':checked')) {
+                wed = true;
+            }
+            else {
+                wed = false;
+            }
+
+            if ($('#chkthu').is(':checked')) {
+                thu = true;
+            }
+            else {
+                thu = false;
+            }
+
+            if ($('#chkfri').is(':checked')) {
+                fri = true;
+            }
+            else {
+                fri = false;
+            }
+
+            if ($('#chksat').is(':checked')) {
+                sat = true;
+            }
+            else {
+                sat = false;
+            }
+
+            if ($('#rdoTag').is(':checked')) {
+                type = 0;
+
+                $("input[name*=tag-rdo-]:checked").each(function () {
+                    typeref = $(this).val();
+                });
+
+            }
+            else if ($('#rdoGroup').is(':checked')) {
+                type = 1;
+                typeref = gid;
+            }
+            else {
+                type = 2;
+                typeref = gid;
+            }
+
+        }
+
+        function editSchedule(elem) {
+            var sid = elem.id.substring(elem.id.indexOf('_') + 1);
+            GetScheduleParamValues();
+            var method = "EditSchedule";
+            if (name != "" && typeref != -1) {
+                EditScheduleParam(username, password, method, ip, port, token, sid, name, type, typeref, sTime, mon, tue, wed, thu, fri, sat, sun, value, isactive, timeOffset, function () {
+                    $.mobile.back();
+                    GetAllSchedule1();
+                });
+            }
+            else {
+                $.mobile.changePage("index.html#errorDialog");
+                $('#lbl_errordia').html('Please fill required information.');
+                //alert("Please fill check inputs.");
+            }
+        }
+        function deleteSchedule(elem) {
+
+            var method = "DeleteSchedule";
+
+            DeleteSchedule(username, password, method, ip, port, token, elem.id.substring(elem.id.indexOf('_') + 1), function (data) {
+                $.mobile.back();
+                GetAllSchedule1();
+            });
+
+        }
+
+
+        function EditSchedule(id, name, ts, mo, tu, we, th, fr, sa, su, value1, type) {
+
+            var d = new Date(parseInt(ts.substr(6)));
+
+            var hours = d.getHours();
+            var minutes = d.getMinutes();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+
+            $("#hour").html(hours);
+            $("#minute").html(minutes);
+            $("#ampm").html(ampm);
+            $("#sName").val(name);
+
+            GetGroup();
+
+            if (mo) {
+                $('#chkmon').attr('checked', 'checked');
+            }
+            if (tu) {
+                $('#chktue').attr('checked', 'checked');
+            }
+            if (we) {
+                $('#chkwed').attr('checked', 'checked');
+            }
+            if (th) {
+                $('#chkthu').attr('checked', 'checked');
+            }
+            if (fr) {
+                $('#chkfri').attr('checked', 'checked');
+            }
+            if (sa) {
+                $('#chksat').attr('checked', 'checked');
+            }
+            if (su) {
+                $('#chksun').attr('checked', 'checked');
+            }
+
+            switch (type) {
+
+                case "0":
+                    $('#rdoTag').attr('checked', 'checked');
+                    break;
+                case "1":
+                    $('#rdoGroup').attr('checked', 'checked');
+                    break;
+                case "2":
+                    $('#rdoScene').attr('checked', 'checked');
+                    break;
+
+            }
+
+
+            $("#tagList").html("<div class=ui-controlgroup-controls id=taglist1>");
+
+            $.mobile.changePage("index.html#schedule");
+            $("#schedule_header_r").html("<a href=# data-role=button id=d_" + id + " onclick=deleteSchedule(this); data-icon=delete>Delete</a>").trigger('create');
+            $("#schedule_header_r").append("<a href=# data-role=button id=e_" + id + " onclick=editSchedule(this); data-icon=check>Save</a>").trigger('create');
+            $('#flip-6').val(value1).slider('refresh');
+        }
+
+        function changeOnOff(elem) {
+            var sid = elem.id.substring(elem.id.indexOf('_') + 1);
+            method = "OnOffSchedule";
+            var value = 0;
+            if ($("#" + elem.id).hasClass('ui-icon-red')) {
+                value = 1;
+            }
+            else {
+                value = 0;
+            }
+
+            OnOffSchedule(username, password, method, ip, port, token, sid, value, function (data) {
+
+                if (data != null) {
+
+                    if ($("#" + elem.id).hasClass('ui-icon-red')) {
+                        $("#" + elem.id).removeClass('ui-icon-red');
+                        $("#" + elem.id).addClass('ui-icon-green');
+                    }
+                    else {
+                        $("#" + elem.id).removeClass('ui-icon-green');
+                        $("#" + elem.id).addClass('ui-icon-red');
+                    }
+
+                }
+
+            });
+        }
+
+
+
+        function iHour() {
+            if ($("#hour").text().trim() == "") {
+                $("#hour").html('0');
+            }
+            var i = parseInt($("#hour").text().trim());
+            if (i >= 12 || i <= 0) {
+                i = 0;
+            }
+            i++;
+            $("#hour").html(i);
+        }
+        function dHour() {
+            if ($("#hour").text().trim() == "") {
+                $("#hour").html('13');
+            }
+            var i = parseInt($("#hour").text().trim());
+            if (i <= 1 || i >= 13) {
+                i = 13;
+            }
+            i--;
+            $("#hour").html(i);
+        }
+        function iMinute() {
+            var i = parseInt($("#minute").text().trim());
+            if (i >= 59 || i <= -1) {
+                i = -1;
+            }
+            i++;
+            $("#minute").html(i);
+        }
+        function dMinute() {
+            var i = parseInt($("#minute").text().trim());
+            if (i <= 0 || i >= 60) {
+                i = 60;
+            }
+            i--;
+            $("#minute").html(i);
+        }
+
+        function ampm() {
+            var str = $("#ampm").text().trim();
+            if (str == "AM") {
+                $("#ampm").html("PM");
+
+            }
+            else {
+                $("#ampm").html("AM");
+            }
+        }
+
+        function setTime() {
+            var date = new Date();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            $("#hour").html(hours);
+            $("#minute").html(minutes);
+
+            if (ampm == "am") {
+                $("#ampm").html('AM');
+
+            }
+            else {
+                $("#ampm").html('PM');
+            }
+        }
+
+        function WeekDayStr(data) {
+            WD = "";
+            if (data.Mon == true) {
+
+                WD = WD + "M";
+            }
+            if (data.Tue == true) {
+
+                WD = WD + "T";
+            }
+            if (data.Wed == true) {
+
+                WD = WD + "W";
+            }
+            if (data.Thu == true) {
+
+                WD = WD + "T";
+            }
+            if (data.Fri == true) {
+
+                WD = WD + "F";
+            }
+            if (data.Sat == true) {
+
+                WD = WD + "S";
+            }
+            if (data.Sun == true) {
+
+                WD = WD + "S";
+            }
+        }
+        function IsActive(isActive) {
+            if (isActive) {
+                onofficon = 'ui-icon-green';
+            }
+            else {
+                onofficon = 'ui-icon-red';
+            }
+        }
+
+        function LoadGroupsForTags() {
+
+            GetGroup();
+
+            $("#tagList").html("");
+        }
+
+        function LoadGroupsForScenes() {
+
+            GetScenes();
+
+            $("#tagList").html("");
+
+        }
+
+        function GetScenes() {
+
+            var method = "GetGlobalScenes"
+
+            var first = true;
+
+            GetGlobalScenes(username, password, method, ip, port, token, function (data) {
+
+                $.each(data, function (key, value) {
+                    if (first) {
+                        first = false;
+                        $("#GroupSelectionSchedule").html("<option value=-1 data-placeholder=true>Select Scene...</option>").trigger('change');
+
+                    }
+                    $("#GroupSelectionSchedule").append("<option value=" + this['SceneID'] + " >" + this['Name'] + "</option>").trigger('change');
+
+                });
+            });
+
+        }
+      
+               
+    </script>
+</head>
+<body onload="onLoad()">
+    <!--<div data-role="page" id="main" class="sliderbg_menu">
+        <div data-role="content">
+            <center>
+                <div class="logo">
+                    <a href="#">
+                        <img src="colors/green/images/HKgs3logo.png" alt="" title="" border="0" /></a></div>
+                <br />
+                <h3 class="ui-bar ui-bar-a">
+                    Sign In</h3>
+                <input type="text" id="username" placeholder="Username" style="height: 30px; text-align: center;
+                    background-color: Gray; font-weight: bold; font-size: 16px;" value="clientadmin" />
+                <input type="password" id="password" placeholder="Password" style="height: 30px;
+                    text-align: center; background-color: Gray; font-weight: bold; font-size: 16px;"
+                    value="clientadmin@123" /><br />
+                <a href="#" data-role="button" data-inline="true" id="signin" style="font-weight: bold;
+                    background: #8CC63F;" data-mini="true">Sign In</a> <a href="#setting" data-role="button"
+                        data-inline="true" id="A1" style="font-weight: bold; background: #3090C7;" data-rel="dialog"
+                        data-mini="true">Setting</a>
+                <label style="color: White; font-weight: bold" id="authError">
+                </label>
+            </center>
+        </div>
+        <footer>
+        <center>
+         <h1>
+                <label style="display: inline-block">
+                    <b>©</b></label>&nbsp;&nbsp;&nbsp;<label style="display: inline-block">
+                        <b>2014 Harikrupa Automation (P) Ltd.</b></label>
+            </h1>
+            </center>
+        </footer>
+    </div>-->
+    <div data-role="page" id="grouptype" data-title="GS3">
+        <div data-role="content" style="padding: 0 0 0 0;">
+            <div class="swiper-container swiper-parent" style="padding: 0px;">
+                <div class="swiper-wrapper">
+                    <!--Menu page-->
+                    <div class="swiper-slide sliderbg_menu">
+                        <div class="swiper-container swiper-nested">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="slide-inner">
+                                        <div class="logo" style="padding-left: 38px;">
+                                            <a href="#">
+                                                <img src="colors/green/images/HKgs3logo.png" alt="" title="" border="0" /></a></div>
+                                        <br />
+                                        <!--<center>
+                                            <label style="color: White; font-weight: bold" id="authError">
+                                            </label>
+                                        </center>-->
+                                        <div class="menu">
+                                            <ul id="grpTypeMenu">
+                                                <li><a id="GT12" class="ui-link" onclick="GroupType_Click(this);" name="myRooms"
+                                                    href="#">
+                                                    <img src="css/images/icons/rooms.png">
+                                                    <span class="spanGType">myRooms</span> </a></li>
+                                                <li><a id="GT1" class="ui-link" onclick="GroupType_Click(this);" name="Lighting"
+                                                    href="#">
+                                                    <img src="css/images/icons/bulb.png">
+                                                    <span class="spanGType">Lighting</span> </a></li>
+                                                <li><a id="GT2" class="ui-link" onclick="GroupType_Click(this);" name="Dimmers" href="#">
+                                                    <img src="css/images/icons/dimmer.png">
+                                                    <span class="spanGType">Dimmers</span> </a></li>
+                                                <li><a id="GT3" class="ui-link" onclick="GroupType_Click(this);" name="5 A Plug"
+                                                    href="#">
+                                                    <img src="css/images/icons/plug1.png">
+                                                    <span class="spanGType">5 A Plug</span> </a></li>
+                                                <li><a id="GT4" class="ui-link" onclick="GroupType_Click(this);" name="15 A Plug"
+                                                    href="#">
+                                                    <img src="css/images/icons/plug2.png">
+                                                    <span class="spanGType">15 A Plug</span> </a></li>
+                                                <!--<li><a id="GT5" class="ui-link" onclick="GroupType_Click(this);" name="Sensors" href="#">
+                                                    <img src="css/images/icons/sensor.png">
+                                                    <span class="spanGType">Sensors</span> </a></li>-->
+                                                <li><a id="GT6" class="ui-link" onclick="GroupType_Click(this);" name="Temp Control"
+                                                    href="#">
+                                                    <img src="css/images/icons/Temp1.png">
+                                                    <span class="spanGType">Temp Control</span> </a></li>
+                                                <li><a id="GT7" class="ui-link" onclick="GroupType_Click(this);" name="Scenes" href="#">
+                                                    <img src="css/images/icons/local_scene.png">
+                                                    <span class="spanGType">Local Scenes</span> </a></li>
+                                                <li><a id="GT8" class="ui-link" onclick="openAtaGlanceWin();" name="At Glance" href="#">
+                                                    <img src="css/images/icons/atglance.png">
+                                                    <span class="spanGType">At a Glance</span> </a></li>
+                                                <li><a id="GT9" class="ui-link" onclick="GroupType_Click(this);" name="TV" href="#">
+                                                    <img src="css/images/icons/tv.png">
+                                                    <span class="spanGType">TV</span> </a></li>
+                                                <li><a id="GT10" class="ui-link" onclick="GroupType_Click(this);" name="Scheduling"
+                                                    href="#">
+                                                    <img src="css/images/icons/scheduling.png">
+                                                    <span class="spanGType">Scheduling</span> </a></li>
+                                                <!-- <li>
+                                                  <a id="GT11" class="ui-link" onclick="GroupType_Click(this);" name="Usage Details"
+                                                    href="#">
+                                                    <img src="css/images/icons/usage.png">
+                                                    <span class="spanGType">Usage Details</span> </a></li>-->
+                                                <li><a id="A2" class="ui-link" name="GlobalScenes" href="#" onclick="openGlobalScenesWin();">
+                                                    <img src="css/images/icons/global_scene.png">
+                                                    <span class="spanGType">Global Scenes</span> </a></li>
+                                                <li><a id="A3" class="ui-link" name="Logout" href="#" onclick="Logout();">
+                                                    <img src="css/images/icons/signoutred.png">
+                                                    <span class="spanGType">Sign Out</span> </a></li>
+                                                <li><a id="A5" class="ui-link" name="changePwd" onclick="openchangePasswordWin();"
+                                                    href="#">
+                                                    <img src="css/images/icons/changepassword.png">
+                                                    <span class="spanGType">Change Pwd</span> </a></li>
+                                                <li><a id="A1" class="ui-link" name="changePwd" href="#setting" data-rel="dialog">
+                                                    <img src="css/images/icons/settings.png">
+                                                    <span class="spanGType">Settings</span> </a></li>
+                                            </ul>
+                                            <div class="clearfix">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-scrollbar">
+                            </div>
+                        </div>
+                        <footer>
+        <center>
+         <h1>
+                <label style="display: inline-block">
+                    <b>©</b></label>&nbsp;&nbsp;&nbsp;<label style="display: inline-block">
+                        <b>2014 Harikrupa Automation (P) Ltd.</b></label>
+            </h1>
+            </center>
+        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="group" data-title="GS3">
+        <div data-role="header" data-id="group_header" id="group_header" data-position="fixed">
+            <h1>
+                <b>
+                    <label id="g_header" style="font-size: 18px; font-weight: bolder">
+                    </label>
+                </b>
+            </h1>
+            <a href="#" id="x2" onclick="btnBack();" data-role="button" data-icon="arrow-l">Back</a><!--<a href="#setting" class="setting" data-icon="gear" data-iconpos="notext">Setting</a>-->
+        </div>
+        <div date-role="content" id="groupContent">
+            <center>
+                <label id="lblNoGrp" style="font-size: 14px; color: Red;">
+                </label>
+                <ul data-role="listview" id="cg_groups" style="width: 98%; padding-top: 10px; padding-bottom: 10px;">
+                </ul>
+            </center>
+        </div>
+    </div>
+    <div data-role="page" id="tag" data-title="GS3">
+        <div data-role="header" data-id="hk_header" id="tag_header" data-position="fixed">
+            <h1 style="font-size: 18px; font-weight: bolder">
+                <b>
+                    <label id="t_header" style="font-size: 18px; font-weight: bolder">
+                    </label>
+                </b>
+            </h1>
+            <a href="#" data-role="button" data-icon="arrow-l" id="x1" onclick="setTagFlagFalse(this);">
+                Back</a>
+        </div>
+        <div date-role="content">
+            <center>
+                <label id="lblNoTag" style="font-size: 14px; color: Red;">
+                </label>
+                <ul data-role="listview" id="cg_tags" style="width: 98%; padding-top: 10px; padding-bottom: 10px;">
+                </ul>
+            </center>
+        </div>
+        <div data-role="footer" id="lblError" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" onclick="GoToHome();" data-icon="home" class="ui-btn-active">Home</a></li>
+                    <li><a href="#" onclick="Logout();" data-icon="power" class="ui-btn-active">Sign Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="info" data-title="GS3">
+        <div data-role="header">
+            <h1 style="font-size: 18px; font-weight: bolder">
+                <b>About Us </b>
+            </h1>
+        </div>
+        <div data-role="content">
+            <p>
+                HK-ALS
+            </p>
+            <a href="#" data-rel="back" data-role="button" data-inline="true" data-theme="b">Back</a>
+        </div>
+    </div>
+    <div data-role="page" id="setting" data-title="GS3">
+        <div data-role="header">
+            <h1 style="font-size: 18px; font-weight: bolder">
+                <b>Settings </b>
+            </h1>
+        </div>
+        <div data-role="content">
+            <center>
+                <input type="text" id="username" placeholder="Username" style="height: 30px; text-align: center;
+                    background-color: Gray; font-weight: bold; font-size: 16px;" value="clientadmin" />
+                <input type="password" id="password" placeholder="Password" style="height: 30px;
+                    text-align: center; background-color: Gray; font-weight: bold; font-size: 16px;"
+                    value="clientadmin@123" />
+                <input type="text" id="ip" placeholder="Server Address" style="height: 30px; text-align: center;
+                    background-color: Gray; font-weight: bold; font-size: 16px;" />
+                <input type="text" id="port" placeholder="Port" style="height: 30px; text-align: center;
+                    background-color: Gray; font-weight: bold; font-size: 16px;" />
+                <input type="text" id="delay" placeholder="Set Delay" style="height: 30px; text-align: center;
+                    background-color: Gray; font-weight: bold; font-size: 16px;" />
+                <br />
+                <a href="#" data-rel="back" data-role="button" id="save" onclick="SaveSettings()"
+                    data-inline="true" style="font-weight: bold; background: #8CC63F;" data-mini="true">
+                    Save</a>
+            </center>
+        </div>
+    </div>
+    <div data-role="page" id="schedulehome" class="sliderbg_menu" data-title="GS3">
+        <div data-role="header">
+            <h1>
+                <b>
+                    <label id="Label1" style="font-size: 18px; font-weight: bolder">
+                        Schedule
+                    </label>
+                </b>
+            </h1>
+            <a href="#" data-role="button" data-rel="back" data-icon="arrow-l">Back</a><a href="#"
+                onclick="addSchedulePage();" class="add" data-icon="plus" data-iconpos="notext">Add</a>
+        </div>
+        <div data-role="content">
+            <center>
+                <ul data-role="listview" id="schedulelist" style="width: 98%; padding-top: 10px;
+                    padding-bottom: 10px;">
+                </ul>
+            </center>
+        </div>
+    </div>
+    <div data-role="page" id="schedule" class="sliderbg_menu" data-title="GS3">
+        <div data-role="header">
+            <h1>
+                <b>
+                    <label id="s_header" style="font-size: 18px; font-weight: bolder">
+                        Schedule
+                    </label>
+                </b>
+            </h1>
+            <a href="#" data-role="button" data-rel="back" data-icon="arrow-l">Back</a>
+            <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal" id="schedule_header_r">
+                <!-- <a href="#scheduleSettings" data-role="button" class="save" onclick="saveSchedule();"
+                    data-icon="check">Save</a>-->
+            </div>
+        </div>
+        <div data-role="content">
+            <div style="text-align: center; width: 70%; margin: 0 auto;">
+                <center>
+                    <div style="width: 180px;">
+                        <div style="padding-top: 25px; width: 35px; float: left">
+                            <ul id="x" data-role="listview">
+                                <li style="font-size: 16px; background-color: transparent" onclick="iHour();">
+                                    <center>
+                                        <img src="css/images/extra/up_1.png" style="height: 35px; width: 35px;" />
+                                    </center>
+                                </li>
+                                <li style="font-size: 24px; background-color: transparent">
+                                    <center id="hour" style="font-weight: bolder" contenteditable="true">
+                                        0</center>
+                                </li>
+                                <li style="font-size: 16px; background-color: transparent" onclick="dHour();">
+                                    <center>
+                                        <img src="css/images/extra/down.png" style="height: 35px; width: 35px;" /></center>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="padding-left: 10px; padding-right: 20px; padding-top: 25px; width: 37px;
+                            float: right">
+                            <ul data-role="listview">
+                                <li style="font-size: 16px; background-color: transparent" onclick="iMinute();">
+                                    <center>
+                                        <img src="css/images/extra/blank.png" style="height: 35px; width: 35px;" />
+                                    </center>
+                                </li>
+                                <li style="font-size: 24px; background-color: transparent" onclick="ampm();">
+                                    <center id="ampm" style="font-weight: bolder">
+                                        AM
+                                    </center>
+                                </li>
+                                <li style="font-size: 16px; background-color: transparent" onclick="dMinute();">
+                                    <center>
+                                        <img src="css/images/extra/blank.png" style="height: 35px; width: 35px;" /></center>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="padding-top: 25px; width: 30px; float: right">
+                            <ul data-role="listview">
+                                <li style="font-size: 16px; background-color: transparent" onclick="iMinute();">
+                                    <center>
+                                        <img src="css/images/extra/up_1.png" style="height: 35px; width: 35px;" />
+                                    </center>
+                                </li>
+                                <li style="font-size: 24px; background-color: transparent">
+                                    <center id="minute" style="font-weight: bolder" contenteditable="true">
+                                        0
+                                    </center>
+                                </li>
+                                <li style="font-size: 16px; background-color: transparent" onclick="dMinute();">
+                                    <center>
+                                        <img src="css/images/extra/down.png" style="height: 35px; width: 35px;" /></center>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="text-align: center; padding-top: 25px;">
+                            <ul id="Ul1" data-role="listview">
+                                <li style="font-size: 16px; background-color: transparent">
+                                    <center>
+                                        <img src="css/images/extra/blank.png" style="height: 35px; width: 35px;" />
+                                    </center>
+                                </li>
+                                <li style="font-size: 24px; background-color: transparent">
+                                    <center style="font-weight: bolder">
+                                        &nbsp;:</center>
+                                </li>
+                                <li style="font-size: 16px; background-color: transparent">
+                                    <center>
+                                        <img src="css/images/extra/blank.png" style="height: 35px; width: 35px;" /></center>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </center>
+            </div>
+            <div style="clear: both">
+            </div>
+            <br />
+            <div style="text-align: center; width: 100%; margin: 0 auto;" class="noCorner">
+                <fieldset data-role="controlgroup" data-type="horizontal">
+                    <input name="chksun" id="chksun" type="checkbox" data-mini="true">
+                    <label for="chksun" style="color: Red">
+                        S</label>
+                    <input name="chkmon" id="chkmon" type="checkbox" data-mini="true">
+                    <label for="chkmon">
+                        M</label>
+                    <input name="chktue" id="chktue" type="checkbox" data-mini="true">
+                    <label for="chktue">
+                        T</label>
+                    <input name="chkwed" id="chkwed" type="checkbox" data-mini="true">
+                    <label for="chkwed">
+                        W</label>
+                    <input name="chkthu" id="chkthu" type="checkbox" data-mini="true">
+                    <label for="chkthu">
+                        T</label>
+                    <input name="chkfri" id="chkfri" type="checkbox" data-mini="true">
+                    <label for="chkfri">
+                        F</label>
+                    <input name="chksat" id="chksat" type="checkbox" data-mini="true">
+                    <label for="chksat">
+                        S</label>
+                </fieldset>
+            </div>
+            <div class="noCorner">
+                <input type="text" placeholder="Name" style="font-weight: bold; font-size: 14px;"
+                    id="sName" />
+            </div>
+            <div class="noCorner">
+                <div class="ui-field-contain">
+                    <div style="float: left; width: 30%">
+                        <label for="flip-6">
+                            Switch:</label>
+                    </div>
+                    <div style="float: right; width: 70%">
+                        <select name="flip-6" id="flip-6" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="10">On</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div style="text-align: center; width: 100%; margin: 10px auto;">
+                <fieldset data-role="controlgroup" data-type="horizontal">
+                    <input name="radio-choice-h-2" id="rdoTag" value="0" checked="checked" type="radio"
+                        onclick="LoadGroupsForTags();">
+                    <label for="rdoTag">
+                        Point</label>
+                    <input name="radio-choice-h-2" id="rdoGroup" value="1" type="radio" onclick="LoadGroupsForTags();">
+                    <label for="rdoGroup">
+                        Group</label>
+                    <input name="radio-choice-h-2" id="rdoScene" value="2" type="radio" onclick="LoadGroupsForScenes();">
+                    <label for="rdoScene">
+                        Scenes</label>
+                </fieldset>
+                <div id="scheduleOpList" class="ui-body-d ui-content">
+                    <select name="GroupSelection" class="mySelect" id="GroupSelectionSchedule" data-mini="true"
+                        data-native-menu="false">
+                    </select>
+                    <fieldset data-role="controlgroup" id="tagList">
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="writeDimmers" data-role="dialog" data-transition="pop" data-title="GS3">
+        <div data-role="header" id="Div2" data-position="fixed" style="height: 40px; font-size: 18px;
+            font-weight: bolder">
+            <h1 id="dimmer_Header">
+            </h1>
+        </div>
+        <div data-role="content" id="Div3">
+            <div style="float: left; padding-left: 30px; width: 30%">
+                <ul id="Ul2" data-role="listview">
+                    <li style="font-size: 16px; background-color: transparent" onclick="Dimmer_Write_Click(3);">
+                        <center>
+                            <img src="css/images/extra/up_1.png" style="height: 35px; width: 45px;" />
+                        </center>
+                    </li>
+                    <li style="font-size: 16px; background-color: transparent" onclick="Dimmer_Write_Click(2);">
+                        <center>
+                            <img src="css/images/extra/down.png" style="height: 35px; width: 45px;" /></center>
+                    </li>
+                </ul>
+            </div>
+            <div style="width: 40px; float: left; padding-top: 10px;">
+                <center id="dimmerindication">
+                </center>
+            </div>
+            <div style="float: left; padding-left: 40px; width: 20%">
+                <input id="txtDimmerValue" type="number" disabled="disabled" style="font-size: 24px;
+                    text-align: center; font-weight: bold" />
+            </div>
+            <div style="float: left; width: 60%; display: none" id="Div1" class="ui-field-contain">
+                <label for="d_Mode">
+                    Mode:</label>
+                <select name="d_Mode" id="d_Mode" data-native-menu="false">
+                    <option value="1">Switch Only</option>
+                    <option value="2">PC + Switch</option>
+                    <option value="3">PC Only</option>
+                </select>
+            </div>
+            <br />
+            <center>
+                <div style="width: 150px; padding-top: 86px;">
+                    <center>
+                        <a href="#" data-role="button" data-rel="back" class="write" data-mini="true" data-inline="true"
+                            style="background: #8CC63F;" onclick="Dimmer_Write_Click(4);">Done</a> <a href="#"
+                                data-role="button" onclick="Dimmer_Back_Click(); " id="A4" data-mini="true" data-inline="true"
+                                style="background: #3090C7;" data-rel="back">Back</a></center>
+                </div>
+            </center>
+        </div>
+    </div>
+    <div id="writeSimpleTag" data-role="dialog" data-transition="pop" data-title="GS3">
+        <div data-role="header" id="Div4" data-position="fixed" style="height: 40px; font-size: 18px;
+            font-weight: bolder">
+            <h1 id="simpleTag_header">
+            </h1>
+        </div>
+        <div data-role="content" id="Div5">
+            <div style="float: left; width: 60%" id="s_ModeDiv" class="ui-field-contain">
+                <label for="s_Mode">
+                    Mode:</label>
+                <select name="s_Mode" id="s_Mode" data-native-menu="false">
+                    <option value="1">Switch Only</option>
+                    <option value="2">PC + Switch</option>
+                    <option value="3">PC Only</option>
+                </select>
+            </div>
+            <!--<div style="float: right; padding-right: 10px; width: 20%" id="Div6">
+                <a href="#" onclick="writeTag();" data-role="button" data-inline="true" style="height: 75px;
+                    width: 75px;">
+                    <img id="imgSimpleTag" style="height: 100%; width: 100%;" src="css/images/extra/bulb_on.png"
+                        onclick="alert('Hello')" />
+                </a>
+            </div>-->
+            <div style="float: right; padding-right: 30px; width: 20%" id="simpleTagWinMainDiv1">
+                <!--    <a href="#" id="simpleTagWinMainDiv" data-role="button" class="ui-btn ui-state-disabled"
+                    data-inline="true" style="height: 50px; width: 50px;"></a>-->
+                <!-- <img id="imgSimpleTag" style="height: 75px; width: 75px;" src="css/images/extra/bulb_on.png"
+                    onclick="writeTag();" />-->
+            </div>
+            <br />
+            <center>
+                <div style="width: 200px; padding-top: 86px;">
+                    <center>
+                        <a href="#" data-role="button" data-rel="back" id="s_mode_done" name="s_mode_done"
+                            class="write" data-mini="true" data-inline="true" style="background: #8CC63F;"
+                            onclick="writeMode(this)">Done</a> <a href="#" data-role="button" onclick="Dimmer_Back_Click(); "
+                                id="A8" data-mini="true" data-inline="true" style="background: #3090C7;" data-rel="back">
+                                Back</a></center>
+                </div>
+            </center>
+        </div>
+    </div>
+    <div id="writeTempTag" data-role="dialog" data-transition="pop" data-title="GS3">
+        <div data-role="header" id="Div7" data-position="fixed" style="height: 40px; font-size: 18px;
+            font-weight: bolder">
+            <h1 id="tempTag_header">
+            </h1>
+        </div>
+        <div data-role="content" id="Div8">
+            <div style="float: left; width: 60%" id="Div9" class="ui-field-contain">
+                <label for="t_Mode">
+                    Mode:</label>
+                <select name="t_Mode" id="t_Mode" data-native-menu="false">
+                    <option value="1">Switch Only</option>
+                    <option value="2">PC + Switch</option>
+                    <option value="3">PC Only</option>
+                </select>
+            </div>
+            <div style="float: right; padding-right: 30px; width: 20%" id="tempTagWinMainDiv1">
+                <!--  <a href="#" id="tempTagWinMainDiv" data-role="button" data-inline="true" style="height: 50px;
+                    width: 50px;"></a>-->
+                <!-- <img id="imgSimpleTag" style="height: 75px; width: 75px;" src="css/images/extra/bulb_on.png"
+                    onclick="writeTag();" />-->
+            </div>
+            <br />
+            <center>
+                <div style="width: 200px; padding-top: 86px;">
+                    <center>
+                        <a href="#" data-role="button" data-rel="back" id="A10" name="s_mode_done" class="write"
+                            data-mini="true" data-inline="true" style="background: #8CC63F;" onclick="writeTempMode(this)">
+                            Done</a> <a href="#" data-role="button" onclick="Dimmer_Back_Click(); " id="A11"
+                                data-mini="true" data-inline="true" style="background: #3090C7;" data-rel="back">
+                                Back</a></center>
+                </div>
+            </center>
+        </div>
+    </div>
+    <div data-role="page" id="globalscenes" data-title="GS3">
+        <div data-role="header" data-position="fixed">
+            <h1 style="font-size: 18px; font-weight: bolder">
+                <b>
+                    <label id="Label2" style="font-size: 18px; font-weight: bolder">
+                        Global Scenes
+                    </label>
+                </b>
+            </h1>
+            <a href="#" data-role="button" data-rel="back" data-icon="arrow-l">Back</a>
+        </div>
+        <div data-role="content">
+            <center>
+                <ul data-role="listview" id="globalscenesList" style="width: 98%; padding-top: 10px;
+                    padding-bottom: 10px;">
+                </ul>
+            </center>
+        </div>
+    </div>
+    <div data-role="page" id="globalsceneTags" data-title="GS3">
+        <div data-role="header">
+            <h1>
+                <b>
+                    <label id="scene_header" style="font-size: 18px; font-weight: bolder">
+                    </label>
+                </b>
+            </h1>
+            <a href="#" data-role="button" data-rel="back" data-icon="arrow-l">Back</a>
+        </div>
+        <div data-role="content">
+            <center>
+                <label id="lblNoTagScene" style="font-size: 14px; color: Red;">
+                </label>
+                <ul data-role="listview" id="sceneTagList" style="width: 98%; padding-top: 10px;
+                    padding-bottom: 10px;">
+                </ul>
+            </center>
+        </div>
+    </div>
+    <div data-role="page" id="ataglance" data-title="GS3">
+        <div data-role="header">
+            <h1>
+                <b>
+                    <label id="Label3" style="font-size: 18px; font-weight: bolder">
+                        At a Glance
+                    </label>
+                </b>
+            </h1>
+            <a href="#" id="at1" onclick="setTagFlagFalse(this);" data-role="button" data-icon="arrow-l">
+                Back</a>
+        </div>
+        <div data-role="content">
+            <center>
+                <label id="lblNoAtTag" style="font-size: 14px; color: Red;">
+                </label>
+                <ul data-role="listview" id="glanceList" style="width: 98%; padding-top: 10px; padding-bottom: 10px;">
+                </ul>
+            </center>
+        </div>
+    </div>
+    <div id="changePassword" data-role="dialog" data-title="GS3">
+        <div data-role="header">
+            <h1 style="font-size: 18px; font-weight: bolder">
+                <b>Change Password </b>
+            </h1>
+        </div>
+        <div data-role="content">
+            <center>
+                <!-- <input type="password" id="txtOldPwd" placeholder="Current Password" style="height: 30px;
+                    text-align: center; background-color: Gray; font-weight: bold; font-size: 16px;" />-->
+                <input type="password" id="txtNewPwd" placeholder="New Password" style="height: 30px;
+                    text-align: center; background-color: Gray; font-weight: bold; font-size: 16px;" />
+                <input type="password" id="txtConfirmPwd" placeholder="Confirm Password" style="height: 30px;
+                    text-align: center; background-color: Gray; font-weight: bold; font-size: 16px;" />
+                <br />
+                <label style="color: White; font-weight: bold" id="lblPass">
+                </label>
+                <a href="#" data-role="button" id="A6" onclick="changePwd();" data-inline="true"
+                    style="font-weight: bold; background: #8CC63F;" data-mini="true">Save</a> <a href="#"
+                        data-rel="back" data-role="button" id="A7" data-inline="true" style="font-weight: bold;
+                        background: #3090C7;" data-mini="true">Back</a>
+            </center>
+        </div>
+    </div>
+    <div data-role="dialog" id="errorDialog" data-title="GS3">
+        <div data-role="header">
+            <h1 style="font-size: 18px; font-weight: bolder">
+                <b>Error</b>
+            </h1>
+        </div>
+        <div data-role="content">
+            <center>
+                <label style="color: White; font-weight: bold" id="lbl_errordia">
+                </label>
+                <a href="#" data-rel="back" data-role="button" id="A9" data-rel="back" data-inline="true"
+                    style="font-weight: bold; background: #3090C7;" data-mini="true">Back</a>
+            </center>
+        </div>
+    </div>
+</body>
+</html>
