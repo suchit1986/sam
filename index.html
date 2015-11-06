@@ -26,7 +26,7 @@
     <link href="css/hkStyle.css" rel="stylesheet" type="text/css" />
     <script src="Js/hkScript.js" type="text/javascript"></script>
     <!--  If Want to build Mobile app remove cordova.js comment below-->
-     <script src="Js/cordova.js" type="text/javascript"></script>
+    <!--   <script src="Js/cordova.js" type="text/javascript"></script>-->
     <style type="text/css">
         .ui-loader-background
         {
@@ -2767,7 +2767,7 @@
                         <option value="LR">L Room</option>
                         <option value="RR">R Room</option>-->
                     </select>
-                    <select id="selInterface_1" data-mini="true" onchange="loadLightInterfaceDetails();">
+                    <select id="selInterface_1" data-mini="true" onchange="loadLightInterfaceDetails(true);">
                         <!--<option value="">Select Interface</option>
                         <option value="B1">Bulb 1</option>
                         <option value="B2">Bulb 2</option>-->
@@ -2824,7 +2824,7 @@
                 <fieldset class="ui-field-contain" style="width: 75%">
                     <select id="selLocation_2" data-mini="true" onchange="BindInterface('2');">
                     </select>
-                    <select id="selInterface_2" data-mini="true" onchange="loadDimmerInterfaceDetails();">
+                    <select id="selInterface_2" data-mini="true" onchange="loadDimmerInterfaceDetails(true);">
                     </select>
                 </fieldset>
                 <fieldset class="ui-field-contain" style="width: 95%">
@@ -2879,7 +2879,7 @@
                 <fieldset class="ui-field-contain" style="width: 75%">
                     <select id="selLocation_3" data-mini="true" onchange="BindInterface('3');">
                     </select>
-                    <select id="selInterface_3" data-mini="true" onchange="loadPlugInterfaceDetails();">
+                    <select id="selInterface_3" data-mini="true" onchange="loadPlugInterfaceDetails(true);">
                     </select>
                 </fieldset>
                 <fieldset class="ui-field-contain" style="width: 95%">
@@ -2938,7 +2938,7 @@
                         <option value="LR">L Room</option>
                         <option value="RR">R Room</option>-->
                     </select>
-                    <select id="selInterface_6" data-mini="true" onchange="loadTemperatureInterfaceDetails();">
+                    <select id="selInterface_6" data-mini="true" onchange="loadTemperatureInterfaceDetails(true);">
                         <!--<option value="">Select Interface</option>
                         <option value="B1">Bulb 1</option>
                         <option value="B2">Bulb 2</option>-->
@@ -3006,9 +3006,10 @@
                 <fieldset class="ui-field-contain" style="width: 75%">
                     <a href="#" data-role="button" data-rel="back" id="sTagWrite_btn" name="sTagWrite_btn"
                         class="write" data-mini="true" data-inline="true" style="background: #8CC63F;"
-                        onclick="writeSimpleMode(this)">Done</a> <a href="#" data-role="button" onclick="Dimmer_Back_Click(); "
-                            id="A13" data-mini="true" data-inline="true" style="background: #3090C7;" data-rel="back">
+                        onclick="writeSimpleMode(this)">Done</a> <a href="#" data-role="button" id="A13"
+                            data-mini="true" data-inline="true" style="background: #3090C7;" data-rel="back">
                             Back</a>
+                    <!--onclick="Dimmer_Back_Click();"-->
                 </fieldset>
             </div>
         </div>
@@ -3035,11 +3036,11 @@
 
             $(".knob").knob({
                 change: function (value) {
-                    console.log("change : " + value);                    
+                    console.log("change : " + value);
                 },
                 release: function (value) {
-                    //console.log(this.$.attr('value')); // Release would call event
-					if ($.mobile.activePage.is("#dimmerPage")) {
+                    //console.log(this.$.attr('value'));
+                    if ($.mobile.activePage.is("#dimmerPage")) {
                         var val = Math.round(value);
                         if (val % 2 != 0)
                             val = val + 1;
@@ -3252,16 +3253,17 @@
             try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
 
         };
-        function loadLightInterfaceDetails() {
+        function loadLightInterfaceDetails(IsLoadingMaskShow) {
 
-            $.mobile.loading("show", {
-                text: 'Wait..',
-                textVisible: true,
-                theme: 'a',
-                html: ""
-            });
-            $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
-
+            if (IsLoadingMaskShow) {
+                $.mobile.loading("show", {
+                    text: 'Wait..',
+                    textVisible: true,
+                    theme: 'a',
+                    html: ""
+                });
+                $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
+            }
             var wSimpleTagID = $("#selInterface_1").val();
             var wSimpleTagName = $("#selInterface_1 option:selected").text();
             //var method = "GetIVByTag"; 
@@ -3307,32 +3309,41 @@
                             var mVal = data.PV[0];
                             $('#btnLightMode').attr('name', wSimpleTagID + ':' + mID + ':' + mVal);
                         }
+                        window.clearTimeout(timer);
+                        timer = setTimeout(function () {
+                            loadLightInterfaceDetails(false);
+                        }, delay);
                     }
                     else {
+                        window.clearTimeout(timer);
                         var loc = "css/images/icons/noimg.png";
                         $("#imgLight").attr('src', loc);
-                        alert('Null data...');
+                        alert('Record not found');
 
                     }
                 });
             }
             else {
+                window.clearTimeout(timer);
                 ResetImageStatus("1");
             }
-            $.mobile.loading("hide");
-            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            if (IsLoadingMaskShow) {
+                $.mobile.loading("hide");
+                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            }
 
         };
 
-        function loadDimmerInterfaceDetails() {
-            $.mobile.loading("show", {
-                text: 'Wait..',
-                textVisible: true,
-                theme: 'a',
-                html: ""
-            });
-            $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
-
+        function loadDimmerInterfaceDetails(IsLoadingMaskShow) {
+            if (IsLoadingMaskShow) {
+                $.mobile.loading("show", {
+                    text: 'Wait..',
+                    textVisible: true,
+                    theme: 'a',
+                    html: ""
+                });
+                $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
+            }
             var wSimpleTagID = $("#selInterface_2").val();
             var wSimpleTagName = $("#selInterface_2 option:selected").text();
             //var method = "GetIVByTag"; 
@@ -3360,25 +3371,30 @@
                             var mVal = data.PV[0];
                             $('#btnDimmerMode').attr('name', wSimpleTagID + ':' + mID + ':' + mVal);
                         }
-                        //                        if (mVal != "1") {
-                        //                            $("#knobForDimmer").siblings("canvas").remove();
-                        //                            $("#knobForDimmer").unwrap().removeAttr("data-readOnly readonly").data("kontroled", "").data("readonly", false).knob().trigger('change');
-                        //                        }                        
+
+                        window.clearTimeout(timer);
+                        timer = setTimeout(function () {
+                            loadDimmerInterfaceDetails(false);
+                        }, delay);
+
                     }
                     else {
-                        //                        var loc = "css/images/icons/noimg.png";
-                        //                        $("#imgLight").attr('src', loc);
+
+                        window.clearTimeout(timer);
                         setKnobDisable('knobForDimmer');
-                        alert('Null data...');
+                        alert('Record not found...');
 
                     }
                 });
             }
             else {
+                window.clearTimeout(timer);
                 setKnobDisable('knobForDimmer'); //ResetImageStatus();
             }
-            $.mobile.loading("hide");
-            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            if (IsLoadingMaskShow) {
+                $.mobile.loading("hide");
+                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            }
         };
 
         function setKnobDisable(knobID) {
@@ -3395,15 +3411,16 @@
         };
 
 
-        function loadPlugInterfaceDetails() {
-            $.mobile.loading("show", {
-                text: 'Wait..',
-                textVisible: true,
-                theme: 'a',
-                html: ""
-            });
-            $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
-
+        function loadPlugInterfaceDetails(IsLoadingMaskShow) {
+            if (IsLoadingMaskShow) {
+                $.mobile.loading("show", {
+                    text: 'Wait..',
+                    textVisible: true,
+                    theme: 'a',
+                    html: ""
+                });
+                $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
+            }
             var wSimpleTagID = $("#selInterface_3").val();
             var wSimpleTagName = $("#selInterface_3 option:selected").text();
             //var method = "GetIVByTag"; 
@@ -3449,31 +3466,41 @@
                             var mVal = data.PV[0];
                             $('#btnPlugMode').attr('name', wSimpleTagID + ':' + mID + ':' + mVal);
                         }
+
+                        window.clearTimeout(timer);
+                        timer = setTimeout(function () {
+                            loadPlugInterfaceDetails(false);
+                        }, delay);
                     }
                     else {
+                        window.clearTimeout(timer);
                         var loc = "css/images/icons/noimg.png";
                         $("#imgPlug").attr('src', loc);
-                        alert('Null data...');
+                        alert('Record not found...');
 
                     }
                 });
             }
             else {
+                window.clearTimeout(timer);
                 ResetImageStatus("3");
             }
-            $.mobile.loading("hide");
-            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            if (IsLoadingMaskShow) {
+                $.mobile.loading("hide");
+                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            }
         };
 
-        function loadTemperatureInterfaceDetails() {
-            $.mobile.loading("show", {
-                text: 'Wait..',
-                textVisible: true,
-                theme: 'a',
-                html: ""
-            });
-            $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
-
+        function loadTemperatureInterfaceDetails(IsLoadingMaskShow) {
+            if (IsLoadingMaskShow) {
+                $.mobile.loading("show", {
+                    text: 'Wait..',
+                    textVisible: true,
+                    theme: 'a',
+                    html: ""
+                });
+                $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
+            }
             var wSimpleTagID = $("#selInterface_6").val();
             var wSimpleTagName = $("#selInterface_6 option:selected").text();
             //var method = "GetIVByTag"; 
@@ -3519,20 +3546,30 @@
                             var mVal = data.PV[0];
                             $('#btnTemperatureMode').attr('name', wSimpleTagID + ':' + mID + ':' + mVal);
                         }
+
+                        window.clearTimeout(timer);
+                        timer = setTimeout(function () {
+                            loadTemperatureInterfaceDetails(false);
+                        }, delay);
                     }
                     else {
+                        window.clearTimeout(timer);
                         var loc = "css/images/icons/noimg.png";
                         $("#imgTemperature").attr('src', loc);
-                        alert('Null data...');
+                        alert('Record not found...');
 
                     }
                 });
             }
             else {
+                window.clearTimeout(timer);
                 ResetImageStatus("6");
             }
-            $.mobile.loading("hide");
-            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+
+            if (IsLoadingMaskShow) {
+                $.mobile.loading("hide");
+                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            }
         };
 
         function writeTemperatureAppliancesOn() {
@@ -3551,10 +3588,12 @@
                 var value = 1;
                 var type = 1;
                 WriteTag_Toggle(username, password, method, ip, port, token, id, value, type, function (data) {
-                    var loc = "css/images/icons/temperatureON.png";
-                    $("#imgTemperature").attr('src', loc);
-                    $.mobile.loading("hide");
-                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    //var loc = "css/images/icons/temperatureON.png";
+                    //$("#imgTemperature").attr('src', loc);
+                    setTimeout(function () {
+                        $.mobile.loading("hide");
+                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    }, delay);
                 });
             }
             else {
@@ -3578,11 +3617,12 @@
                 var value = 1;
                 var type = 1;
                 WriteTag_Toggle(username, password, method, ip, port, token, id, value, type, function (data) {
-                    var loc = "css/images/icons/temperatureOFF.png";
-                    $("#imgTemperature").attr('src', loc);
-
-                    $.mobile.loading("hide");
-                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    //var loc = "css/images/icons/temperatureOFF.png";
+                    //$("#imgTemperature").attr('src', loc);
+                    setTimeout(function () {
+                        $.mobile.loading("hide");
+                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    }, delay);
                 });
             }
             else {
@@ -3643,12 +3683,16 @@
                 var method = "WriteTag";
                 var value = 1;
                 var type = 1;
+
                 WriteTag_Toggle(username, password, method, ip, port, token, id, value, type, function (data) {
-                    var loc = "css/images/icons/bulbON.png";
-                    $("#imgLight").attr('src', loc);
-                    $.mobile.loading("hide");
-                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    // var loc = "css/images/icons/bulbON.png";
+                    // $("#imgLight").attr('src', loc);
+                    setTimeout(function () {
+                        $.mobile.loading("hide");
+                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    }, delay);
                 });
+
             }
             else {
                 $.mobile.loading("hide");
@@ -3671,13 +3715,16 @@
                 var method = "WriteTag";
                 var value = 1;
                 var type = 1;
-                WriteTag_Toggle(username, password, method, ip, port, token, id, value, type, function (data) {
-                    var loc = "css/images/icons/bulbOFF.png";
-                    $("#imgLight").attr('src', loc);
 
-                    $.mobile.loading("hide");
-                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                WriteTag_Toggle(username, password, method, ip, port, token, id, value, type, function (data) {
+                    //var loc = "css/images/icons/bulbOFF.png";
+                    // $("#imgLight").attr('src', loc);
+                    setTimeout(function () {
+                        $.mobile.loading("hide");
+                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    }, delay);
                 });
+
             }
             else {
                 $.mobile.loading("hide");
@@ -3701,10 +3748,12 @@
                 var value = 1;
                 var type = 1;
                 WriteTag_Toggle(username, password, method, ip, port, token, id, value, type, function (data) {
-                    var loc = "css/images/icons/plugON.png";
-                    $("#imgPlug").attr('src', loc);
-                    $.mobile.loading("hide");
-                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    // var loc = "css/images/icons/plugON.png";
+                    // $("#imgPlug").attr('src', loc);
+                    setTimeout(function () {
+                        $.mobile.loading("hide");
+                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    }, delay);
                 });
             }
             else {
@@ -3729,11 +3778,12 @@
                 var value = 1;
                 var type = 1;
                 WriteTag_Toggle(username, password, method, ip, port, token, id, value, type, function (data) {
-                    var loc = "css/images/icons/plugOFF.png";
-                    $("#imgPlug").attr('src', loc);
-
-                    $.mobile.loading("hide");
-                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    //var loc = "css/images/icons/plugOFF.png";
+                    //$("#imgPlug").attr('src', loc);
+                    setTimeout(function () {
+                        $.mobile.loading("hide");
+                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    }, delay);
                 });
             }
             else {
@@ -3759,9 +3809,11 @@
             var modeValueArray = $('#btnDimmerMode')[0].name.split(':');
             if (id != undefined && id != "" && id != -1 && currentVal != "10" && modeValueArray[2] != "1") {
                 WriteTag_Dimmer(username, password, method, ip, port, token, id, 10, function (data) {
-                    setDimmerKnobIndication('knobForDimmer', 10);
-                    $.mobile.loading("hide");
-                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    //setDimmerKnobIndication('knobForDimmer', 10);
+                    setTimeout(function () {
+                        $.mobile.loading("hide");
+                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    }, delay);
                 });
             }
             else {
@@ -3785,9 +3837,11 @@
             var modeValueArray = $('#btnDimmerMode')[0].name.split(':');
             if (id != undefined && id != "" && id != -1 && currentVal != "0" && modeValueArray[2] != "1") {
                 WriteTag_Dimmer(username, password, method, ip, port, token, id, 0, function (data) {
-                    setDimmerKnobIndication('knobForDimmer', 0);
-                    $.mobile.loading("hide");
-                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    //setDimmerKnobIndication('knobForDimmer', 0);
+                    setTimeout(function () {
+                        $.mobile.loading("hide");
+                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    }, delay);
                 });
             }
             else {
@@ -3810,20 +3864,24 @@
             var modeValueArray = $('#btnDimmerMode')[0].name.split(':');
             if (id != undefined && id != "" && modeValueArray[2] != "1") {
                 WriteTag_Dimmer(username, password, method, ip, port, token, id, val, function (data) {
-                    //setDimmerKnobIndication('knobForDimmer', val);
+                    setDimmerKnobIndication('knobForDimmer', val);
                     if (dimmerOnOffTagID != -1) {
                         var dimValOnOff = 0;
                         if (val > 0) {
                             dimValOnOff = 10;
                         }
                         WriteTag_Dimmer(username, password, method, ip, port, token, dimmerOnOffTagID, dimValOnOff, function (data) {
-                            $.mobile.loading("hide");
-                            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                            setTimeout(function () {
+                                $.mobile.loading("hide");
+                                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                            }, delay);
                         });
                     }
                     else {
-                        $.mobile.loading("hide");
-                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                        setTimeout(function () {
+                            $.mobile.loading("hide");
+                            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                        }, delay);
                     }
                 });
             }
@@ -3880,13 +3938,12 @@
             var value = $("#SelSimpleMode").val();
             if (value != ID[2]) {
                 WriteMode(username, password, method, ip, port, ID[0], ID[1], value, function (data) {
-                    //writeSimpleMode()
-                    Dimmer_Back_Click();
+                    //Dimmer_Back_Click();
                     SetModeStatus(ID[0], ID[1], value);
                 });
             }
             else {
-                Dimmer_Back_Click();
+                //Dimmer_Back_Click();
             }
         };
 
