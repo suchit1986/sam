@@ -3035,11 +3035,10 @@
 
             $(".knob").knob({
                 change: function (value) {
-                    console.log("change : " + value);
-                    
+                    console.log("change : " + value);                    
                 },
                 release: function (value) {
-                    //console.log(this.$.attr('value'));
+                    //console.log(this.$.attr('value')); // Release would call event
 					if ($.mobile.activePage.is("#dimmerPage")) {
                         var val = Math.round(value);
                         if (val % 2 != 0)
