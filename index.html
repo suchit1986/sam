@@ -3036,17 +3036,17 @@
             $(".knob").knob({
                 change: function (value) {
                     console.log("change : " + value);
-                    if ($.mobile.activePage.is("#dimmerPage")) {
+                    
+                },
+                release: function (value) {
+                    //console.log(this.$.attr('value'));
+					if ($.mobile.activePage.is("#dimmerPage")) {
                         var val = Math.round(value);
                         if (val % 2 != 0)
                             val = val + 1;
                         console.log("Write Value : " + val);
                         WriteDimmerByVal(val);
                     }
-                },
-                release: function (value) {
-                    //console.log(this.$.attr('value'));
-
                     console.log("release : " + value);
                 },
                 cancel: function () {
