@@ -88,6 +88,11 @@
     background-image: url('../css/images/extra/onoff_green.png');
     background-size: 23px 23px;
 }
+.ui-icon-arrowright:after
+{
+    background-image: url('../css/images/extra/arrow_right.png');
+    background-size: 27px 30px;
+}
 .ui-icon-3d:after
 {
     background-image: url('../css/images/IRicons/3d.png');
