@@ -809,13 +809,13 @@
     <script src="Js/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="Js/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
     <!--  If Want to build Mobile app remove cordova.js comment below-->
-    <!--<script src="phonegap.js"></script>-->
+    <script src="phonegap.js"></script>
     <script type="text/javascript">
         var UUIDConfig = [];
         var IRConfig = [];
         var GSceneConfig = [];
         $.mobile.allowCrossDomainPages = true;
-        var isBrowser = true; //If Used in browser then 'true' and for mobile app make it 'false'.
+        var isBrowser = false; //If Used in browser then 'true' and for mobile app make it 'false'.
         var timer;
         var chkConnectionDelay = 10000;
         var chkConnectionTimer;
