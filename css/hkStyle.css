@@ -288,12 +288,12 @@
             display: block;
             width: 77px;
             height: 44px;
-            background: url(../css/images/IRicons/ac/cool1.png) no-repeat top;
+            background: url('../css/images/IRicons/ac/cool1.png') no-repeat top;
         }
         
         .btnCool:active
         {
-            background: url(../css/images/IRicons/ac/cool2.png) no-repeat bottom;
+            background: url('../css/images/IRicons/ac/cool2.png') no-repeat bottom;
         }
         
         .btnPowerOn
@@ -301,12 +301,12 @@
             display: block;
             width: 77px;
             height: 44px;
-            background: url(../css/images/IRicons/ac/on1.png) no-repeat top;
+            background: url('../css/images/IRicons/ac/on1.png') no-repeat top;
         }
         
         .btnPowerOn:active
         {
-            background: url(../css/images/IRicons/ac/on2.png) no-repeat bottom;
+            background: url('../css/images/IRicons/ac/on2.png') no-repeat bottom;
         }
         
         .btnPowerOff
@@ -314,12 +314,12 @@
             display: block;
             width: 77px;
             height: 44px;
-            background: url(../css/images/IRicons/ac/off1.png) no-repeat top;
+            background: url('../css/images/IRicons/ac/off1.png') no-repeat top;
         }
         
         .btnPowerOff:active
         {
-            background: url(../css/images/IRicons/ac/off2.png) no-repeat bottom;
+            background: url('../css/images/IRicons/ac/off2.png') no-repeat bottom;
         }
         
         .btnDry
@@ -327,12 +327,12 @@
             display: block;
             width: 77px;
             height: 44px;
-            background: url(../css/images/IRicons/ac/dry1.png) no-repeat top;
+            background: url('../css/images/IRicons/ac/dry1.png') no-repeat top;
         }
         
         .btnDry:active
         {
-            background: url(../css/images/IRicons/ac/dry2.png) no-repeat bottom;
+            background: url('../css/images/IRicons/ac/dry2.png') no-repeat bottom;
         }
         
         .btnSwingUp
@@ -340,12 +340,12 @@
             display: block;
             width: 77px;
             height: 44px;
-            background: url(../css/images/IRicons/ac/swing-up1.png) no-repeat top;
+            background: url('../css/images/IRicons/ac/swing-up1.png') no-repeat top;
         }
         
         .btnSwingUp:active
         {
-            background: url(../css/images/IRicons/ac/swing-up2.png) no-repeat bottom;
+            background: url('../css/images/IRicons/ac/swing-up2.png') no-repeat bottom;
         }
         
         .btnFan
@@ -353,12 +353,12 @@
             display: block;
             width: 77px;
             height: 44px;
-            background: url(../css/images/IRicons/ac/fan1.png) no-repeat top;
+            background: url('../css/images/IRicons/ac/fan1.png') no-repeat top;
         }
         
         .btnFan:active
         {
-            background: url(../css/images/IRicons/ac/fan2.png) no-repeat bottom;
+            background: url('../css/images/IRicons/ac/fan2.png') no-repeat bottom;
         }
         
         .btnSwingDown
@@ -366,12 +366,12 @@
             display: block;
             width: 77px;
             height: 44px;
-            background: url(../css/images/IRicons/ac/swing-down1.png) no-repeat top;
+            background: url('../css/images/IRicons/ac/swing-down1.png') no-repeat top;
         }
         
         .btnSwingDown:active
         {
-            background: url(../css/images/IRicons/ac/swing-down2.png) no-repeat bottom;
+            background: url('../css/images/IRicons/ac/swing-down2.png') no-repeat bottom;
         }
         
         .btnIncreseTemp
@@ -379,12 +379,12 @@
             display: block;
             width: 77px;
             height: 44px;
-            background: url(../css/images/IRicons/ac/temp-plus1.png) no-repeat top;
+            background: url('../css/images/IRicons/ac/temp-plus1.png') no-repeat top;
         }
         
         .btnIncreseTemp:active
         {
-            background: url(../css/images/IRicons/ac/temp-plus2.png) no-repeat bottom;
+            background: url('../css/images/IRicons/ac/temp-plus2.png') no-repeat bottom;
         }
         
         .btnDecreseTemp
@@ -392,10 +392,10 @@
             display: block;
             width: 77px;
             height: 44px;
-            background: url(../css/images/IRicons/ac/temp-minus1.png) no-repeat top;
+            background: url('../css/images/IRicons/ac/temp-minus1.png') no-repeat top;
         }
         
         .btnDecreseTemp:active
         {
-            background: url(../css/images/IRicons/ac/temp-minus2.png) no-repeat bottom;
+            background: url('../css/images/IRicons/ac/temp-minus2.png') no-repeat bottom;
         }
