@@ -17,7 +17,6 @@
     <link type="text/css" rel="stylesheet" href="css/idangerous.swiper.css" />
     <link type="text/css" rel="stylesheet" href="css/swipebox.css" />
     <link href="css/hkStyle.css" rel="stylesheet" type="text/css" />
-    <script src="phonegap.js"></script>
     <style type="text/css">
         .ui-loader-background
         {
@@ -273,13 +272,13 @@
                                             </ul>
                                             <div class="clearfix">
                                             </div>
-                                            <center>
+                                            <!--<center>
                                                 <h1>
                                                     <label style="display: inline-block">
                                                         <b>©</b></label>&nbsp;&nbsp;&nbsp;<label style="display: inline-block">
                                                             <b>2014 Harikrupa Automation (P) Ltd.</b></label>
                                                 </h1>
-                                            </center>
+                                            </center>-->
                                         </div>
                                     </div>
                                 </div>
@@ -287,10 +286,21 @@
                             <div class="swiper-scrollbar">
                             </div>
                         </div>
+                        <!--       <footer>-->
+                        <center>
+                            <h1>
+                                <label style="display: inline-block">
+                                    <b>©</b></label>&nbsp;&nbsp;&nbsp;<label style="display: inline-block">
+                                        <b>2014 Harikrupa Automation (P) Ltd.</b></label>
+                            </h1>
+                        </center>
+                        <!--</footer>-->
                     </div>
                 </div>
             </div>
         </div>
+        <!--<div data-role="footer" data-position="fixed">-->
+        <!--</div>-->
     </div>
     <div data-role="dialog" id="errorDialog" data-title="GS3" data-transition="none">
         <div data-role="header">
@@ -402,6 +412,9 @@
                                 data-enhance="false" />
                         </div>
                     </div>
+                    <!-- <a href="#" id="lblStatus_2" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-right ui-icon-alert">
+                        Fan Status :</a>-->
+                    <!--ui-icon-alert , info ,greenBtn, redBtn -->
                 </fieldset>
                 <fieldset class="ui-field-contain" style="width: 90%">
                     <div>
@@ -560,7 +573,7 @@
                 <fieldset class="ui-field-contain" style="width: 75%">
                     <select id="selLocation_7" data-mini="true" data-inline="true" onchange="BindInterfaceList('7');">
                     </select>
-                    <select id="selInterface_7" data-mini="true" data-inline="true">
+                    <select id="selInterface_7" data-mini="true" data-inline="true" onchange="loadInterfaceDetails('7',true);">
                     </select>
                 </fieldset>
                 <!--<fieldset data-corners="true" style="background-color: black; border-radius: 12px;
@@ -583,6 +596,36 @@
                                     &#8451;</label>
                             </td>
                         </tr>
+                    </table>
+                </div>
+                <!--<div class="ui-field-contain">
+                    <label for="flip" class="ui-hidden-accessible">
+                        Flip it:</label>
+                    <select id="flip" data-role="flipswitch">
+                        <option value="animal">Lion</option>
+                        <option value="flower">Rose</option>
+                    </select>
+                </div>-->
+                <div style="padding-top: 10px;" data-inline="true">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span style="color: black; font-size: 20px; padding-top: 35px; vertical-align: middle;">
+                                        Power</span>
+                                </td>
+                                <td style="padding-left: 10px;">
+                                    <div class="ui-field-contain">
+                                        <label for="flipOnOff_7" class="ui-hidden-accessible">
+                                            Power :</label>
+                                        <select name="flipOnOff_7" id="flipOnOff_7" data-role="slider" data-theme="b" onchange="WriteIRFlipOnOff('7');">
+                                            <option value="off">Off</option>
+                                            <option value="on">On</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div style="padding-top: 15px;" data-inline="true">
@@ -684,7 +727,7 @@
         <div role="main" class="ui-content">
             <div align="center">
                 <fieldset class="ui-field-contain" style="width: 75%">
-                    <select id="selLocation_6" data-mini="true" onchange="BindSceneList('6',true);">
+                    <select id="selLocation_6" data-mini="true" onchange="BindLSceneList('6',true);">
                         <!--<option value="">Select Location</option>
                         <option value="LR">L Room</option>
                         <option value="RR">R Room</option>-->
@@ -880,12 +923,14 @@
     <!-- JS Script -->
     <script src="Js/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="Js/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
+    <!--  If Want to build Mobile app remove cordova.js comment below-->
+    <!--<script src="phonegap.js"></script>-->
     <script type="text/javascript">
         var UUIDConfig = [];
         var IRConfig = [];
         var GSceneConfig = [];
         $.mobile.allowCrossDomainPages = true;
-        var isBrowser = false; //If Used in browser then 'true' and for mobile app make it 'false'.
+        var isBrowser = true; //If Used in browser then 'true' and for mobile app make it 'false'.
         var timer;
         var chkConnectionDelay = 10000;
         var chkConnectionTimer;
@@ -1368,6 +1413,19 @@
 
                 if (UUIDConfig[i].Id == id) {
                     configInfo.push(UUIDConfig[i]);
+                    break;
+                }
+            }
+            return configInfo;
+        };
+
+        function GetUUIDConfigByInterfaceSubType(lType, lNum, iType, iNum, iSubType) {
+            var configInfo = [];
+            for (var i = 0; i < UUIDConfig.length; i++) {
+
+                if (UUIDConfig[i].locationType == lType && UUIDConfig[i].locationNumber == lNum && UUIDConfig[i].interfaceType == iType && UUIDConfig[i].interfaceNumber == iNum && UUIDConfig[i].interfaceSubType == iSubType) {
+                    configInfo.push(UUIDConfig[i]);
+                    break;
                 }
             }
             return configInfo;
@@ -1379,6 +1437,7 @@
 
                 if (IRConfig[i].Id == id) {
                     configInfo.push(IRConfig[i]);
+                    break;
                 }
             }
             return configInfo;
@@ -1442,9 +1501,9 @@
             return rtnString;
         };
 
-        function getInterfaceTypeName(lType) {
+        function getInterfaceTypeName(iType) {
             var rtnString = "";
-            switch (lType) {
+            switch (iType) {
                 case 1:
                     rtnString = "Light";
                     break;
@@ -1470,6 +1529,86 @@
             }
             return rtnString;
         };
+
+        function getInterfaceSubTypeName(iSubType) {
+            var rtnString = "";
+            switch (iSubType) {
+                case 1:
+                    rtnString = "Ceiling";
+                    break;
+                case 2:
+                    rtnString = "Bracket";
+                    break;
+                case 3:
+                    rtnString = "Focus";
+                    break;
+                case 4:
+                    rtnString = "LED";
+                    break;
+                case 5:
+                    rtnString = "Zhumar";
+                    break;
+                case 6:
+                    rtnString = "Night Lamp";
+                    break;
+                case 7:
+                    rtnString = "AC";
+                    break;
+                case 8:
+                    rtnString = "TV";
+                    break;
+                case 9:
+                    rtnString = "Set-Top Box";
+                    break;
+                case 10:
+                    rtnString = "CPU";
+                    break;
+                case 11:
+                    rtnString = "Monitor";
+                    break;
+                case 12:
+                    rtnString = "AV System";
+                    break;
+                case 13:
+                    rtnString = "Oven";
+                    break;
+                case 14:
+                    rtnString = "Fridge";
+                    break;
+                case 15:
+                    rtnString = "Water Heater";
+                    break;
+                case 16:
+                    rtnString = "Room Heater";
+                    break
+                case 17:
+                    rtnString = "Chimney";
+                    break
+                case 18:
+                    rtnString = "Water Purifier";
+                    break
+                case 19:
+                    rtnString = "Dishwasher";
+                    break
+                case 20:
+                    rtnString = "Vaccum Cleaner";
+                    break
+                case 21:
+                    rtnString = "Washing Machine";
+                    break
+                case 22:
+                    rtnString = "Printer";
+                    break
+                case 23:
+                    rtnString = "Laptop";
+                    break
+                case 24:
+                    rtnString = "Networking Device";
+                    break
+            }
+            return rtnString;
+        };
+
 
         function clearLocationSelBox(iType) {
             $("#selLocation_" + iType).empty();
@@ -1559,6 +1698,16 @@
                 $("#knop_" + iType).val(val.toString()).trigger("change");
             }
             catch (err) { }
+        };
+
+        function setIRPowerONOffStatus(iType, textval) {
+            try {
+                $("#flipOnOff_" + iType).val(textval).slider("refresh");
+                //$("#flipOnOff_" + iType).flipswitch('refresh');
+            }
+            catch (err) {
+            }
+
         };
 
         function menuGScene_Click(el) {
@@ -1667,6 +1816,7 @@
                 case "7": //IR-AC                    
                     $.mobile.changePage("index.html#irACPage");
                     activePage = "irACPage";
+                    setIRPowerONOffStatus(iType, "off");
                     break;
             }
 
@@ -1726,7 +1876,7 @@
                         InterfaceDB = GetIRInterfaceByLocationAndInterfaceType(lTypeNumValArray[0], lTypeNumValArray[1], iType);
                         for (var i = 0; i < InterfaceDB.length; i++) {
                             if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
-                                $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].locationType + "_" + InterfaceDB[i].locationNumber + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + InterfaceDB[i].interfaceNumber + "</option>");
+                                $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].locationType + "_" + InterfaceDB[i].locationNumber + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
                                 uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber);
                             }
                         }
@@ -1735,7 +1885,7 @@
                         InterfaceDB = GetInterfaceByLocationAndInterfaceType(lTypeNumValArray[0], lTypeNumValArray[1], iType);
                         for (var i = 0; i < InterfaceDB.length; i++) {
                             if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
-                                $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].busId + "_" + InterfaceDB[i].deviceId + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + InterfaceDB[i].interfaceNumber + "</option>");
+                                $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].busId + "_" + InterfaceDB[i].deviceId + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
                                 uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber);
                             }
                         }
@@ -1750,30 +1900,6 @@
             $.mobile.loading("hide");
             try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
 
-        };
-
-        function BindSceneList(iType, IsLoadingMaskShow) {
-            if (IsLoadingMaskShow) {
-                $.mobile.loading("show", {
-                    text: 'Wait..',
-                    textVisible: true,
-                    theme: 'a',
-                    html: ""
-                });
-                $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
-            }
-            var lTypeNumVal = $("#selLocation_" + iType).val();
-            var lTypeNumValArray = lTypeNumVal.split("_");
-
-            $("#sceneList_" + iType).html("");
-            $("#sceneList_" + iType).append('<li class="ui-li-has-alt ui-first-child ui-last-child"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>Scene' + 1 + '</h1></a><a href="#" id="scenes_' + 1 + '" class="ui-btn ui-icon-green ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="alert("sceneWrite");"></a></li>');
-            $("#sceneList_" + iType).append('<li class="ui-li-has-alt ui-first-child ui-last-child"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>Scene' + 2 + '</h1></a><a href="#" id="scenes_' + 2 + '" class="ui-btn ui-icon-red ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="alert("sceneWrite");"></a></li>');
-            $("#sceneList_" + iType).append('<li class="ui-li-has-alt ui-first-child ui-last-child"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>Scene' + 3 + '</h1></a><a href="#" id="scenes_' + 3 + '" class="ui-btn ui-icon-red ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="alert("sceneWrite");"></a></li>');
-
-            if (IsLoadingMaskShow) {
-                $.mobile.loading("hide");
-                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
-            }
         };
 
         function loadInterfaceDetails(iType, IsLoadingMaskShow) {
@@ -1793,9 +1919,10 @@
             var lTypeNumValArray = lTypeNumVal.split("_");
             var iTypeNumIdValArray = iTypeNumVal.split("_");
 
-            if (lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 6) {
+            if (lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 7) {
                 //iTypeNumIdValArray 0-id 1-busID 2-deviceId 3-channelId 4-interfaceType 5-interfaceNumber
-                var configInfo = GetUUIDConfigById(iTypeNumIdValArray[0]);
+                //var configInfo = GetUUIDConfigById(iTypeNumIdValArray[0]);
+                var configInfo = ($.mobile.activePage.is("#irACPage") && iType == "7") ? GetUUIDConfigByInterfaceSubType(iTypeNumIdValArray[1], iTypeNumIdValArray[2], "5", iTypeNumIdValArray[5], iTypeNumIdValArray[6]) : GetUUIDConfigById(iTypeNumIdValArray[0]);
                 if (configInfo.length > 0) {
                     var queryStr = "/info.html";
                     configInfo[0].readWrite = 0;
@@ -1820,6 +1947,15 @@
                                     else {
                                         setKnobHide(iType);
                                     }
+                                }
+                                else if ($.mobile.activePage.is("#irACPage") && iType == "7") {
+                                    var txtFlipVal = "off";
+                                    if (val == "10")
+                                        txtFlipVal = "on";
+                                    else
+                                        txtFlipVal = "off";
+
+                                    setIRPowerONOffStatus(iType, txtFlipVal);
                                 }
                                 else {
                                     SetImageSrc(iType, val);
@@ -1875,6 +2011,8 @@
 
         };
 
+        
+
         //        function GetPageNameByiType(iType) {
         //            switch (iType) {
 
@@ -1882,6 +2020,30 @@
 
         //            }
         //        };
+
+        function BindLSceneList(iType, IsLoadingMaskShow) {
+            if (IsLoadingMaskShow) {
+                $.mobile.loading("show", {
+                    text: 'Wait..',
+                    textVisible: true,
+                    theme: 'a',
+                    html: ""
+                });
+                $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
+            }
+            var lTypeNumVal = $("#selLocation_" + iType).val();
+            var lTypeNumValArray = lTypeNumVal.split("_");
+
+            $("#sceneList_" + iType).html("");
+            $("#sceneList_" + iType).append('<li class="ui-li-has-alt ui-first-child ui-last-child"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>Scene' + 1 + '</h1></a><a href="#" id="scenes_' + 1 + '" class="ui-btn ui-icon-green ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="alert("sceneWrite");"></a></li>');
+            $("#sceneList_" + iType).append('<li class="ui-li-has-alt ui-first-child ui-last-child"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>Scene' + 2 + '</h1></a><a href="#" id="scenes_' + 2 + '" class="ui-btn ui-icon-red ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="alert("sceneWrite");"></a></li>');
+            $("#sceneList_" + iType).append('<li class="ui-li-has-alt ui-first-child ui-last-child"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>Scene' + 3 + '</h1></a><a href="#" id="scenes_' + 3 + '" class="ui-btn ui-icon-red ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="alert("sceneWrite");"></a></li>');
+
+            if (IsLoadingMaskShow) {
+                $.mobile.loading("hide");
+                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            }
+        };
 
         function SetAutoLoading(iType) {
             if ($.mobile.activePage.is("#lightPage") && iType == "1") {
@@ -1902,6 +2064,11 @@
             else if ($.mobile.activePage.is("#plugPage") && iType == "5") {
                 timer = setTimeout(function () {
                     loadInterfaceDetails("5", false);
+                }, delay);
+            }
+            else if ($.mobile.activePage.is("#irACPage") && iType == "7") {
+                timer = setTimeout(function () {
+                    loadInterfaceDetails("7", false);
                 }, delay);
             }
             else if ($.mobile.activePage.is("#modeDialogPage")) {
@@ -1930,7 +2097,7 @@
                 OnOffIndexOf = $("#knopParentDiv_" + iType).css('display') == "none" ? -1 : 1;
 
             //if ($('#img_' + iType).attr('src').indexOf("ON") == -1 && lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 6) {
-            if (OnOffIndexOf == -1 && lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 6) {
+            if (OnOffIndexOf == -1 && lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 7) {
                 //iTypeNumIdValArray 0-id 1-busID 2-deviceId 3-channelId 4-interfaceType 5-interfaceNumber
                 //                var pcwrtInfo = GetPCWRTInfo(iTypeNumIdValArray[1], iTypeNumIdValArray[2], iTypeNumIdValArray[3]);
                 //                if (pcwrtInfo.length > 0) {
@@ -1990,7 +2157,7 @@
             if (OnOffIndexOf == -99)
                 OnOffIndexOf = $("#knopParentDiv_" + iType).css('display') != "none" ? -1 : 1;
 
-            if (OnOffIndexOf == -1 && lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 6) {
+            if (OnOffIndexOf == -1 && lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 7) {
                 //iTypeNumIdValArray 0-id 1-busID 2-deviceId 3-channelId 4-interfaceType 5-interfaceNumber
                 //                var pcwrtInfo = GetPCWRTInfo(iTypeNumIdValArray[1], iTypeNumIdValArray[2], iTypeNumIdValArray[3]);
                 //                if (pcwrtInfo.length > 0) {
@@ -2038,7 +2205,7 @@
             var OnOffIndexOf = $("#knopParentDiv_" + iType).css('display') != "none" ? -1 : 1;
 
             //if ($('#img_' + iType).attr('src').indexOf("ON") == -1 && lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 6) {
-            if (OnOffIndexOf == -1 && lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 6) {
+            if (OnOffIndexOf == -1 && lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 7) {
                 //iTypeNumIdValArray 0-id 1-busID 2-deviceId 3-channelId 4-interfaceType 5-interfaceNumber                
                 var outInfo = GetUUIDConfigById(parseInt(iTypeNumIdValArray[0]) + 2); //GetPCWRTInfo(iTypeNumIdValArray[1], iTypeNumIdValArray[2], iTypeNumIdValArray[3]);
                 if (outInfo.length > 0) {
@@ -2060,6 +2227,52 @@
 
         };
 
+        function WriteIRFlipOnOff(iType) {
+            //console.log($("#flipOnOff_" + iType).val());
+            $.mobile.loading("show", {
+                text: 'Wait..',
+                textVisible: true,
+                theme: 'a',
+                html: ""
+            });
+            $('body').append("<div id='loaddiv' class='ui-loader-background'></div>");
+
+            var lTypeNumVal = $("#selLocation_" + iType).val();
+            var iTypeNumVal = $("#selInterface_" + iType).val() == null ? "" : $("#selInterface_" + iType).val(); //$("#selInterface_" + iType).val();
+
+            var lTypeNumValArray = lTypeNumVal.split("_");
+            var iTypeNumIdValArray = iTypeNumVal.split("_");
+
+            if (lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 7) {
+                var outInfo = GetUUIDConfigByInterfaceSubType(iTypeNumIdValArray[1], iTypeNumIdValArray[2], "5", iTypeNumIdValArray[5], iTypeNumIdValArray[6]); //GetUUIDConfigById(iTypeNumIdValArray[0]); 
+                if (outInfo.length > 0) {
+                    var queryStr = "/info.html";
+                    outInfo[0].readWrite = 1;
+                    if ($("#flipOnOff_" + iType).val() == "on")
+                        outInfo[0].value = "10";
+                    else
+                        outInfo[0].value = "0";
+
+                    ALSWriteAjaxRrquest(queryStr, JSON.stringify(outInfo[0]), function (data) {
+
+                        setTimeout(function () {
+                            $.mobile.loading("hide");
+                            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                        }, delay);
+                    });
+                }
+                else {
+                    setIRPowerONOffStatus(iType, "off");
+                    $.mobile.loading("hide");
+                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                }
+            }
+            else {
+                setIRPowerONOffStatus(iType, "off");
+                $.mobile.loading("hide");
+                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            }
+        };
         //        function writeDimmerOn(iType) {
         //            $.mobile.loading("show", {
         //                text: 'Wait..',
@@ -2161,7 +2374,7 @@
                 var lTypeNumValArray = lTypeNumVal.split("_");
                 var iTypeNumIdValArray = iTypeNumVal.split("_");
 
-                if (lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 6) {
+                if (lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 7) {
                     //iTypeNumIdValArray 0-id 1-busID 2-deviceId 3-channelId 4-interfaceType 5-interfaceNumber
                     var modeInfo = GetModeInfo(iTypeNumIdValArray[1], iTypeNumIdValArray[2], iTypeNumIdValArray[3]);
                     if (modeInfo.length > 0) {
@@ -2260,7 +2473,7 @@
 
             if (iTypeNumVal != "") {
                 var iTypeNumIdValArray = iTypeNumVal.split("_");
-                if (iTypeNumIdValArray.length == 6) {
+                if (iTypeNumIdValArray.length == 7) {
                     var val = 0;
                     var queryStr = "/info.html";
                     if (IsIRTempUpDownPress) {

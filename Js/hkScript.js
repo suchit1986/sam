@@ -100,7 +100,6 @@ function ALSReadAjaxRrquest(queryString, param, callback) {
         url: Handler + queryString,
         data: param,
         type: "POST",
-        crossDomain:true,
         beforeSend: function (xhr) {
 
         },
@@ -125,7 +124,6 @@ function ALSWriteAjaxRrquest(queryString, param, callback) {
         url: Handler + queryString,
         data: param,
         type: "POST",
-        crossDomain:true,
         beforeSend: function (xhr) {
 
         },
