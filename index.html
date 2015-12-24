@@ -292,7 +292,7 @@
                                                 <h1>
                                                     <label style="display: inline-block">
                                                         <b>©</b></label>&nbsp;&nbsp;&nbsp;<label id="lblCopyright" style="display: inline-block">
-                                                            <b>2015 Harikrupa Automation (P) Ltd.</b></label>
+                                                            <b>2014 Harikrupa Automation (P) Ltd.</b></label>
                                                 </h1>
                                             </center>
                                         </div>
@@ -1120,8 +1120,8 @@
         </div>
     </div>
     <!-- JS Script -->
-    <script src="Js/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="Js/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
+    <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="js/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
     <!--  If Want to build Mobile app remove cordova.js comment below-->
     <script src="phonegap.js"></script>
     <script type="text/javascript">
@@ -1392,9 +1392,9 @@
             //$("#lblCopyright").val("Hari");
         });    
     </script>
-    <script src="Js/hkScript.js" type="text/javascript"></script>
-    <script src="Js/jquery.knob.min.js" type="text/javascript"></script>
-    <script src="Js/aes_index.js" type="text/javascript"></script>
+    <script src="js/jquery.knob.min.js" type="text/javascript"></script>
+    <script src="js/hkScript.js" type="text/javascript"></script>
+    <script src="js/aes_index.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function ($) {
 
@@ -3075,15 +3075,17 @@
             try {
                 var queryStr = "/auth.html";
                 if (!IsAuthenticated) {
-                    var userpassInfo = getUserNamePasswordInfo();
-					alert(JSON.stringify(userpassInfo));
-                    ALSUserAuthenticationRequest(queryStr, JSON.stringify(userpassInfo), function (data) {
-                        if (data == "true")
-                            IsAuthenticated = true;
-                        else
-                            IsAuthenticated = false;
+                    // var userpassInfo = getUserNamePasswordInfo();
+                    getUserNamePasswordInfo(function (data) {
+                        //alert(data.user + ' : ' + user.pass);
+                        ALSUserAuthenticationRequest(queryStr, JSON.stringify(data), function (data) {
+                            if (data == "true")
+                                IsAuthenticated = true;
+                            else
+                                IsAuthenticated = false;
 
-                        callback(data);
+                            callback(data);
+                        });
                     });
                 }
                 else {
@@ -3252,20 +3254,20 @@
 
     </script>
     <script type="text/javascript">
-        function getUserNamePasswordInfo() {
+        function getUserNamePasswordInfo(callback) {
             try {
-                var uidpswInfo = {};
-                uidpswInfo.user = username;
-                uidpswInfo.pass = ConvertStringtoECBEncryptString(password);
-                return uidpswInfo;
+                var uidpswInfo = { "user": username, "pass": ConvertStringtoECBEncryptString(password) };
+                //uidpswInfo.user = username;
+                //uidpswInfo.pass = ConvertStringtoECBEncryptString(password);
+                callback(uidpswInfo);
             }
             catch (err) {
-                return uidpswInfo = {};
+                callback({ "user": "", "pass": "" });
             }
         };
 
         function ConvertStringtoECBEncryptString(textInputStr) {
-            var key = aesjs.util.convertStringToBytes("G212#)@S$(%546!3");
+            var key = aesjs.util.convertStringToBytes("G212#)@S$(%546!3"); //aesjs.util.convertStringToBytes("0000000000000000");
             for (var i = textInputStr.length; i < 16; i++) {
                 textInputStr = textInputStr + '\0';
             }
