@@ -3076,6 +3076,7 @@
                 var queryStr = "/auth.html";
                 if (!IsAuthenticated) {
                     var userpassInfo = getUserNamePasswordInfo();
+					alert(JSON.stringify(userpassInfo));
                     ALSUserAuthenticationRequest(queryStr, JSON.stringify(userpassInfo), function (data) {
                         if (data == "true")
                             IsAuthenticated = true;
