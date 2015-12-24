@@ -74,13 +74,140 @@
     </style>
     <!-- IR-AC -->
     <style type="text/css">
+        .btnCool
+        {
+            display: block;
+            width: 77px;
+            height: 44px;
+            background: url(css/images/IRicons/ac/cool1.png) no-repeat top;
+        }
         
+        .btnCool:active
+        {
+            background: url(css/images/IRicons/ac/cool2.png) no-repeat bottom;
+        }
+        
+        .btnPowerOn
+        {
+            display: block;
+            width: 77px;
+            height: 44px;
+            background: url(css/images/IRicons/ac/on1.png) no-repeat top;
+        }
+        
+        .btnPowerOn:active
+        {
+            background: url(css/images/IRicons/ac/on2.png) no-repeat bottom;
+        }
+        
+        .btnPowerOff
+        {
+            display: block;
+            width: 77px;
+            height: 44px;
+            background: url(css/images/IRicons/ac/off1.png) no-repeat top;
+        }
+        
+        .btnPowerOff:active
+        {
+            background: url(css/images/IRicons/ac/off2.png) no-repeat bottom;
+        }
+        
+        .btnDry
+        {
+            display: block;
+            width: 77px;
+            height: 44px;
+            background: url(css/images/IRicons/ac/dry1.png) no-repeat top;
+        }
+        
+        .btnDry:active
+        {
+            background: url(css/images/IRicons/ac/dry2.png) no-repeat bottom;
+        }
+        
+        .btnSwingUp
+        {
+            display: block;
+            width: 77px;
+            height: 44px;
+            background: url(css/images/IRicons/ac/swing-up1.png) no-repeat top;
+        }
+        
+        .btnSwingUp:active
+        {
+            background: url(css/images/IRicons/ac/swing-up2.png) no-repeat bottom;
+        }
+        
+        .btnFan
+        {
+            display: block;
+            width: 77px;
+            height: 44px;
+            background: url(css/images/IRicons/ac/fan1.png) no-repeat top;
+        }
+        
+        .btnFan:active
+        {
+            background: url(css/images/IRicons/ac/fan2.png) no-repeat bottom;
+        }
+        
+        .btnSwingDown
+        {
+            display: block;
+            width: 77px;
+            height: 44px;
+            background: url(css/images/IRicons/ac/swing-down1.png) no-repeat top;
+        }
+        
+        .btnSwingDown:active
+        {
+            background: url(css/images/IRicons/ac/swing-down2.png) no-repeat bottom;
+        }
+        
+        .btnIncreseTemp
+        {
+            display: block;
+            width: 77px;
+            height: 44px;
+            background: url(css/images/IRicons/ac/temp-plus1.png) no-repeat top;
+        }
+        
+        .btnIncreseTemp:active
+        {
+            background: url(css/images/IRicons/ac/temp-plus2.png) no-repeat bottom;
+        }
+        
+        .btnDecreseTemp
+        {
+            display: block;
+            width: 77px;
+            height: 44px;
+            background: url(css/images/IRicons/ac/temp-minus1.png) no-repeat top;
+        }
+        
+        .btnDecreseTemp:active
+        {
+            background: url(css/images/IRicons/ac/temp-minus2.png) no-repeat bottom;
+        }
     </style>
     <!-- End -->
+    <style type="text/css">
+        .mainPage_bg
+        {
+            background-image: url("colors/green/images/bg-green.jpg");
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+        .sliderbg_menu
+        {
+            background-image: none;
+        }
+    </style>
     <!--Css END -->
 </head>
 <body>
-    <div data-role="page" id="grouptype" data-title="GS3" data-transition="none">
+    <div data-role="page" id="grouptype" data-title="GS3" data-transition="none" class="mainPage_bg">
         <div data-role="content" style="padding: 0 0 0 0;">
             <div class="swiper-container swiper-parent" style="padding: 0px;">
                 <div class="swiper-wrapper">
@@ -103,13 +230,13 @@
                                         </center>-->
                                         <div class="menu">
                                             <ul>
-                                                <li><a id="GT1" class="ui-link" onclick="if(UUIDConfig.length > 0){menubtn_Click(this);}else{alert('please try again...');};"
+                                                <li><a id="GT1" class="ui-link" onclick="if(UUIDConfig.length > 0 && IsAuthenticated){menubtn_Click(this);}else{alert('Appliances configuration could not loaded. please try again...');};"
                                                     name="Light" href="#">
                                                     <img src="css/images/icons/bulb.png" alt="light" />
                                                     <span class="spanGType">Lighting</span> </a></li>
-                                                <li><a id="GT2" class="ui-link" onclick="if(UUIDConfig.length > 0){menubtn_Click(this);}else{alert('please try again...');};"
+                                                <li><a id="GT2" class="ui-link" onclick="if(UUIDConfig.length > 0 && IsAuthenticated){menubtn_Click(this);}else{alert('Appliances configuration could not loaded. please try again...');};"
                                                     name="Fan" href="#">
-                                                    <img src="css/images/icons/dimmer.png" alt="dimmer" />
+                                                    <img src="css/images/icons/fan.png" alt="dimmer" />
                                                     <span class="spanGType">Fan</span> </a></li>
                                                 <!--<li><a id="GT3" class="ui-link" onclick="if(UUIDConfig.length > 0){menubtn_Click(this);}else{alert('please try again...');};"
                                                     name="Dimmer" href="#">
@@ -119,7 +246,7 @@
                                                     href="#">
                                                     <img src="css/images/icons/Temp1.png" alt="Temp" />
                                                     <span class="spanGType">AC</span> </a></li>-->
-                                                <li><a id="GT5" class="ui-link" onclick="if(UUIDConfig.length > 0){menubtn_Click(this);}else{alert('please try again...');};"
+                                                <li><a id="GT5" class="ui-link" onclick="if(UUIDConfig.length > 0 && IsAuthenticated){menubtn_Click(this);}else{alert('Appliances configuration could not loaded. please try again...');};"
                                                     name="Plug" href="#">
                                                     <img src="css/images/icons/plug1.png" alt="plug" />
                                                     <span class="spanGType">A Plug</span> </a></li>
@@ -127,11 +254,11 @@
                                                     name="Local Scene" href="#">
                                                     <img src="css/images/icons/local_scene.png" alt="LScenes" />
                                                     <span class="spanGType">Local Scenes</span> </a></li>-->
-                                                <li><a id="GT7" class="ui-link" onclick="if(IRConfig.length > 0){menubtn_Click(this);}else{alert('please try again...');};"
+                                                <li><a id="GT7" class="ui-link" onclick="if(IRConfig.length > 0 && IsAuthenticated){menubtn_Click(this);}else{alert('Appliances configuration could not loaded. please try again...');};"
                                                     name="IR-AC" href="#">
-                                                    <img src="css/images/icons/Temp1.png" alt="IRAC" />
+                                                    <img src="css/images/icons/irac.png" alt="IRAC" />
                                                     <span class="spanGType">IR-AC</span> </a></li>
-                                                <li><a id="GT8" class="ui-link" name="Global Scenes" href="#" onclick="if(GSceneConfig.length > 0){menuGScene_Click(this);}else{alert('please try again...');};">
+                                                <li><a id="btnGScene" class="ui-link" name="Global Scenes" href="#" onclick="if(GSceneConfig.length > 0 && IsAuthenticated){menuGScene_Click(this);}else{alert('Appliances configuration could not loaded. please try again...');};">
                                                     <img src="css/images/icons/global_scene.png" alt="GScene" />
                                                     <span class="spanGType">Global Scenes</span> </a></li>
                                                 <!--<li><a id="GT4" class="ui-link" onclick="GroupType_Click(this);" name="15 A Plug"
@@ -147,6 +274,10 @@
                                                 <li><a id="GT9" class="ui-link" onclick="GroupType_Click(this);" name="TV" href="#">
                                                     <img src="css/images/icons/tv.png" alt="tv" />
                                                     <span class="spanGType">TV</span> </a></li>-->
+                                                <!--onclick="if(NotifyConfig.length > 0){menuNotification_Click(this);}else{alert('please try again...');};"-->
+                                                <li><a id="btnNotification" class="ui-link" name="Notification" href="#" onclick="if(NotifyConfig.length > 0 && IsAuthenticated){menuNotification_Click(this);}else{alert('Appliances configuration could not loaded. Please try again...');};">
+                                                    <img src="css/images/icons/notification.png" alt="Notification" />
+                                                    <span class="spanGType">Notification</span> </a></li>
                                                 <li><a id="btnSettings" class="ui-link" name="setting" href="#" data-rel="dialog"
                                                     onclick="OpenSettingsWindow();">
                                                     <img src="css/images/icons/settings.png" alt="setting" />
@@ -157,13 +288,13 @@
                                             </ul>
                                             <div class="clearfix">
                                             </div>
-                                            <!--<center>
+                                            <center>
                                                 <h1>
                                                     <label style="display: inline-block">
-                                                        <b>©</b></label>&nbsp;&nbsp;&nbsp;<label style="display: inline-block">
+                                                        <b>©</b></label>&nbsp;&nbsp;&nbsp;<label id="lblCopyright" style="display: inline-block">
                                                             <b>2014 Harikrupa Automation (P) Ltd.</b></label>
                                                 </h1>
-                                            </center>-->
+                                            </center>
                                         </div>
                                     </div>
                                 </div>
@@ -172,13 +303,13 @@
                             </div>
                         </div>
                         <!--       <footer>-->
-                        <center>
+                        <!--<center>
                             <h1>
                                 <label style="display: inline-block">
                                     <b>©</b></label>&nbsp;&nbsp;&nbsp;<label style="display: inline-block">
                                         <b>2014 Harikrupa Automation (P) Ltd.</b></label>
                             </h1>
-                        </center>
+                        </center>-->
                         <!--</footer>-->
                     </div>
                 </div>
@@ -186,21 +317,6 @@
         </div>
         <!--<div data-role="footer" data-position="fixed">-->
         <!--</div>-->
-    </div>
-    <div data-role="dialog" id="errorDialog" data-title="GS3" data-transition="none">
-        <div data-role="header">
-            <h1 style="font-size: 18px; font-weight: bolder">
-                <b>Error</b>
-            </h1>
-        </div>
-        <div data-role="content">
-            <center>
-                <label style="color: White; font-weight: bold" id="lbl_errordia">
-                </label>
-                <a href="#" data-rel="back" data-role="button" id="A9" data-rel="back" data-inline="true"
-                    style="font-weight: bold; background: #3090C7;" data-mini="true">Back</a>
-            </center>
-        </div>
     </div>
     <!--Page 1-Light content-->
     <div data-role="page" id="lightPage" data-transition="none" data-title="GS3" style="background-color: #F6FCF7;">
@@ -290,15 +406,15 @@
                     data-rotation="clockwise" value="0" data-min="0" data-max="10" data-step="2"
                     data-thickness=".5" data-enhance="false" data-readonly="true" />-->
                 <fieldset class="ui-field-contain" style="width: 95%">
-                    <div style="width: auto; height: 260px">
+                    <div id="knopParentOfParentDiv_2" style="width: auto; height: 240px">
                         <div id="knopParentDiv_2" style="display: none">
                             <input id="knop_2" class="knob" data-angleoffset="-125" data-anglearc="250" data-fgcolor="#66EE66"
                                 data-rotation="clockwise" value="0" data-min="0" data-max="5" data-step="1" data-thickness=".5"
                                 data-enhance="false" />
                         </div>
                     </div>
-                    <!-- <a href="#" id="lblStatus_2" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-right ui-icon-alert">
-                        Fan Status :</a>-->
+                    <a href="#" id="lblStatus_2" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-right ui-icon-info">
+                        Fan Status :</a>
                     <!--ui-icon-alert , info ,greenBtn, redBtn -->
                 </fieldset>
                 <fieldset class="ui-field-contain" style="width: 90%">
@@ -350,13 +466,15 @@
                     </select>
                 </fieldset>
                 <fieldset class="ui-field-contain" style="width: 95%">
-                    <div style="width: auto; height: 260px">
+                    <div id="knopParentOfParentDiv_3" style="width: auto; height: 240px">
                         <div id="knopParentDiv_3" style="display: none">
                             <input id="knop_3" class="knob" data-angleoffset="-125" data-anglearc="250" data-fgcolor="#66EE66"
                                 data-rotation="clockwise" value="0" data-min="0" data-max="10" data-step="2"
                                 data-thickness=".5" data-enhance="false" />
                         </div>
                     </div>
+                    <a href="#" id="lblStatus_3" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-right ui-icon-info">
+                        Fan Status :</a>
                 </fieldset>
                 <fieldset class="ui-field-contain" style="width: 90%">
                     <div>
@@ -437,7 +555,7 @@
         <!-- /footer -->
     </div>
     <!-- /page -->
-    <!--Page 7/8 content-->
+    <!--Page 7 content-->
     <div data-role="page" id="irACPage" data-transition="none" data-title="GS3" style="background-color: #F6FCF7;">
         <div data-role="header">
             <h1>
@@ -464,7 +582,7 @@
                 <!--<fieldset data-corners="true" style="background-color: black; border-radius: 12px;
                     width: 250px; height: 140px; opacity: 0.6">-->
                 <div data-corners="true" style="background-color: black; border-radius: 12px; width: 250px;
-                    height: 140px; opacity: 0.6">
+                    height: 120px; opacity: 0.6">
                     <table>
                         <tr>
                             <td align="right">
@@ -495,17 +613,17 @@
                     <table>
                         <tbody>
                             <tr>
-                                <td>
+                                <!-- <td>
                                     <span style="color: black; font-size: 20px; padding-top: 35px; vertical-align: middle;">
                                         Power</span>
-                                </td>
+                                </td>-->
                                 <td style="padding-left: 10px;">
                                     <div class="ui-field-contain">
                                         <label for="flipOnOff_7" class="ui-hidden-accessible">
                                             Power :</label>
                                         <select name="flipOnOff_7" id="flipOnOff_7" data-role="slider" data-theme="b" onchange="WriteIRFlipOnOff('7');">
-                                            <option value="off">Off</option>
-                                            <option value="on">On</option>
+                                            <option value="off">Power OFF</option>
+                                            <option value="on">Power ON</option>
                                         </select>
                                     </div>
                                 </td>
@@ -661,13 +779,13 @@
         <!-- /footer -->
     </div>
     <!-- /page -->
-    <!-- Page 8 content -->
+    <!-- Page global content -->
     <div data-role="page" id="globalScenePage" data-transition="none" data-title="GS3"
         style="background-color: #F6FCF7;">
         <div data-role="header">
             <h1>
                 <b>
-                    <label id="lblPageHeader_8" style="font-size: 18px; font-weight: bolder">
+                    <label id="lblGScenePageHeader" style="font-size: 18px; font-weight: bolder">
                         Global Scene
                     </label>
                 </b>
@@ -682,10 +800,9 @@
             <div align="center">
                 <fieldset class="ui-field-contain" style="width: 98%">
                     <div>
-                        <label id="lblErrorMsg_8" style="font-size: 14px; color: Red;">
+                        <label id="lblGSceneErrorMsg" style="font-size: 14px; color: Red;">
                         </label>
-                        <ul data-role="listview" id="sceneList_8" data-split-icon="right" data-split-theme="a"
-                            data-inset="true">
+                        <ul data-role="listview" id="GSceneList" data-theme="b" data-inset="true">
                             <!--<li><a href="#">
                                 <h1>
                                     Light 2</h1>
@@ -716,9 +833,97 @@
         <!-- /footer -->
     </div>
     <!-- /page -->
+    <!-- Page Notification content -->
+    <div data-role="page" id="notificationPage" data-transition="none" data-title="GS3"
+        style="background-color: #F6FCF7;">
+        <div data-role="header">
+            <h1>
+                <b>
+                    <label id="lblNotificationPageHeader" style="font-size: 18px; font-weight: bolder">
+                        Notification
+                    </label>
+                </b>
+            </h1>
+            <a href="#" onclick="btnBack();">
+                <img src="css/images/icons/back.png" alt="" title="" width="16px" /></a> <a href="#"
+                    onclick="GoToHome();">
+                    <img src="css/images/icons/home.png" alt="" title="" width="16px" /></a>
+        </div>
+        <!-- /header -->
+        <div role="main" class="ui-content">
+            <div align="center">
+                <fieldset class="ui-field-contain" style="width: 98%">
+                    <div>
+                        <label id="lblNotificationErrorMsg" style="font-size: 14px; color: Red;">
+                        </label>
+                        <ul data-role="listview" id="NotificationList" data-theme="b" data-inset="true">
+                            <!--<li class="ui-li-has-alt ui-first-child ui-last-child">
+                                <label class="ui-btn tap" style="font-size: 18px; margin-right: 1.5em; border-right-width: 1px;
+                                    text-align: left; margin-bottom: -5px;">
+                                    Light 4
+                                </label>
+                                <span class="ui-li-count ui-body-inherit" style="font-size: 18px; padding: 0 0;">
+                                    <select id="Select1" data-role="slider" name="testslider" class="ui-li-count ui-body-inherit">
+                                        <option value="off">Disable</option>
+                                        <option value="on">Enable</option>
+                                    </select></span> </li>
+                            <li class="ui-li-has-alt ui-first-child ui-last-child">
+                                <label class="ui-btn tap" style="font-size: 18px; margin-right: 1.5em; border-right-width: 1px;
+                                    text-align: left; margin-bottom: -5px;">
+                                    Light 4
+                                </label>
+                                <span class="ui-li-count ui-body-inherit" style="font-size: 18px; padding: 0 0;">
+                                    <select id="Select2" data-role="slider" name="testslider" class="ui-li-count ui-body-inherit">
+                                        <option value="off">Disable</option>
+                                        <option value="on">Enable</option>
+                                    </select></span> </li>
+                            <li class="ui-li-has-alt ui-first-child ui-last-child">
+                                <label class="ui-btn tap" style="font-size: 18px; margin-right: 1.5em; border-right-width: 1px;
+                                    text-align: left; margin-bottom: -5px;">
+                                    Light 4
+                                </label>
+                                <span class="ui-li-count ui-body-inherit" style="font-size: 18px; padding: 0 0;">
+                                    <select id="Select3" data-role="slider" name="testslider" class="ui-li-count ui-body-inherit">
+                                        <option value="off">Disable</option>
+                                        <option value="on">Enable</option>
+                                    </select></span> </li>
+                            <li class="ui-li-has-alt ui-first-child ui-last-child">
+                                <label class="ui-btn tap" style="font-size: 18px; margin-right: 1.5em; border-right-width: 1px;
+                                    text-align: left; margin-bottom: -5px;">
+                                    Light 4
+                                </label>
+                                <span class="ui-li-count ui-body-inherit" style="font-size: 18px; padding: 0 0;">
+                                    <select id="Select4" data-role="slider" name="testslider" class="ui-li-count ui-body-inherit">
+                                        <option value="off">Disable</option>
+                                        <option value="on">Enable</option>
+                                    </select></span> </li>-->
+                        </ul>
+                    </div>
+                </fieldset>
+                <!--<fieldset class="ui-field-contain" style="width: 90%">
+                    <div>
+                        <a href="#" data-role="button" data-inline="true" onclick="writeTemperatureAppliancesOn();">
+                            ON</a> <a href="#" data-role="button" data-inline="true" onclick="writeTemperatureAppliancesOff();">
+                                OFF</a> <a id="A12" name="btnTemperatureMode" href="#" data-role="button" data-inline="true"
+                                    onclick="modeWinShow(this,'6');">MODE</a>
+                    </div>
+                </fieldset>-->
+            </div>
+        </div>
+        <!-- /content -->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f;
+                        border-color: #4d6c22;" onclick="Logout();">Sign Out</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /footer -->
+    </div>
+    <!-- /page -->
     <!-- Mode Page -->
-    <div id="modeDialogPage" data-role="page" data-title="GS3" style="background-color: #F6FCF7;"
-        data-transition="none">
+    <div id="modeDialogPage" data-role="page" data-title="GS3" data-transition="none">
         <!--<div data-role="header" id="Div10" data-position="fixed" style="height: 40px; font-size: 18px;
             font-weight: bolder">
             <h1 id="lblmodeDialogPagePageHeader">
@@ -727,7 +932,7 @@
         <div data-role="header">
             <h1>
                 <b>
-                    <label id="Label4" style="font-size: 18px; font-weight: bolder">
+                    <label id="lblModeDialogHeader" style="font-size: 18px; font-weight: bolder">
                         Change Mode
                     </label>
                 </b>
@@ -737,22 +942,21 @@
                     onclick="GoToHome();">
                     <img src="css/images/icons/home.png" alt="" title="" width="16px" /></a>-->
         </div>
-        <div data-role="content">
+        <div data-role="content" style="background-color: #F6FCF7;">
             <!-- role="main" class="ui-content">-->
             <div align="center">
                 <fieldset class="ui-field-contain" style="width: 65%">
                     <select name="s_Mode" id="SelSimpleMode" data-mini="true">
-                        <option value="1" style="font-size: 15px; padding: 6px;">Switch Only</option>
-                        <option value="2" style="font-size: 15px; padding: 6px;">PC + Switch</option>
-                        <option value="3" style="font-size: 15px; padding: 6px;">PC Only</option>
+                        <!--<option value="1" style="font-size: 15px; padding: 6px;">Switch Only</option>-->
+                        <option value="2" style="font-size: 15px; padding: 6px;">Dual</option>
+                        <option value="3" style="font-size: 15px; padding: 6px;">Remote Only</option>
                     </select>
                 </fieldset>
                 <fieldset class="ui-field-contain" style="width: 75%">
-                    <a href="#" data-role="button" data-rel="back" id="sTagWrite_btn" name="sTagWrite_btn"
-                        class="write" data-mini="true" data-inline="true" style="background: #8CC63F;"
-                        onclick="writeSimpleMode(this)">Done</a> <a href="#" data-role="button" id="A13"
-                            data-mini="true" data-inline="true" style="background: #3090C7;" data-rel="back">
-                            Back</a>
+                    <a href="#" data-role="button" id="sTagWrite_btn" name="sTagWrite_btn" class="write"
+                        data-mini="true" data-inline="true" style="background: #8CC63F;" onclick="writeSimpleMode(this)">
+                        Done</a> <a href="#" data-role="button" id="A13" data-mini="true" data-inline="true"
+                            style="background: #3090C7;" data-rel="back">Back</a>
                     <!--onclick="Dimmer_Back_Click();"-->
                 </fieldset>
             </div>
@@ -775,8 +979,12 @@
     <!--Setting Page -->
     <div data-role="page" id="settingDialogPage" data-title="GS3" data-transition="none">
         <div data-role="header">
-            <h1 style="font-size: 18px; font-weight: bolder">
-                <b>Settings </b>
+            <h1>
+                <b>
+                    <label id="lblSettingDialogHeader" style="font-size: 18px; font-weight: bolder">
+                        Settings
+                    </label>
+                </b>
             </h1>
         </div>
         <div data-role="content">
@@ -805,6 +1013,112 @@
         </div>
     </div>
     <!-- /Page -->
+    <!--NotificationDetails Page -->
+    <div data-role="page" id="notificationDetailsDialogPage" data-title="GS3" data-transition="none">
+        <div data-role="header">
+            <h1>
+                <b>
+                    <label id="lblnotificationDialogHeader" style="font-size: 18px; font-weight: bolder">
+                        Notify Details
+                    </label>
+                </b>
+            </h1>
+        </div>
+        <div data-role="content" style="background-color: #F6FCF7;">
+            <center>
+                <fieldset class="ui-field-contain" style="float: inherit;">
+                    <label for="NotifyEnableDisable" class="ui-hidden-accessible">
+                        Notification :</label>
+                    <select name="NotifyEnableDisable" id="NotifyEnableDisable" data-role="slider" data-theme="b"
+                        onchange="if($('#NotifyEnableDisable').val()==1){$('#divforNotifyOtherDetails').hide();}else{$('#divforNotifyOtherDetails').show();};">
+                        <option value="1">Notify Disable</option>
+                        <option value="2">Notify Enable</option>
+                    </select>
+                    <!--<div data-inline="true">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="ui-field-contain">
+                                            <label for="NotifyEnableDisable" class="ui-hidden-accessible">
+                                                Notification :</label>
+                                            <select name="NotifyEnableDisable" id="NotifyEnableDisable" data-role="slider" data-theme="b"
+                                                onchange="if($('#NotifyEnableDisable').val()==1){$('#divforNotifyOtherDetails').hide();}else{$('#divforNotifyOtherDetails').show();};">
+                                                <option value="1">Notify Disable</option>
+                                                <option value="2">Notify Enable</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>-->
+                </fieldset>
+                <fieldset class="ui-field-contain" style="width: 90%">
+                    <!--<legend style="font-family: sans-serif; color: #333333;">Location Details:</legend>-->
+                    <!--<input id="lblNotifyLocation" data-mini="true" value="-" type="button" />
+                    <input id="lblNotifyInterface" data-mini="true" value="-" type="button" />-->
+                    <!-- <label id="lblNotifyLocation">
+                        -</label>
+                    <label id="lblNotifyInterface">
+                        -</label>-->
+                    <a href="#" id="lblNotifyLocation" data-role="button" data-inline="false" style="font-weight: bold;"
+                        data-mini="true">-</a> <a href="#" id="lblNotifyInterface" data-role="button" data-inline="false"
+                            style="font-weight: bold;" data-mini="true">-</a>
+                </fieldset>
+                <div id="divforNotifyOtherDetails">
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain"
+                        data-mini="true">
+                        <legend class="ui-field-contain" style="color: #333333;">Notification Action:</legend>
+                        <label for="smsNotify">
+                            SMS</label>
+                        <input type="radio" name="notifyBy" id="smsNotify" value="0" checked data-theme="b" />
+                        <label for="callNotify">
+                            Call</label>
+                        <input type="radio" name="notifyBy" id="callNotify" value="1" data-theme="b" />
+                        <!--<label for="smscallNotify">
+                            Both</label>
+                        <input type="radio" name="notifyBy" id="smscallNotify" value="2" data-theme="b" />-->
+                    </fieldset>
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain"
+                        data-mini="true">
+                        <!--<legend class="ui-field-contain" style="color: #333333;">Notification Trigger:</legend>-->
+                        <label for="nEdge">
+                            Negative edge</label>
+                        <input type="radio" name="notifyOn" id="nEdge" value="0" checked data-theme="b" />
+                        <label for="pEdge">
+                            Positive edge</label>
+                        <input type="radio" name="notifyOn" id="pEdge" value="1" data-theme="b" />
+                    </fieldset>
+                    <fieldset class="ui-field-contain" style="width: 90%">
+                        <!--<legend class="ui-field-contain" style="color: #333333;">Command:</legend>-->
+                        <select id="NotifyGSceneList" data-mini="true" data-theme="b">
+                        </select>
+                    </fieldset>
+                </div>
+                <a href="#" id="btnWriteNotification" data-role="button" onclick="WriteNotificationUpdate(this)"
+                    name="btnWriteNotification" data-inline="true" style="font-weight: bold; background: #8CC63F;"
+                    data-mini="true">Update</a> <a href="#" data-rel="back" data-role="button" data-inline="true"
+                        style="font-weight: bold; background: #3090C7;" data-mini="true">Back</a>
+            </center>
+        </div>
+    </div>
+    <!-- /Page -->
+    <div data-role="dialog" id="errorDialog" data-title="GS3" data-transition="none">
+        <div data-role="header">
+            <h1 style="font-size: 18px; font-weight: bolder">
+                <b>Error</b>
+            </h1>
+        </div>
+        <div data-role="content">
+            <center>
+                <label style="color: White; font-weight: bold" id="lblError">
+                </label>
+                <a href="#" data-rel="back" data-role="button" id="A9" data-rel="back" data-inline="true"
+                    style="font-weight: bold; background: #3090C7;" data-mini="true">Back</a>
+            </center>
+        </div>
+    </div>
     <!-- JS Script -->
     <script src="Js/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="Js/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
@@ -814,21 +1128,22 @@
         var UUIDConfig = [];
         var IRConfig = [];
         var GSceneConfig = [];
-        $.mobile.allowCrossDomainPages = true;
+        var NotifyConfig = [];
+        //$.mobile.allowCrossDomainPages = true;
+        var uniqueAutoLoadingInfo;
         var isBrowser = false; //If Used in browser then 'true' and for mobile app make it 'false'.
         var timer;
         var chkConnectionDelay = 10000;
         var chkConnectionTimer;
-        var delay = localStorage.getItem('Delay');
-        if (delay == 0 || delay == undefined) {
-            delay = 1500;
-        }
+        var delay = 1000;
+
+        var IsAuthenticated = false;
         //var token = "";                     //Token
         var username = "";                  //Username
         var password = "";                  //Password
         var ip = "";                        //IP
         var port = "";                     //Port        
-        var activePage = "";                //Set ActivePage id/name
+        // var activePage = "";                //Set ActivePage id/name
         //var pageChange = false;
         //var tagflag = false;                //For recurcivly upadate Tag's Value on TagPage
         //var tagIds = [];                    //TagID Array       
@@ -857,110 +1172,16 @@
 
         });
 
-    </script>
-    <script type="text/javascript">
-        function LoadSettings() {
-            if (typeof (Storage) !== "undefined") {
-                //$('#username').attr('value', localStorage.getItem('Username'));
-                $('#username').val(localStorage.getItem('Username'));
-                $('#password').val(localStorage.getItem('Password'));
-                $('#port').val(localStorage.getItem('Port'));
-                $('#ip').val(localStorage.getItem('Ip'));
-                $('#delay').val(localStorage.getItem('Delay'));
-                username = $('#username').val();
-                password = $('#password').val();
-                ip = $('#ip').val();
-                port = $('#port').val();
-                delay = $('#delay').val();
-                if (localStorage.getItem("UUIDConfig") != null) {
-                    UUIDConfig = JSON.parse(localStorage.getItem("UUIDConfig"));
-                }
-                if (localStorage.getItem("IRConfig") != null) {
-                    IRConfig = JSON.parse(localStorage.getItem("IRConfig"));
-                }
-                if (localStorage.getItem("GSceneConfig") != null) {
-                    GSceneConfig = JSON.parse(localStorage.getItem("GSceneConfig"));
-                }
-                //
-                //SettingsAuth();
+        $(document).on("pagecreate", "#notificationDetailsDialogPage", function () {
+            $("#NotifyGSceneList").empty();
+            $("#NotifyGSceneList").html("");
+            $("#NotifyGSceneList").selectmenu("refresh", true);
+
+            for (var i = 0; i < GSceneConfig.length; i++) {
+                $("#NotifyGSceneList").append("<option value='" + GSceneConfig[i].FileId + "' style='font-size: 15px; padding: 6px;'>" + GSceneConfig[i].Name + "</option>");
             }
-        };
+        });
 
-        function chkConnection() {
-
-            if ($.mobile.activePage.is("#grouptype")) {
-                try {
-                    window.clearTimeout(timer);
-                } catch (msg) { }
-            }
-
-            if (localStorage.getItem("Ip") != null) {
-                if (localStorage.getItem("Ip") != "") {
-
-                    //                if (UUIDConfig.length < 1 && IRConfig.length < 1) {
-                    //                    GetUUIDConfiguration(function (data) {
-                    //                        GetIRConfiguration(function (data) {
-                    //                            setTimeout(function () {
-                    //                                chkConnection();
-                    //                            }, chkConnectionDelay);
-                    //                        });
-                    //                    });
-                    //                }
-                    //                else if (UUIDConfig.length < 1) {
-                    //                    GetUUIDConfiguration(function (data) {
-                    //                        setTimeout(function () {
-                    //                            chkConnection();
-                    //                        }, chkConnectionDelay);
-                    //                    });
-
-                    //                }
-                    //                else if (IRConfig.length < 1) {
-                    //                    GetIRConfiguration(function (data) {
-                    //                        setTimeout(function () {
-                    //                            chkConnection();
-                    //                        }, chkConnectionDelay);
-                    //                    });
-                    //                }
-                    //                else {
-                    //                    setTimeout(function () {
-
-                    //                        chkConnection();
-
-                    //                    }, chkConnectionDelay);
-                    //                }
-
-                    if (UUIDConfig.length < 1) {
-                        GetUUIDConfiguration(function (data) {
-                        });
-                    }
-                    if (IRConfig.length < 1) {
-                        GetIRConfiguration(function (data) {
-                        });
-                    }
-                    if (GSceneConfig.length < 1) {
-                        GetGSceneConfiguration(function (data) {
-                        });
-                    }
-
-                    chkConnectionTimer = setTimeout(function () {
-
-                        chkConnection();
-
-                    }, chkConnectionDelay);
-                }
-                else {
-                    alert("IP Address is not set.");
-                }
-
-            }
-            else {
-                alert("IP Address is not set.");
-            }
-
-
-        };
-
-        var isPopupActive = false;
         function onLoad() {
             document.addEventListener('deviceready', deviceReady, false);
 
@@ -985,6 +1206,7 @@
         function backButtonCallback() {
             navigator.notification.confirm('do you want to exit the HK GS3?', confirmCallback);
         };
+
         function confirmCallback(buttonIndex) {
             if (buttonIndex == 1) {
                 navigator.app.exitApp();
@@ -995,15 +1217,110 @@
             }
         };
 
+    </script>
+    <script type="text/javascript">
+        function LoadSettings() {
+            if (typeof (Storage) !== "undefined") {
+                //$('#username').attr('value', localStorage.getItem('Username'));
+                $('#username').val(localStorage.getItem('Username'));
+                $('#password').val(localStorage.getItem('Password'));
+                $('#port').val(localStorage.getItem('Port'));
+                $('#ip').val(localStorage.getItem('Ip'));
+                $('#delay').val(localStorage.getItem('Delay'));
+                username = $('#username').val();
+                password = $('#password').val();
+                ip = $('#ip').val();
+                port = $('#port').val();
+                if (localStorage.getItem("Delay") != null) {
+                    if (localStorage.getItem("Delay") != "")
+                        delay = parseInt($('#delay').val());
+                    else
+                        delay = 1000;
+                }
+                else {
+                    delay = 1000;
+                }
+
+                if (localStorage.getItem("UUIDConfig") != null) {
+                    UUIDConfig = JSON.parse(localStorage.getItem("UUIDConfig"));
+                }
+                if (localStorage.getItem("IRConfig") != null) {
+                    IRConfig = JSON.parse(localStorage.getItem("IRConfig"));
+                }
+                if (localStorage.getItem("GSceneConfig") != null) {
+                    GSceneConfig = JSON.parse(localStorage.getItem("GSceneConfig"));
+                }
+                if (localStorage.getItem("NotifyConfig") != null) {
+                    NotifyConfig = JSON.parse(localStorage.getItem("NotifyConfig"));
+                }
+                //
+                //SettingsAuth();
+            }
+        };
+
+        function chkConnection() {
+            try {
+                if ($.mobile.activePage.is("#grouptype")) {
+                    try {
+                        window.clearTimeout(timer);
+                    } catch (msg) { }
+                }
+            } catch (err) { window.clearTimeout(timer); }
+
+            if (ip != null && username != null && password != null) {
+                if (ip != "" && username != "" && password != "") {
+                    IsAuthenticatedUser(function (data) {
+                        if (data == "true") {
+                            GetUUIDConfiguration(function (data) {
+                                GetIRConfiguration(function (data) {
+                                    GetGSceneConfiguration(function (data) {
+                                        GetNotifyConfig(function (data) {
+                                            chkConnectionTimer = setTimeout(function () {
+                                                chkConnection();
+                                            }, chkConnectionDelay);
+                                        });
+                                    });
+                                });
+                            });
+                        }
+                        else {
+                            UUIDConfig = [];
+                            localStorage.setItem("UUIDConfig", "[]");
+
+                            IRConfig = [];
+                            localStorage.setItem("IRConfig", "[]");
+
+                            GSceneConfig = [];
+                            localStorage.setItem("GSceneConfig", "[]");
+
+                            NotifyConfig = [];
+                            localStorage.setItem("NotifyConfig", "[]");
+
+                            alert("User authentication failed!.");
+                        }
+                    });
+                }
+                else {
+                    alert("Missing application configuration.");
+                }
+
+            }
+            else {
+                alert("Missing application configuration.");
+            }
+
+
+        };
+
         function Logout() {
             if (isBrowser) {
-                tagflag = false;
+
                 window.clearTimeout(timer);
                 //token = "";
                 $.mobile.changePage("index.html");
             }
             else {
-                tagflag = false;
+
                 //token = "";
                 backButtonCallback();
             }
@@ -1012,9 +1329,7 @@
         //Go Home
 
         function GoToHome() {
-            tagflag = false;
             $.mobile.changePage("index.html#grouptype");
-
         };
 
 
@@ -1031,13 +1346,26 @@
                 localStorage.setItem('Ip', $('#ip').val());
                 localStorage.setItem('Port', $('#port').val());
                 localStorage.setItem('Delay', $('#delay').val());
-                GetUUIDConfiguration(function (data) {
-                    GetIRConfiguration(function (data) {
-                        GetGSceneConfiguration(function (data) {
-                        });
-                    });
-                });
 
+                UUIDConfig = [];
+                localStorage.setItem("UUIDConfig", "[]");
+
+                IRConfig = [];
+                localStorage.setItem("IRConfig", "[]");
+
+                GSceneConfig = [];
+                localStorage.setItem("GSceneConfig", "[]");
+
+                NotifyConfig = [];
+                localStorage.setItem("NotifyConfig", "[]");
+
+                LoadSettings();
+                IsAuthenticated = false;
+                window.clearTimeout(chkConnectionTimer);
+                chkConnection();
+            }
+            else {
+                alert("Storege is undefined!");
             }
 
         };
@@ -1056,49 +1384,17 @@
         };
 
         $(document).ready(function () {
+            onLoad();
             LoadSettings();
-
-            //            if (IsConnectionOk()) {
-            //                if (UUIDConfig.length < 1) {
-            //                    GetUUIDConfiguration(function (data) {
-            //                    });
-            //                }
-            //                if (IRConfig.length < 1) {
-            //                    GetIRConfiguration(function (data) {
-            //                    });
-            //                }
-            //                if (GSceneConfig.length < 1) {
-            //                    GetGSceneConfiguration(function (data) {
-            //                    });
-            //                }
             window.clearTimeout(chkConnectionTimer);
             chkConnection();
-            //                if (UUIDConfig.length < 1 && IRConfig.length < 1) {
-            //                    GetUUIDConfiguration(function (data) {
-            //                        GetIRConfiguration(function (data) {
-            //                            chkConnection();
-            //                        });
-            //                    });
-            //                }
-            //                else if (UUIDConfig.length < 1) {
-            //                    GetUUIDConfiguration(function (data) {
-            //                        chkConnection();
-            //                    });
-            //                }
-            //                else if (IRConfig.length < 1) {
-            //                    GetIRConfiguration(function (data) {
-            //                        chkConnection();
-            //                    });
-            //                }
-            //                else {
-            //                    chkConnection();
-            //                }
-            //}
-
+            //document.getElementById("lblCopyright").innerHtml = "Hari";
+            //$("#lblCopyright").val("Hari");
         });    
     </script>
     <script src="Js/hkScript.js" type="text/javascript"></script>
     <script src="Js/jquery.knob.min.js" type="text/javascript"></script>
+    <script src="js/aes_index.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function ($) {
 
@@ -1109,17 +1405,17 @@
                     //console.log("change : " + value);
                 },
                 release: function (value) {
-                    dimmerNewVal = value;
+                    // dimmerNewVal = value;
                     if ($.mobile.activePage.is("#fanPage")) {
                         if (dimmerOldVal != value) {
                             writeUsingKnob(value * 2, "2"); //"2" - for Fan;
-                            console.log(value * 2);
+                            //console.log(value * 2);
                         }
                     }
                     else if ($.mobile.activePage.is("#dimmerPage")) {
                         if (dimmerOldVal != value) {
                             writeUsingKnob(value * 2, "3"); //"3" - for Dimmer;
-                            console.log(value * 2);
+                            //console.log(value * 2);
                         }
                     }
                 },
@@ -1198,9 +1494,9 @@
     </script>
     <script type="text/javascript">
         //Get Menu Click
-        var dimmerOnOffTagID = -1;
+        // var dimmerOnOffTagID = -1;
         var dimmerOldVal = 0;
-        var dimmerNewVal = 0;
+        // var dimmerNewVal = 0;
         //var IsSetDimIndi_WithoutTouch = false;
 
         function GetLocationByInterfaceType(iType) {
@@ -1339,6 +1635,18 @@
             return irInfo;
         };
 
+        function GetNotifyConfigById(id) {
+            var configInfo = [];
+            for (var i = 0; i < NotifyConfig.length; i++) {
+
+                if (NotifyConfig[i].Id == id) {
+                    configInfo.push(NotifyConfig[i]);
+                    break;
+                }
+            }
+            return configInfo;
+        };
+
         function getLocationTypeName(lType) {
             var rtnString = "";
             switch (lType) {
@@ -1381,7 +1689,42 @@
                 case 13:
                     rtnString = "Pooja Room";
                     break;
-
+                case 14:
+                    rtnString = "Master bedroom";
+                    break;
+                case 15:
+                    rtnString = "Kid’s Room";
+                    break;
+                case 16:
+                    rtnString = "Parent’s Room";
+                    break;
+                case 17:
+                    rtnString = "Life Style Room";
+                    break;
+                case 18:
+                    rtnString = "Library";
+                    break;
+                case 19:
+                    rtnString = "Home Theatre";
+                    break;
+                case 20:
+                    rtnString = "Study Room";
+                    break;
+                case 21:
+                    rtnString = "Family Area";
+                    break;
+                case 22:
+                    rtnString = "Balcony";
+                    break;
+                case 23:
+                    rtnString = "Vestibule";
+                    break;
+                case 24:
+                    rtnString = "Parking";
+                    break;
+                case 25:
+                    rtnString = "Garden";
+                    break;
             }
             return rtnString;
         };
@@ -1553,7 +1896,24 @@
             catch (err) {
             }
         };
-
+        function setKnobOffImgShow(iType) {
+            try {
+                // $("#knopParentOfParentDiv_" + iType).style;width: auto; height: 240px
+                document.getElementById("knopParentOfParentDiv_" + iType).style.background = "url('css/images/icons/dimmeroff.png') no-repeat top center";
+                document.getElementById("knopParentOfParentDiv_" + iType).style.width = "auto";
+                document.getElementById("knopParentOfParentDiv_" + iType).style.height = "240px";
+            }
+            catch (err) { }
+        };
+        function setKnobOffImgHide(iType) {
+            try {
+                // $("#knopParentOfParentDiv_" + iType).style;
+                document.getElementById("knopParentOfParentDiv_" + iType).style.background = "none";
+                document.getElementById("knopParentOfParentDiv_" + iType).style.width = "auto";
+                document.getElementById("knopParentOfParentDiv_" + iType).style.height = "240px";
+            }
+            catch (err) { }
+        };
         function setKnobHide(iType) {
             try {
                 // $("#knop_" + iType).siblings("canvas").remove();
@@ -1575,7 +1935,32 @@
                 //$("#knop_" + iType).val("0").trigger("change");
             }
             catch (err) { }
-        }
+        };
+
+        function setFanDimmerStatusIcon(iType, cssClass) {
+            try {
+                if (!$("#lblStatus_" + iType).hasClass(cssClass)) {
+                    switch (cssClass) {
+                        case "ui-icon-info":
+                            $("#lblStatus_" + iType).removeClass("ui-icon-greenBtn");
+                            $("#lblStatus_" + iType).removeClass("ui-icon-redBtn");
+                            break;
+                        case "ui-icon-greenBtn":
+                            $("#lblStatus_" + iType).removeClass("ui-icon-info");
+                            $("#lblStatus_" + iType).removeClass("ui-icon-redBtn");
+                            break;
+                        case "ui-icon-redBtn":
+                            $("#lblStatus_" + iType).removeClass("ui-icon-info");
+                            $("#lblStatus_" + iType).removeClass("ui-icon-greenBtn");
+                            break;
+                    }
+
+                    $("#lblStatus_" + iType).addClass(cssClass);
+                }
+            }
+            catch (err) { }
+
+        };
 
         function setKnobIndicator(iType, val) {
             try {
@@ -1595,8 +1980,45 @@
 
         };
 
+        function SetAutoLoading(iType, currentInfo, actMinRequestCnt) {
+            //            var actAjaxReq = "activeRequest : " + $.active;
+            //            console.log(actAjaxReq);
+            window.clearTimeout(timer);
+            if (uniqueAutoLoadingInfo.Id == currentInfo.Id && $.active < actMinRequestCnt) {
+                if ($.mobile.activePage.is("#lightPage") && iType == "1") {
+                    timer = setTimeout(function () {
+                        loadInterfaceDetails("1", false);
+                    }, delay);
+                }
+                else if ($.mobile.activePage.is("#fanPage") && iType == "2") {
+                    timer = setTimeout(function () {
+                        loadInterfaceDetails("2", false);
+                    }, delay);
+                }
+                else if ($.mobile.activePage.is("#dimmerPage") && iType == "3") {
+                    timer = setTimeout(function () {
+                        loadInterfaceDetails("3", false);
+                    }, delay);
+                }
+                else if ($.mobile.activePage.is("#plugPage") && iType == "5") {
+                    timer = setTimeout(function () {
+                        loadInterfaceDetails("5", false);
+                    }, delay);
+                }
+                else if ($.mobile.activePage.is("#irACPage") && iType == "7") {
+                    timer = setTimeout(function () {
+                        loadInterfaceDetails("7", false);
+                    }, delay);
+                }
+                else if ($.mobile.activePage.is("#modeDialogPage")) {
+                    timer = setTimeout(function () {
+                        loadInterfaceDetails(iType, false);
+                    }, delay);
+                }
+            }
+        };
+
         function menuGScene_Click(el) {
-            var iType = el.id.substring(2);
             $.mobile.loading("show", {
                 text: 'Wait..',
                 textVisible: true,
@@ -1605,17 +2027,25 @@
             });
 
             $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
-            document.getElementById("lblPageHeader_" + iType).innerHTML = el.name;
 
-            $("#sceneList_" + iType).html("");
+            document.getElementById("lblGScenePageHeader").innerHTML = el.name;
+
+            //"lblGSceneErrorMsg" for Error.
+
+            $("#GSceneList").html("");
 
 
             for (var i = 0; i < GSceneConfig.length; i++) {
-                $("#sceneList_" + iType).append('<li class="ui-li-has-alt ui-first-child ui-last-child"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>' + GSceneConfig[i].Name + '</h1></a><a href="#" id="scenes_' + GSceneConfig[i].FileId + '" class="ui-btn ui-icon-arrowright ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="WriteGlobalScene(' + GSceneConfig[i].FileId + ');"></a></li>');
+                if (i == 0)
+                    $("#GSceneList").append('<li class="ui-li-has-alt ui-first-child "><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>' + GSceneConfig[i].Name + '</h1></a><a href="#" id="scenes_' + GSceneConfig[i].FileId + '" class="ui-btn ui-icon-arrowright ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="WriteGlobalScene(' + GSceneConfig[i].FileId + ');"></a></li>');
+                else if (i == (GSceneConfig.length - 1))
+                    $("#GSceneList").append('<li class="ui-li-has-alt ui-last-child"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>' + GSceneConfig[i].Name + '</h1></a><a href="#" id="scenes_' + GSceneConfig[i].FileId + '" class="ui-btn ui-icon-arrowright ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="WriteGlobalScene(' + GSceneConfig[i].FileId + ');"></a></li>');
+                else
+                    $("#GSceneList").append('<li class="ui-li-has-alt"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>' + GSceneConfig[i].Name + '</h1></a><a href="#" id="scenes_' + GSceneConfig[i].FileId + '" class="ui-btn ui-icon-arrowright ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="WriteGlobalScene(' + GSceneConfig[i].FileId + ');"></a></li>');
             }
 
             $.mobile.changePage("index.html#globalScenePage");
-            activePage = "globalScenePage";
+            //activePage = "globalScenePage";
 
             //            $("#sceneList_" + iType).append('<li class="ui-li-has-alt ui-first-child ui-last-child"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>Scene' + 1 + '</h1></a><a href="#" id="scenes_' + 1 + '" class="ui-btn ui-icon-green ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="alert("sceneWrite");"></a></li>');
             //            $("#sceneList_" + iType).append('<li class="ui-li-has-alt ui-first-child ui-last-child"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>Scene' + 2 + '</h1></a><a href="#" id="scenes_' + 2 + '" class="ui-btn ui-icon-red ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="alert("sceneWrite");"></a></li>');
@@ -1625,32 +2055,42 @@
             try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
         };
 
-        function WriteGlobalScene(globalSceneFileID) {
+        function menuNotification_Click(el) {
+
             $.mobile.loading("show", {
                 text: 'Wait..',
                 textVisible: true,
                 theme: 'a',
                 html: ""
             });
-            $('body').append("<div id='loaddiv' class='ui-loader-background'></div>");
 
-            if (globalSceneFileID != "" && globalSceneFileID != "-1") {
-                var queryStr = "/global.html?scene=" + globalSceneFileID;
-                SetGlobalScene(queryStr, function (data) {
-                    try {
-                    }
-                    catch (err) {
-                    }
-                    $.mobile.loading("hide");
-                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
-                });
-            }
-            else {
-                $.mobile.loading("hide");
-                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
+
+
+            document.getElementById("lblNotificationPageHeader").innerHTML = el.name;
+
+            //"lblNotificationErrorMsg" for Error.
+
+            $("#NotificationList").html("");
+
+            for (var i = 0; i < NotifyConfig.length; i++) {
+                var strLocation = getLocationTypeName(NotifyConfig[i].locationType) + " - " + NotifyConfig[i].locationNumber;
+                var strInterface = getInterfaceTypeName(NotifyConfig[i].interfaceType) + " - " + getInterfaceSubTypeName(NotifyConfig[i].interfaceSubType) + "-" + NotifyConfig[i].interfaceNumber;
+                if (i == 0)
+                    $("#NotificationList").append('<li class="ui-li-has-alt ui-first-child"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>' + NotifyConfig[i].name + '</h1></a><a href="#" id="scenes_' + NotifyConfig[i].Id + '" class="ui-btn ui-icon-custconfig ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="OpenNotificationDialog(' + NotifyConfig[i].Id + ',\'' + NotifyConfig[i].name + '\',\'' + strLocation + '\',\'' + strInterface + '\');"></a></li>');
+                else if (i == (NotifyConfig.length - 1))
+                    $("#NotificationList").append('<li class="ui-li-has-alt ui-last-child"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>' + NotifyConfig[i].name + '</h1></a><a href="#" id="scenes_' + NotifyConfig[i].Id + '" class="ui-btn ui-icon-custconfig ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="OpenNotificationDialog(' + NotifyConfig[i].Id + ',\'' + NotifyConfig[i].name + '\',\'' + strLocation + '\',\'' + strInterface + '\');"></a></li>');
+                else
+                    $("#NotificationList").append('<li class="ui-li-has-alt"><a href="#" class="ui-btn tap" style="margin-right: 4.5em;"><h1>' + NotifyConfig[i].name + '</h1></a><a href="#" id="scenes_' + NotifyConfig[i].Id + '" class="ui-btn ui-icon-custconfig ui-nodisc-icon ui-btn-icon-right ui-btn-icon-notext ui-icon-right ui-btn-a" style="width: 4.5em;" onclick="OpenNotificationDialog(' + NotifyConfig[i].Id + ',\'' + NotifyConfig[i].name + '\',\'' + strLocation + '\',\'' + strInterface + '\');"></a></li>');
             }
 
+            $.mobile.changePage("index.html#notificationPage");
+
+            $.mobile.loading("hide");
+            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
         };
+
+
 
         function menubtn_Click(el) {
 
@@ -1670,18 +2110,20 @@
                 case "1": //Light
                     $.mobile.changePage("index.html#lightPage");
                     ResetImageSrc(iType);
-                    activePage = "lightPage";
+                    //activePage = "lightPage";
                     break;
                 case "2": //Fan
                     $.mobile.changePage("index.html#fanPage");
                     setKnobHide(iType);
+                    setKnobOffImgHide(iType);
                     //setKnobDisable('knobForDimmer');
-                    activePage = "fanPage";
+                    //activePage = "fanPage";
                     break;
                 case "3": //Dimmer                   
                     $.mobile.changePage("index.html#dimmerPage");
                     setKnobHide(iType);
-                    activePage = "dimmerPage";
+                    setKnobOffImgHide(iType);
+                    //activePage = "dimmerPage";
                     break;
                 case "4": //AC
                     //                    $.mobile.changePage("index.html#acPage");
@@ -1691,16 +2133,16 @@
                 case "5": //Plug                    
                     $.mobile.changePage("index.html#plugPage");
                     ResetImageSrc(iType);
-                    activePage = "plugPage";
+                    //activePage = "plugPage";
                     break;
                 case "6": //Local Scene
                     $.mobile.changePage("index.html#localScenePage");
-                    activePage = "localScenePage";
+                    //activePage = "localScenePage";
                     $("#sceneList_" + iType).html("");
                     break;
                 case "7": //IR-AC                    
                     $.mobile.changePage("index.html#irACPage");
-                    activePage = "irACPage";
+                    //activePage = "irACPage";
                     setIRPowerONOffStatus(iType, "off");
                     break;
             }
@@ -1747,8 +2189,9 @@
             clearInterfaceSelBox(iType);
             ResetImageSrc(iType);
             setKnobHide(iType);
+            setKnobOffImgHide(iType);
 
-            var lTypeNumVal = $("#selLocation_" + iType).val();
+            var lTypeNumVal = $("#selLocation_" + iType).val() == null ? "" : $("#selLocation_" + iType).val();
             var lTypeNumText = $("#selLocation_" + iType + " option:selected").text();
 
             if (lTypeNumVal != "") {
@@ -1798,12 +2241,12 @@
                 });
                 $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
             }
-            var lTypeNumVal = $("#selLocation_" + iType).val();
+            var lTypeNumVal = $("#selLocation_" + iType).val() == null ? "" : $("#selLocation_" + iType).val();
             var iTypeNumVal = $("#selInterface_" + iType).val() == null ? "" : $("#selInterface_" + iType).val(); //$("#selInterface_" + iType).val();
 
             var lTypeNumValArray = lTypeNumVal.split("_");
             var iTypeNumIdValArray = iTypeNumVal.split("_");
-
+            //var autoLoadInstID = iTypeNumVal + "_" + iType;
             if (lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 7) {
                 //iTypeNumIdValArray 0-id 1-busID 2-deviceId 3-channelId 4-interfaceType 5-interfaceNumber
                 //var configInfo = GetUUIDConfigById(iTypeNumIdValArray[0]);
@@ -1811,7 +2254,9 @@
                 if (configInfo.length > 0) {
                     var queryStr = "/info.html";
                     configInfo[0].readWrite = 0;
-                    ALSReadAjaxRrquest(queryStr, JSON.stringify(configInfo[0]), function (data) {
+                    if (IsLoadingMaskShow)
+                        uniqueAutoLoadingInfo = configInfo[0];
+                    ALSReadAjaxRequest(queryStr, JSON.stringify(configInfo[0]), function (data) {
                         try {
                             var info = JSON.parse(data);
                             var val = info.value.trim();
@@ -1819,18 +2264,37 @@
                                 if (($.mobile.activePage.is("#fanPage") && iType == "2") || ($.mobile.activePage.is("#dimmerPage") && iType == "3")) {
                                     if (val == "10") {
                                         setKnobShow(iType);
+                                        setKnobOffImgHide(iType);
+                                        setFanDimmerStatusIcon(iType, "ui-icon-greenBtn");
                                         var knobConfigInfo = GetUUIDConfigById(parseInt(iTypeNumIdValArray[0]) + 2);
-                                        ALSReadAjaxRrquest(queryStr, JSON.stringify(knobConfigInfo[0]), function (data) {
+                                        ALSReadAjaxRequest(queryStr, JSON.stringify(knobConfigInfo[0]), function (data) {
                                             try {
                                                 var knobInfo = JSON.parse(data);
                                                 var val = knobInfo.value.trim();
                                                 setKnobIndicator(iType, parseInt(val) / 2);
                                             }
                                             catch (err) { }
+                                            //console.log(uniqueAutoLoadingInfo);
+                                            //console.log(configInfo[0]);
+                                            //&& uniqueAutoLoadingInfo.index == configInfo[0].index && uniqueAutoLoadingInfo.deviceType == configInfo[0].deviceType && uniqueAutoLoadingInfo.deviceId == configInfo[0].deviceId && uniqueAutoLoadingInfo.busId == configInfo[0].busId && uniqueAutoLoadingInfo.attribute == configInfo[0].attribute && uniqueAutoLoadingInfo.locationType == configInfo[0].locationType && uniqueAutoLoadingInfo.locationNumber == configInfo[0].locationNumber && uniqueAutoLoadingInfo.iterfaceType == configInfo[0].iterfaceType && uniqueAutoLoadingInfo.interfaceNumber == configInfo[0].interfaceNumber
+                                            //                                            if (uniqueAutoLoadingInfo.Id == configInfo[0].Id && $.active < 2) {
+                                            //                                                window.clearTimeout(timer);
+                                            SetAutoLoading(iType, configInfo[0], 3);
+                                            //}
                                         });
                                     }
                                     else {
                                         setKnobHide(iType);
+                                        setKnobOffImgShow(iType);
+                                        setFanDimmerStatusIcon(iType, "ui-icon-redBtn");
+
+                                        //console.log(uniqueAutoLoadingInfo);
+                                        //console.log(configInfo[0]);
+                                        //&& uniqueAutoLoadingInfo.index == configInfo[0].index && uniqueAutoLoadingInfo.deviceType == configInfo[0].deviceType && uniqueAutoLoadingInfo.deviceId == configInfo[0].deviceId && uniqueAutoLoadingInfo.busId == configInfo[0].busId && uniqueAutoLoadingInfo.attribute == configInfo[0].attribute && uniqueAutoLoadingInfo.locationType == configInfo[0].locationType && uniqueAutoLoadingInfo.locationNumber == configInfo[0].locationNumber && uniqueAutoLoadingInfo.iterfaceType == configInfo[0].iterfaceType && uniqueAutoLoadingInfo.interfaceNumber == configInfo[0].interfaceNumber
+                                        //if (uniqueAutoLoadingInfo.Id == configInfo[0].Id && $.active < 4) {
+                                        //window.clearTimeout(timer);
+                                        SetAutoLoading(iType, configInfo[0], 3);
+                                        //}
                                     }
                                 }
                                 else if ($.mobile.activePage.is("#irACPage") && iType == "7") {
@@ -1841,70 +2305,87 @@
                                         txtFlipVal = "off";
 
                                     setIRPowerONOffStatus(iType, txtFlipVal);
+
+                                    //console.log(uniqueAutoLoadingInfo);
+                                    //console.log(configInfo[0]);
+                                    //&& uniqueAutoLoadingInfo.index == configInfo[0].index && uniqueAutoLoadingInfo.deviceType == configInfo[0].deviceType && uniqueAutoLoadingInfo.deviceId == configInfo[0].deviceId && uniqueAutoLoadingInfo.busId == configInfo[0].busId && uniqueAutoLoadingInfo.attribute == configInfo[0].attribute && uniqueAutoLoadingInfo.locationType == configInfo[0].locationType && uniqueAutoLoadingInfo.locationNumber == configInfo[0].locationNumber && uniqueAutoLoadingInfo.iterfaceType == configInfo[0].iterfaceType && uniqueAutoLoadingInfo.interfaceNumber == configInfo[0].interfaceNumber
+                                    //if (uniqueAutoLoadingInfo.Id == configInfo[0].Id && $.active < 3) {
+                                    //   window.clearTimeout(timer);
+                                    SetAutoLoading(iType, configInfo[0], 3);
+                                    //}
+
                                 }
                                 else {
                                     SetImageSrc(iType, val);
+
+                                    //console.log(uniqueAutoLoadingInfo);
+                                    //console.log(configInfo[0]);
+                                    //&& uniqueAutoLoadingInfo.index == configInfo[0].index && uniqueAutoLoadingInfo.deviceType == configInfo[0].deviceType && uniqueAutoLoadingInfo.deviceId == configInfo[0].deviceId && uniqueAutoLoadingInfo.busId == configInfo[0].busId && uniqueAutoLoadingInfo.attribute == configInfo[0].attribute && uniqueAutoLoadingInfo.locationType == configInfo[0].locationType && uniqueAutoLoadingInfo.locationNumber == configInfo[0].locationNumber && uniqueAutoLoadingInfo.iterfaceType == configInfo[0].iterfaceType && uniqueAutoLoadingInfo.interfaceNumber == configInfo[0].interfaceNumber
+                                    //if (uniqueAutoLoadingInfo.Id == configInfo[0].Id && $.active < 3) {
+                                    //   window.clearTimeout(timer);
+                                    SetAutoLoading(iType, configInfo[0], 3);
+                                    //}
                                 }
                             }
                         } catch (err) {
+                            if (IsLoadingMaskShow) {
+                                ResetImageSrc(iType);
+                                setKnobOffImgHide(iType);
+                                setKnobHide(iType);
+                                setFanDimmerStatusIcon(iType, "ui-icon-info");
+                            }
 
+                            //console.log(uniqueAutoLoadingInfo);
+                            //console.log(configInfo[0]);
+                            //&& uniqueAutoLoadingInfo.index == configInfo[0].index && uniqueAutoLoadingInfo.deviceType == configInfo[0].deviceType && uniqueAutoLoadingInfo.deviceId == configInfo[0].deviceId && uniqueAutoLoadingInfo.busId == configInfo[0].busId && uniqueAutoLoadingInfo.attribute == configInfo[0].attribute && uniqueAutoLoadingInfo.locationType == configInfo[0].locationType && uniqueAutoLoadingInfo.locationNumber == configInfo[0].locationNumber && uniqueAutoLoadingInfo.iterfaceType == configInfo[0].iterfaceType && uniqueAutoLoadingInfo.interfaceNumber == configInfo[0].interfaceNumber
+                            //if (uniqueAutoLoadingInfo.Id == configInfo[0].Id && $.active < 3) {
+                            //    window.clearTimeout(timer);
+                            SetAutoLoading(iType, configInfo[0], 3);
+                            //}
                         }
                         if (IsLoadingMaskShow) {
-                            setTimeout(function () {
-                                $.mobile.loading("hide");
-                                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
-                            }, delay);
+                            $.mobile.loading("hide");
+                            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
                         }
-                        window.clearTimeout(timer);
-                        SetAutoLoading(iType);
-                        //                        if (!$.mobile.activePage.is("#grouptype") && !$.mobile.activePage.is("#irACPage") && !$.mobile.activePage.is("#localScenePage") && !$.mobile.activePage.is("#globalScenePage") && !$.mobile.activePage.is("#settingDialogPage")) {
-                        //                            timer = setTimeout(function () {
-                        //                                loadInterfaceDetails(iType, false);
-                        //                            }, delay);
+
+                        //                        console.log(uniqueAutoLoadingInfo);
+                        //                        console.log(configInfo[0]);
+                        //                        //&& uniqueAutoLoadingInfo.index == configInfo[0].index && uniqueAutoLoadingInfo.deviceType == configInfo[0].deviceType && uniqueAutoLoadingInfo.deviceId == configInfo[0].deviceId && uniqueAutoLoadingInfo.busId == configInfo[0].busId && uniqueAutoLoadingInfo.attribute == configInfo[0].attribute && uniqueAutoLoadingInfo.locationType == configInfo[0].locationType && uniqueAutoLoadingInfo.locationNumber == configInfo[0].locationNumber && uniqueAutoLoadingInfo.iterfaceType == configInfo[0].iterfaceType && uniqueAutoLoadingInfo.interfaceNumber == configInfo[0].interfaceNumber
+                        //                        if (uniqueAutoLoadingInfo.Id == configInfo[0].Id && $.active < 2) {
+                        //                            window.clearTimeout(timer);
+                        //                            SetAutoLoading(iType);
                         //                        }
                     });
                 }
                 else {
                     window.clearTimeout(timer);
                     ResetImageSrc(iType);
+                    setKnobOffImgHide(iType);
                     setKnobHide(iType);
+                    setFanDimmerStatusIcon(iType, "ui-icon-info");
                     if (IsLoadingMaskShow) {
-                        setTimeout(function () {
-                            $.mobile.loading("hide");
-                            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
-                        }, delay);
+                        //setTimeout(function () {
+                        $.mobile.loading("hide");
+                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                        //}, delay);
                     }
                 }
             }
             else {
                 window.clearTimeout(timer);
                 ResetImageSrc(iType);
+                setKnobOffImgHide(iType);
                 setKnobHide(iType);
+                setFanDimmerStatusIcon(iType, "ui-icon-info");
                 if (IsLoadingMaskShow) {
-                    setTimeout(function () {
-                        $.mobile.loading("hide");
-                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
-                    }, delay);
+                    //setTimeout(function () {
+                    $.mobile.loading("hide");
+                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    //}, delay);
                 }
             }
-            //            if (IsLoadingMaskShow) {
-            //                setTimeout(function () {
-            //                    $.mobile.loading("hide");
-            //                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
-            //                }, delay);
-            //            }
 
         };
-
-        
-
-        //        function GetPageNameByiType(iType) {
-        //            switch (iType) {
-
-        //                default:
-
-        //            }
-        //        };
 
         function BindLSceneList(iType, IsLoadingMaskShow) {
             if (IsLoadingMaskShow) {
@@ -1916,7 +2397,7 @@
                 });
                 $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
             }
-            var lTypeNumVal = $("#selLocation_" + iType).val();
+            var lTypeNumVal = $("#selLocation_" + iType).val() == null ? "" : $("#selLocation_" + iType).val();
             var lTypeNumValArray = lTypeNumVal.split("_");
 
             $("#sceneList_" + iType).html("");
@@ -1930,38 +2411,7 @@
             }
         };
 
-        function SetAutoLoading(iType) {
-            if ($.mobile.activePage.is("#lightPage") && iType == "1") {
-                timer = setTimeout(function () {
-                    loadInterfaceDetails("1", false);
-                }, delay);
-            }
-            else if ($.mobile.activePage.is("#fanPage") && iType == "2") {
-                timer = setTimeout(function () {
-                    loadInterfaceDetails("2", false);
-                }, delay);
-            }
-            else if ($.mobile.activePage.is("#dimmerPage") && iType == "3") {
-                timer = setTimeout(function () {
-                    loadInterfaceDetails("3", false);
-                }, delay);
-            }
-            else if ($.mobile.activePage.is("#plugPage") && iType == "5") {
-                timer = setTimeout(function () {
-                    loadInterfaceDetails("5", false);
-                }, delay);
-            }
-            else if ($.mobile.activePage.is("#irACPage") && iType == "7") {
-                timer = setTimeout(function () {
-                    loadInterfaceDetails("7", false);
-                }, delay);
-            }
-            else if ($.mobile.activePage.is("#modeDialogPage")) {
-                timer = setTimeout(function () {
-                    loadInterfaceDetails(iType, false);
-                }, delay);
-            }
-        };
+
 
         function writeOn(iType) {
             $.mobile.loading("show", {
@@ -1972,7 +2422,7 @@
             });
             $('body').append("<div id='loaddiv' class='ui-loader-background'></div>");
 
-            var lTypeNumVal = $("#selLocation_" + iType).val();
+            var lTypeNumVal = $("#selLocation_" + iType).val() == null ? "" : $("#selLocation_" + iType).val();
             var iTypeNumVal = $("#selInterface_" + iType).val() == null ? "" : $("#selInterface_" + iType).val(); //$("#selInterface_" + iType).val();
 
             var lTypeNumValArray = lTypeNumVal.split("_");
@@ -1990,7 +2440,7 @@
                 //                    pcwrtInfo[0].readWrite = 1;
                 //                    pcwrtInfo[0].value = "1";
 
-                //                    ALSWriteAjaxRrquest(queryStr, JSON.stringify(pcwrtInfo[0]), function (data) {
+                //                    ALSWriteAjaxRequest(queryStr, JSON.stringify(pcwrtInfo[0]), function (data) {
 
                 //                        setTimeout(function () {
                 //                            $.mobile.loading("hide");
@@ -2004,7 +2454,7 @@
                     outInfo[0].readWrite = 1;
                     outInfo[0].value = "10";
 
-                    ALSWriteAjaxRrquest(queryStr, JSON.stringify(outInfo[0]), function (data) {
+                    ALSWriteAjaxRequest(queryStr, JSON.stringify(outInfo[0]), function (data) {
 
                         setTimeout(function () {
                             $.mobile.loading("hide");
@@ -2032,7 +2482,7 @@
             });
             $('body').append("<div id='loaddiv' class='ui-loader-background'></div>");
 
-            var lTypeNumVal = $("#selLocation_" + iType).val();
+            var lTypeNumVal = $("#selLocation_" + iType).val() == null ? "" : $("#selLocation_" + iType).val();
             var iTypeNumVal = $("#selInterface_" + iType).val() == null ? "" : $("#selInterface_" + iType).val();
 
             var lTypeNumValArray = lTypeNumVal.split("_");
@@ -2049,7 +2499,7 @@
                 //                    var queryStr = "/info.html";
                 //                    pcwrtInfo[0].readWrite = 1;
                 //                    pcwrtInfo[0].value = "1";
-                //                    ALSWriteAjaxRrquest(queryStr, JSON.stringify(pcwrtInfo[0]), function (data) {
+                //                    ALSWriteAjaxRequest(queryStr, JSON.stringify(pcwrtInfo[0]), function (data) {
                 //                        setTimeout(function () {
                 //                            $.mobile.loading("hide");
                 //                            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
@@ -2061,7 +2511,7 @@
                     var queryStr = "/info.html";
                     outInfo[0].readWrite = 1;
                     outInfo[0].value = "0";
-                    ALSWriteAjaxRrquest(queryStr, JSON.stringify(outInfo[0]), function (data) {
+                    ALSWriteAjaxRequest(queryStr, JSON.stringify(outInfo[0]), function (data) {
                         setTimeout(function () {
                             $.mobile.loading("hide");
                             try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
@@ -2081,7 +2531,7 @@
 
         function writeUsingKnob(val, iType) {
 
-            var lTypeNumVal = $("#selLocation_" + iType).val();
+            var lTypeNumVal = $("#selLocation_" + iType).val() == null ? "" : $("#selLocation_" + iType).val();
             var iTypeNumVal = $("#selInterface_" + iType).val() == null ? "" : $("#selInterface_" + iType).val(); //$("#selInterface_" + iType).val();
 
             var lTypeNumValArray = lTypeNumVal.split("_");
@@ -2098,7 +2548,7 @@
                     outInfo[0].readWrite = 1;
                     outInfo[0].value = val.toString();
 
-                    ALSWriteAjaxRrquest(queryStr, JSON.stringify(outInfo[0]), function (data) {
+                    ALSWriteAjaxRequest(queryStr, JSON.stringify(outInfo[0]), function (data) {
 
                     });
                 }
@@ -2108,6 +2558,33 @@
             }
             else {
 
+            }
+
+        };
+
+        function WriteGlobalScene(globalSceneFileID) {
+            $.mobile.loading("show", {
+                text: 'Wait..',
+                textVisible: true,
+                theme: 'a',
+                html: ""
+            });
+            $('body').append("<div id='loaddiv' class='ui-loader-background'></div>");
+
+            if (globalSceneFileID != "" && globalSceneFileID != "-1") {
+                var queryStr = "/global.html?scene=" + globalSceneFileID;
+                SetGlobalScene(queryStr, function (data) {
+                    try {
+                    }
+                    catch (err) {
+                    }
+                    $.mobile.loading("hide");
+                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                });
+            }
+            else {
+                $.mobile.loading("hide");
+                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
             }
 
         };
@@ -2122,7 +2599,7 @@
             });
             $('body').append("<div id='loaddiv' class='ui-loader-background'></div>");
 
-            var lTypeNumVal = $("#selLocation_" + iType).val();
+            var lTypeNumVal = $("#selLocation_" + iType).val() == null ? "" : $("#selLocation_" + iType).val();
             var iTypeNumVal = $("#selInterface_" + iType).val() == null ? "" : $("#selInterface_" + iType).val(); //$("#selInterface_" + iType).val();
 
             var lTypeNumValArray = lTypeNumVal.split("_");
@@ -2138,7 +2615,7 @@
                     else
                         outInfo[0].value = "0";
 
-                    ALSWriteAjaxRrquest(queryStr, JSON.stringify(outInfo[0]), function (data) {
+                    ALSWriteAjaxRequest(queryStr, JSON.stringify(outInfo[0]), function (data) {
 
                         setTimeout(function () {
                             $.mobile.loading("hide");
@@ -2158,6 +2635,7 @@
                 try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
             }
         };
+
         //        function writeDimmerOn(iType) {
         //            $.mobile.loading("show", {
         //                text: 'Wait..',
@@ -2167,7 +2645,7 @@
         //            });
         //            $('body').append("<div id='loaddiv' class='ui-loader-background'></div>");
 
-        //            var lTypeNumVal = $("#selLocation_" + iType).val();
+        //            var lTypeNumVal = $("#selLocation_" + iType).val() == null ? "" : $("#selLocation_" + iType).val(); 
         //            var iTypeNumVal = $("#selInterface_" + iType).val() == null ? "" : $("#selInterface_" + iType).val(); //$("#selInterface_" + iType).val();
 
         //            var lTypeNumValArray = lTypeNumVal.split("_");
@@ -2182,7 +2660,7 @@
         //                    pcwrtInfo[0].readWrite = 1;
         //                    pcwrtInfo[0].value = "1";
 
-        //                    ALSWriteAjaxRrquest(queryStr, JSON.stringify(pcwrtInfo[0]), function (data) {
+        //                    ALSWriteAjaxRequest(queryStr, JSON.stringify(pcwrtInfo[0]), function (data) {
 
         //                        setTimeout(function () {
         //                            $.mobile.loading("hide");
@@ -2210,7 +2688,7 @@
         //            });
         //            $('body').append("<div id='loaddiv' class='ui-loader-background'></div>");
 
-        //            var lTypeNumVal = $("#selLocation_" + iType).val();
+        //            var lTypeNumVal =$("#selLocation_" + iType).val() == null ? "" : $("#selLocation_" + iType).val(); 
         //            var iTypeNumVal = $("#selInterface_" + iType).val() == null ? "" : $("#selInterface_" + iType).val();
 
         //            var lTypeNumValArray = lTypeNumVal.split("_");
@@ -2223,7 +2701,7 @@
         //                    var queryStr = "/info.html";
         //                    pcwrtInfo[0].readWrite = 1;
         //                    pcwrtInfo[0].value = "1";
-        //                    ALSWriteAjaxRrquest(queryStr, JSON.stringify(pcwrtInfo[0]), function (data) {
+        //                    ALSWriteAjaxRequest(queryStr, JSON.stringify(pcwrtInfo[0]), function (data) {
         //                        setTimeout(function () {
         //                            $.mobile.loading("hide");
         //                            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
@@ -2241,58 +2719,53 @@
         //            }
         //        };
 
-        function modeWinShow(el, iType) {
+        function WriteNotificationUpdate(el) {
+            $.mobile.loading("show", {
+                text: 'Wait..',
+                textVisible: true,
+                theme: 'a',
+                html: ""
+            });
+            $('body').append("<div id='loaddiv' class='ui-loader-background'></div>");
 
-            var iValue = $("#selInterface_" + iType).val();
-            if (iValue != undefined && iValue != "") {
-                $.mobile.loading("show", {
-                    text: 'Wait..',
-                    textVisible: true,
-                    theme: 'a',
-                    html: ""
-                });
-                $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
+            var notifyInfo = [];
+            var cmdVal = parseInt($("#NotifyGSceneList").val()) >= 10 ? $("#NotifyGSceneList").val() : '0' + $("#NotifyGSceneList").val();
+            var selVal = $("#NotifyEnableDisable").val() + $('input[name=notifyBy]:checked').val() + $('input[name=notifyOn]:checked').val() + cmdVal;
+            notifyInfo.push(JSON.parse(el.name));
+            if (notifyInfo.length > 0 && notifyInfo[0].value != selVal) {
+                var queryStr = "/notify.html";
+                notifyInfo[0].readWrite = 1;
+                notifyInfo[0].value = selVal; //Must be 5 digit number string.
+                ALSWriteAjaxRequest(queryStr, JSON.stringify(notifyInfo[0]), function (data) {
 
-                var lTypeNumVal = $("#selLocation_" + iType).val();
-                var iTypeNumVal = $("#selInterface_" + iType).val() == null ? "" : $("#selInterface_" + iType).val(); //$("#selInterface_" + iType).val();
+                    //                    var saveConfigInfo = GetSaveConfigInfo(modeInfo[0].busId, modeInfo[0].deviceId);
+                    //                    if (saveConfigInfo.length > 0) {
+                    //                        saveConfigInfo[0].readWrite = 1;
+                    //                        saveConfigInfo[0].value = "1";
+                    //                        ALSWriteAjaxRequest(queryStr, JSON.stringify(saveConfigInfo[0]), function (data) {
 
-                var lTypeNumValArray = lTypeNumVal.split("_");
-                var iTypeNumIdValArray = iTypeNumVal.split("_");
-
-                if (lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 7) {
-                    //iTypeNumIdValArray 0-id 1-busID 2-deviceId 3-channelId 4-interfaceType 5-interfaceNumber
-                    var modeInfo = GetModeInfo(iTypeNumIdValArray[1], iTypeNumIdValArray[2], iTypeNumIdValArray[3]);
-                    if (modeInfo.length > 0) {
-                        var queryStr = "/info.html";
-                        modeInfo[0].readWrite = 0;
-                        ALSReadAjaxRrquest(queryStr, JSON.stringify(modeInfo[0]), function (data) {
-                            try {
-                                var val = JSON.parse(data).value.trim();
-                                $.mobile.changePage("index.html#modeDialogPage", { transition: "none", role: "dialog" });
-                                modeInfo[0].value = val.toString();
-                                $('#sTagWrite_btn').attr('name', JSON.stringify(modeInfo[0]));
-                                $("#SelSimpleMode").val(val.toString());
-                                try { $("#SelSimpleMode").selectmenu("refresh", true); } catch (err) { };
-                            }
-                            catch (err) {
-                            }
-                            $.mobile.loading("hide");
-                            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
-                        });
-                    }
-                    else {
+                    setTimeout(function () {
                         $.mobile.loading("hide");
                         try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
-                    }
-                }
-                else {
-                    $.mobile.loading("hide");
-                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
-
-                }
+                        $.mobile.back();
+                    }, delay);
+                    //                        });
+                    //                    }
+                    //                    else {
+                    //                        $.mobile.loading("hide");
+                    //                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    //                    }
+                });
             }
+            else {
 
+                $.mobile.loading("hide");
+                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                $.mobile.back();
+            }
         };
+
+
 
         function writeSimpleMode(el) {
 
@@ -2313,35 +2786,33 @@
                 var queryStr = "/info.html";
                 modeInfo[0].readWrite = 1;
                 modeInfo[0].value = selModeVal;
-                ALSWriteAjaxRrquest(queryStr, JSON.stringify(modeInfo[0]), function (data) {
+                ALSWriteAjaxRequest(queryStr, JSON.stringify(modeInfo[0]), function (data) {
 
                     var saveConfigInfo = GetSaveConfigInfo(modeInfo[0].busId, modeInfo[0].deviceId);
                     if (saveConfigInfo.length > 0) {
                         saveConfigInfo[0].readWrite = 1;
                         saveConfigInfo[0].value = "1";
-                        ALSWriteAjaxRrquest(queryStr, JSON.stringify(saveConfigInfo[0]), function (data) {
+                        ALSWriteAjaxRequest(queryStr, JSON.stringify(saveConfigInfo[0]), function (data) {
 
                             setTimeout(function () {
                                 $.mobile.loading("hide");
                                 try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                                $.mobile.back();
                             }, delay);
                         });
                     }
                     else {
                         $.mobile.loading("hide");
                         try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                        $.mobile.back();
                     }
                 });
             }
             else {
                 $.mobile.loading("hide");
                 try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                $.mobile.back();
             }
-        };
-
-        function OpenSettingsWindow() {
-            LoadSettings();
-            $.mobile.changePage("index.html#settingDialogPage", { transition: "none", role: "dialog" });
         };
 
         function WriteIRCommand(paramType, iType, IsIRTempUpDownPress, IsIRTempUpPress) {
@@ -2355,8 +2826,8 @@
             $('body').append("<div id='loaddiv' class='ui-loader-background'></div>");
 
             var iTypeNumVal = $("#selInterface_" + iType).val() == null ? "" : $("#selInterface_" + iType).val(); //$("#selInterface_" + iType).val();
-
-            if (iTypeNumVal != "") {
+            var isOn = $("#flipOnOff_" + iType).val();  //== "on"? //if ($("#flipOnOff_" + iType).val() == "on")
+            if (iTypeNumVal != "" && isOn == "on") {
                 var iTypeNumIdValArray = iTypeNumVal.split("_");
                 if (iTypeNumIdValArray.length == 7) {
                     var val = 0;
@@ -2367,7 +2838,7 @@
                             var tempUpDownPType = IsIRTempUpPress ? val + 1 : val - 1;
                             var irCmdInfo = GetIRCommand(iTypeNumIdValArray[1], iTypeNumIdValArray[2], iTypeNumIdValArray[4], iTypeNumIdValArray[5], tempUpDownPType); //GetIRCommand(iTypeNumIdValArray[1], iTypeNumIdValArray[2], iTypeNumIdValArray[4], iTypeNumIdValArray[5], paramType);
                             if (irCmdInfo.length > 0) {
-                                ALSWriteAjaxRrquest(queryStr, JSON.stringify(irCmdInfo[0]), function (data) {
+                                ALSWriteAjaxRequest(queryStr, JSON.stringify(irCmdInfo[0]), function (data) {
                                     setTimeout(function () {
                                         if (IsIRTempUpPress)
                                             val++;
@@ -2392,7 +2863,7 @@
                     else {
                         var irCmdInfo = GetIRCommand(iTypeNumIdValArray[1], iTypeNumIdValArray[2], iTypeNumIdValArray[4], iTypeNumIdValArray[5], paramType);
                         if (irCmdInfo.length > 0) {
-                            ALSWriteAjaxRrquest(queryStr, JSON.stringify(irCmdInfo[0]), function (data) {
+                            ALSWriteAjaxRequest(queryStr, JSON.stringify(irCmdInfo[0]), function (data) {
                                 setTimeout(function () {
                                     $.mobile.loading("hide");
                                     try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
@@ -2414,17 +2885,211 @@
                 $.mobile.loading("hide");
                 try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
             }
-        };        
+        };
+
+        function OpenNotificationDialog(notifyID, notifyName, strLocation, strInterface) {
+
+            $.mobile.loading("show", {
+                text: 'Wait..',
+                textVisible: true,
+                theme: 'a',
+                html: ""
+            });
+
+            $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
+
+
+
+            //            $("#NotifyGSceneList").empty();
+            //            $("#NotifyGSceneList").html("");
+            //            $("#NotifyGSceneList").selectmenu("refresh", true);
+
+            //            for (var i = 0; i < GSceneConfig.length; i++) {
+            //                $("#NotifyGSceneList").append("<option value='" + GSceneConfig[i].FileId + "' style='font-size: 15px; padding: 6px;'>" + GSceneConfig[i].Name + "</option>");
+            //            }
+
+            if (notifyID != "" && notifyID != "-1") {
+                var queryStr = "/notify.html";
+                var notifyInfo = GetNotifyConfigById(notifyID);
+                if (notifyInfo.length > 0) {
+                    notifyInfo[0].readWrite = 0;
+                    notifyInfo[0].value = "0";
+                    ALSReadAjaxRequest(queryStr, JSON.stringify(notifyInfo[0]), function (data) {
+                        try {
+                            $.mobile.changePage("index.html#notificationDetailsDialogPage", { transition: "none", role: "dialog" });
+                            document.getElementById("lblnotificationDialogHeader").innerHTML = notifyName + " Notify Details!";
+
+                            var intNotifyActionNumber = parseInt(data.trim());
+                            var strNotifyActionNumber = data.trim();
+                            if (strNotifyActionNumber.length == 5) {
+                                var notifyEnableDisableVal = strNotifyActionNumber.substring(0, 1);
+                                var notifySMSCallBothVal = strNotifyActionNumber.substring(1, 2);
+                                var notifyTrigerVal = strNotifyActionNumber.substring(2, 3);
+                                var notifyGSceneVal = strNotifyActionNumber.substring(3, 5);
+
+                                notifyInfo[0].value = strNotifyActionNumber;
+
+                                //document.getElementById("lblNotifyLocation").value = strLocation;
+                                //$("#lblNotifyLocation").prop('value', strLocation);
+                                //document.getElementById("lblNotifyInterface").value = strInterface;
+                                $("#lblNotifyLocation").text(strLocation);
+                                $("#lblNotifyInterface").text(strInterface);
+
+                                $('#btnWriteNotification').attr('name', JSON.stringify(notifyInfo[0]));
+
+                                if (notifyEnableDisableVal == "1")
+                                    $('#divforNotifyOtherDetails').hide();
+                                else
+                                    $('#divforNotifyOtherDetails').show();
+
+                                $("#NotifyEnableDisable").val(notifyEnableDisableVal).slider("refresh");
+                                //$("#NotifyEnableDisable").val("2").slider("refresh");
+                                //$('input[name=name_of_your_radiobutton]:checked').val(); Get Value
+
+                                if (notifySMSCallBothVal == "0") {
+                                    //$("#smsNotify").attr("checked", true);
+                                    $("#smsNotify").prop("checked", true);
+                                }
+                                else {
+                                    $("#callNotify").prop("checked", true);
+                                }
+
+                                //                                else {
+                                //                                    $("#smscallNotify").prop("checked", true);
+                                //                                }
+
+                                $("input[name=notifyBy]").checkboxradio("refresh");
+
+                                if (notifyTrigerVal == "0") {
+                                    $("#nEdge").prop("checked", true);
+                                }
+                                else {
+                                    $("#pEdge").prop("checked", true);
+                                }
+                                $("input[name=notifyOn]").checkboxradio("refresh");
+
+                                $("#NotifyGSceneList").val(parseInt(notifyGSceneVal).toString()).attr('selected', true).siblings('option').removeAttr('selected');
+                                $("#NotifyGSceneList").selectmenu("refresh", true);
+
+                                $.mobile.loading("hide");
+                                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+
+                            }
+                            else {
+                                //$.mobile.loading("hide");
+                                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                                $.mobile.back();
+                            }
+                        }
+                        catch (err) {
+                            $.mobile.loading("hide");
+                            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                            $.mobile.back();
+                        }
+                    });
+                }
+                else {
+                    //$.mobile.loading("hide");
+                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    $.mobile.back();
+                }
+            }
+            else {
+                $.mobile.loading("hide");
+                try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                $.mobile.back();
+            }
+        };
+
+        function modeWinShow(el, iType) {
+
+            var iValue = $("#selInterface_" + iType).val();
+            if (iValue != undefined && iValue != "") {
+                $.mobile.loading("show", {
+                    text: 'Wait..',
+                    textVisible: true,
+                    theme: 'a',
+                    html: ""
+                });
+                $('body').append("<div id='loaddiv' class='ui-loader-background'> </div>");
+
+                var lTypeNumVal = $("#selLocation_" + iType).val() == null ? "" : $("#selLocation_" + iType).val();
+                var iTypeNumVal = $("#selInterface_" + iType).val() == null ? "" : $("#selInterface_" + iType).val(); //$("#selInterface_" + iType).val();
+
+                var lTypeNumValArray = lTypeNumVal.split("_");
+                var iTypeNumIdValArray = iTypeNumVal.split("_");
+
+                if (lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 7) {
+                    //iTypeNumIdValArray 0-id 1-busID 2-deviceId 3-channelId 4-interfaceType 5-interfaceNumber
+                    var modeInfo = GetModeInfo(iTypeNumIdValArray[1], iTypeNumIdValArray[2], iTypeNumIdValArray[3]);
+                    if (modeInfo.length > 0) {
+                        var queryStr = "/info.html";
+                        modeInfo[0].readWrite = 0;
+                        ALSReadAjaxRequest(queryStr, JSON.stringify(modeInfo[0]), function (data) {
+                            try {
+                                var val = JSON.parse(data).value.trim();
+                                $.mobile.changePage("index.html#modeDialogPage", { transition: "none", role: "dialog" });
+                                modeInfo[0].value = val.toString();
+                                $('#sTagWrite_btn').attr('name', JSON.stringify(modeInfo[0]));
+                                $("#SelSimpleMode").val(val.toString());
+                                try { $("#SelSimpleMode").selectmenu("refresh", true); } catch (err) { };
+                            }
+                            catch (err) {
+                                $.mobile.back();
+                            }
+                            $.mobile.loading("hide");
+                            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                        });
+                    }
+                    else {
+                        $.mobile.loading("hide");
+                        try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+                    }
+                }
+                else {
+                    $.mobile.loading("hide");
+                    try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+
+                }
+            }
+
+        };
+
+        function OpenSettingsWindow() {
+            LoadSettings();
+            $.mobile.changePage("index.html#settingDialogPage", { transition: "none", role: "dialog" });
+            //activePage = "settingDialogPage";
+        };
+
+        function DisplayErrorMsg(errorMsg) {
+            $.mobile.changePage("index.html#errorDialog", { transition: "none", role: "dialog" });
+            $("#lblError").html(errorMsg);
+            //activePage = "errorDialog";
+        };
+
+               
     </script>
     <script type="text/javascript">
 
-        function IsConnectionOk() {
-            if (ip != "" && port != "") {
-                return true;
+        function IsAuthenticatedUser(callback) {
+            try {
+                var queryStr = "/auth.html";
+                if (!IsAuthenticated) {
+                    var userpassInfo = getUserNamePasswordInfo();
+                    ALSUserAuthenticationRequest(queryStr, JSON.stringify(userpassInfo), function (data) {
+                        if (data == "true")
+                            IsAuthenticated = true;
+                        else
+                            IsAuthenticated = false;
+
+                        callback(data);
+                    });
+                }
+                else {
+                    callback("true");
+                }
             }
-            else {
-                return false;
-            }
+            catch (err) { IsAuthenticated = false; callback("false"); }
         };
 
         function ConverCsvTOJSON(strCSV) {
@@ -2441,7 +3106,7 @@
                 var currentline = lines[i].split(",");
 
                 for (var j = 0; j < headers.length; j++) {
-                    if (j == 1 || j == 11) {
+                    if (j == 1 || j == 11 || j == 18) {
                         obj[headers[j]] = currentline[j];
                     }
                     else {
@@ -2462,70 +3127,113 @@
         };
 
         function GetUUIDConfiguration(callback) {
-            UUIDConfig = [];
+
             try {
                 var queryStr = "/file.html?name=config,uuid.csv";
-                GetUUIDConfig(queryStr, function (data) {
-                    try {
-                        var strCSV = data.substring(3, data.length - 5);
-                        strCSV = strCSV.replace(/[\r]/g, '');
-                        strCSV = ConverCsvTOJSON(strCSV);
-                        localStorage.setItem("UUIDConfig", strCSV);
-                        UUIDConfig = JSON.parse(strCSV);
-                        callback("true");
-                    }
-                    catch (err) {
-                        //UUIDConfig = [];
-                        localStorage.setItem("UUIDConfig", "[]");
-                        callback("false");
-                    }
-                });
+                if (UUIDConfig.length < 1) {
+                    GetUUIDConfig(queryStr, function (data) {
+                        try {
+                            var strCSV = data.substring(3, data.length - 5);
+                            strCSV = strCSV.replace(/[\r]/g, '');
+                            strCSV = ConverCsvTOJSON(strCSV);
+                            localStorage.setItem("UUIDConfig", strCSV);
+                            UUIDConfig = JSON.parse(strCSV);
+                            callback("true");
+                        }
+                        catch (err) {
+                            UUIDConfig = [];
+                            localStorage.setItem("UUIDConfig", "[]");
+                            callback("false");
+                        }
+                    });
+                }
+                else {
+                    callback("true");
+                }
             }
             catch (err) { callback("false"); }
         };
 
         function GetIRConfiguration(callback) {
-            IRConfig = [];
+
             try {
                 var queryStr = "/file.html?name=config,ir.csv";
-                GetIRConfig(queryStr, function (data) {
-                    try {
-                        var strCSV = data.substring(3, data.length - 5);
-                        strCSV = strCSV.replace(/[\r]/g, '');
-                        strCSV = ConverCsvTOJSON(strCSV);
-                        localStorage.setItem("IRConfig", strCSV);
-                        IRConfig = JSON.parse(strCSV);
-                        callback("true");
-                    }
-                    catch (err) {
-                        //UUIDConfig = [];
-                        localStorage.setItem("IRConfig", "[]");
-                        callback("false");
-                    }
-                });
+                if (IRConfig.length < 1) {
+                    GetIRConfig(queryStr, function (data) {
+                        try {
+                            var strCSV = data.substring(3, data.length - 5);
+                            strCSV = strCSV.replace(/[\r]/g, '');
+                            strCSV = ConverCsvTOJSON(strCSV);
+                            localStorage.setItem("IRConfig", strCSV);
+                            IRConfig = JSON.parse(strCSV);
+                            callback("true");
+                        }
+                        catch (err) {
+                            IRConfig = [];
+                            localStorage.setItem("IRConfig", "[]");
+                            callback("false");
+                        }
+                    });
+                }
+                else {
+                    callback("true");
+                }
             }
             catch (err) { callback("false"); }
         };
 
         function GetGSceneConfiguration(callback) {
-            GSceneConfig = [];
+
             try {
                 var queryStr = "/file.html?name=config,global.csv";
-                GetGlobalScene(queryStr, function (data) {
-                    try {
-                        var strCSV = data.substring(3, data.length - 5);
-                        strCSV = strCSV.replace(/[\r]/g, '');
-                        strCSV = ConverCsvTOJSON(strCSV);
-                        localStorage.setItem("GSceneConfig", strCSV);
-                        GSceneConfig = JSON.parse(strCSV);
-                        callback("true");
-                    }
-                    catch (err) {
-                        //UUIDConfig = [];
-                        localStorage.setItem("GSceneConfig", "[]");
-                        callback("false");
-                    }
-                });
+                if (GSceneConfig.length < 1) {
+                    GetGlobalScene(queryStr, function (data) {
+                        try {
+                            var strCSV = data.substring(3, data.length - 5);
+                            strCSV = strCSV.replace(/[\r]/g, '');
+                            strCSV = ConverCsvTOJSON(strCSV);
+                            localStorage.setItem("GSceneConfig", strCSV);
+                            GSceneConfig = JSON.parse(strCSV);
+                            callback("true");
+                        }
+                        catch (err) {
+                            GSceneConfig = [];
+                            localStorage.setItem("GSceneConfig", "[]");
+                            callback("false");
+                        }
+                    });
+                }
+                else {
+                    callback("true");
+                }
+            }
+            catch (err) { callback("false"); }
+        };
+
+        function GetNotifyConfig(callback) {
+
+            try {
+                var queryStr = "/file.html?name=config,notify.csv";
+                if (NotifyConfig.length < 1) {
+                    GetNotificationConfig(queryStr, function (data) {
+                        try {
+                            var strCSV = data.substring(3, data.length - 5);
+                            strCSV = strCSV.replace(/[\r]/g, '');
+                            strCSV = ConverCsvTOJSON(strCSV);
+                            localStorage.setItem("NotifyConfig", strCSV);
+                            NotifyConfig = JSON.parse(strCSV);
+                            callback("true");
+                        }
+                        catch (err) {
+                            NotifyConfig = [];
+                            localStorage.setItem("NotifyConfig", "[]");
+                            callback("false");
+                        }
+                    });
+                }
+                else {
+                    callback("true");
+                }
             }
             catch (err) { callback("false"); }
         };
@@ -2542,5 +3250,43 @@
 
 
     </script>
+    <script type="text/javascript">
+        function getUserNamePasswordInfo() {
+            try {
+                var uidpswInfo = {};
+                uidpswInfo.user = username;
+                uidpswInfo.pass = ConvertStringtoECBEncryptString(password);
+                return uidpswInfo;
+            }
+            catch (err) {
+                return uidpswInfo = {};
+            }
+        };
+
+        function ConvertStringtoECBEncryptString(textInputStr) {
+            var key = aesjs.util.convertStringToBytes("0000000000000000");
+            for (var i = textInputStr.length; i < 16; i++) {
+                textInputStr = textInputStr + '\0';
+            }
+            if (textInputStr.length == 16) {
+                var aesEcb = new aesjs.ModeOfOperation.ecb(key);
+                var textInputBytes = aesjs.util.convertStringToBytes(textInputStr);
+                var encryptedBytes = aesEcb.encrypt(textInputBytes);
+                return aesjs.util.convertBytesToString(encryptedBytes, 'hex').toString();
+            }
+            else {
+                return "";
+            }
+        };
+    
+    </script>
+    <!-- <script type="text/javascript">
+        //        $(document).on("pagecreate", "#notificationPage", function () {
+        //            $("#Ul2 li label").on("taphold", function () {
+        //                $.mobile.changePage("index.html#notificationDetailsDialogPage", { transition: "none", role: "dialog" });
+
+        //            });
+        //        });
+    </script>-->
 </body>
 </html>
