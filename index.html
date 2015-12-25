@@ -230,11 +230,11 @@
                                         </center>-->
                                         <div class="menu">
                                             <ul>
-                                                <li><a id="GT1" class="ui-link" onclick="if(UUIDConfig.length > 0 && IsAuthenticated){menubtn_Click(this);}else{alert('Appliances configuration could not loaded. please try again...');};"
+                                                <li><a id="GT1" class="ui-link" onclick="if(IsAuthenticated){if(UUIDConfig.length > 0){menubtn_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};"
                                                     name="Light" href="#">
                                                     <img src="css/images/icons/bulb.png" alt="light" />
                                                     <span class="spanGType">Lighting</span> </a></li>
-                                                <li><a id="GT2" class="ui-link" onclick="if(UUIDConfig.length > 0 && IsAuthenticated){menubtn_Click(this);}else{alert('Appliances configuration could not loaded. please try again...');};"
+                                                <li><a id="GT2" class="ui-link" onclick="if(IsAuthenticated){if(UUIDConfig.length > 0){menubtn_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};"
                                                     name="Fan" href="#">
                                                     <img src="css/images/icons/fan.png" alt="dimmer" />
                                                     <span class="spanGType">Fan</span> </a></li>
@@ -246,7 +246,7 @@
                                                     href="#">
                                                     <img src="css/images/icons/Temp1.png" alt="Temp" />
                                                     <span class="spanGType">AC</span> </a></li>-->
-                                                <li><a id="GT5" class="ui-link" onclick="if(UUIDConfig.length > 0 && IsAuthenticated){menubtn_Click(this);}else{alert('Appliances configuration could not loaded. please try again...');};"
+                                                <li><a id="GT5" class="ui-link" onclick="if(IsAuthenticated){if(UUIDConfig.length > 0){menubtn_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};"
                                                     name="Plug" href="#">
                                                     <img src="css/images/icons/plug1.png" alt="plug" />
                                                     <span class="spanGType">A Plug</span> </a></li>
@@ -254,11 +254,11 @@
                                                     name="Local Scene" href="#">
                                                     <img src="css/images/icons/local_scene.png" alt="LScenes" />
                                                     <span class="spanGType">Local Scenes</span> </a></li>-->
-                                                <li><a id="GT7" class="ui-link" onclick="if(IRConfig.length > 0 && IsAuthenticated){menubtn_Click(this);}else{alert('Appliances configuration could not loaded. please try again...');};"
+                                                <li><a id="GT7" class="ui-link" onclick="if(IsAuthenticated){if(IRConfig.length > 0){menubtn_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};"
                                                     name="IR-AC" href="#">
                                                     <img src="css/images/icons/irac.png" alt="IRAC" />
                                                     <span class="spanGType">IR-AC</span> </a></li>
-                                                <li><a id="btnGScene" class="ui-link" name="Global Scenes" href="#" onclick="if(GSceneConfig.length > 0 && IsAuthenticated){menuGScene_Click(this);}else{alert('Appliances configuration could not loaded. please try again...');};">
+                                                <li><a id="btnGScene" class="ui-link" name="Global Scenes" href="#" onclick="if(IsAuthenticated){if(GSceneConfig.length > 0){menuGScene_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};">
                                                     <img src="css/images/icons/global_scene.png" alt="GScene" />
                                                     <span class="spanGType">Global Scenes</span> </a></li>
                                                 <!--<li><a id="GT4" class="ui-link" onclick="GroupType_Click(this);" name="15 A Plug"
@@ -275,7 +275,7 @@
                                                     <img src="css/images/icons/tv.png" alt="tv" />
                                                     <span class="spanGType">TV</span> </a></li>-->
                                                 <!--onclick="if(NotifyConfig.length > 0){menuNotification_Click(this);}else{alert('please try again...');};"-->
-                                                <li><a id="btnNotification" class="ui-link" name="Notification" href="#" onclick="if(NotifyConfig.length > 0 && IsAuthenticated){menuNotification_Click(this);}else{alert('Appliances configuration could not loaded. Please try again...');};">
+                                                <li><a id="btnNotification" class="ui-link" name="Notification" href="#" onclick="if(IsAuthenticated){if(NotifyConfig.length > 0){menuNotification_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};">
                                                     <img src="css/images/icons/notification.png" alt="Notification" />
                                                     <span class="spanGType">Notification</span> </a></li>
                                                 <li><a id="btnSettings" class="ui-link" name="setting" href="#" data-rel="dialog"
@@ -1019,40 +1019,30 @@
             <h1>
                 <b>
                     <label id="lblnotificationDialogHeader" style="font-size: 18px; font-weight: bolder">
-                        Notify Details
+                        Notification Details
                     </label>
                 </b>
             </h1>
         </div>
         <div data-role="content" style="background-color: #F6FCF7;">
             <center>
-                <fieldset class="ui-field-contain" style="float: inherit;">
+                <!--<fieldset class="ui-field-contain" style="float: inherit;">
                     <label for="NotifyEnableDisable" class="ui-hidden-accessible">
                         Notification :</label>
                     <select name="NotifyEnableDisable" id="NotifyEnableDisable" data-role="slider" data-theme="b"
                         onchange="if($('#NotifyEnableDisable').val()==1){$('#divforNotifyOtherDetails').hide();}else{$('#divforNotifyOtherDetails').show();};">
                         <option value="1">Notify Disable</option>
                         <option value="2">Notify Enable</option>
+                    </select>                    
+                </fieldset>-->
+                <fieldset class="ui-field-contain" style="width: 90%">
+                    <label id="lblEnableDisable" for="NotifyEnableDisable" style="color: #333333; width: 200px;">
+                        notification:</label>
+                    <select name="NotifyEnableDisable" id="NotifyEnableDisable" data-role="slider" data-theme="b"
+                        onchange="if($('#NotifyEnableDisable').val()==1){$('#divforNotifyOtherDetails').hide();}else{$('#divforNotifyOtherDetails').show();};">
+                        <option value="1">Disable</option>
+                        <option value="2">Enable</option>
                     </select>
-                    <!--<div data-inline="true">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="ui-field-contain">
-                                            <label for="NotifyEnableDisable" class="ui-hidden-accessible">
-                                                Notification :</label>
-                                            <select name="NotifyEnableDisable" id="NotifyEnableDisable" data-role="slider" data-theme="b"
-                                                onchange="if($('#NotifyEnableDisable').val()==1){$('#divforNotifyOtherDetails').hide();}else{$('#divforNotifyOtherDetails').show();};">
-                                                <option value="1">Notify Disable</option>
-                                                <option value="2">Notify Enable</option>
-                                            </select>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>-->
                 </fieldset>
                 <fieldset class="ui-field-contain" style="width: 90%">
                     <!--<legend style="font-family: sans-serif; color: #333333;">Location Details:</legend>-->
@@ -1069,16 +1059,19 @@
                 <div id="divforNotifyOtherDetails">
                     <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain"
                         data-mini="true">
-                        <legend class="ui-field-contain" style="color: #333333;">Notification Action:</legend>
+                        <legend class="ui-field-contain" style="color: #333333;">Trigger action</legend>
                         <label for="smsNotify">
                             SMS</label>
                         <input type="radio" name="notifyBy" id="smsNotify" value="0" checked data-theme="b" />
                         <label for="callNotify">
                             Call</label>
                         <input type="radio" name="notifyBy" id="callNotify" value="1" data-theme="b" />
-                        <!--<label for="smscallNotify">
+                        <label for="smscallNotify">
                             Both</label>
-                        <input type="radio" name="notifyBy" id="smscallNotify" value="2" data-theme="b" />-->
+                        <input type="radio" name="notifyBy" id="smscallNotify" value="2" data-theme="b" />
+                        <label for="noneNotify">
+                            None</label>
+                        <input type="radio" name="notifyBy" id="noneNotify" value="9" data-theme="b" />
                     </fieldset>
                     <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain"
                         data-mini="true">
@@ -1090,8 +1083,19 @@
                             Positive edge</label>
                         <input type="radio" name="notifyOn" id="pEdge" value="1" data-theme="b" />
                     </fieldset>
-                    <fieldset class="ui-field-contain" style="width: 90%">
+                    <!-- <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain"
+                        data-mini="true">
+                        <legend class="ui-field-contain" style="color: #333333;">Global scene</legend>
+                        <label style="color: #333333; width: 105px;">
+                            Global scene
+                        </label>
+                    </fieldset>-->
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain"
+                        data-mini="true">
+                        <legend class="ui-field-contain" style="color: #333333;">Global scene</legend>
+                        <!--class="ui-field-contain" style="width: 90%; margin-top: 0;">-->
                         <!--<legend class="ui-field-contain" style="color: #333333;">Command:</legend>-->
+                        <!--<legend class="ui-field-contain" style="color: #333333;">Global Scene</legend>-->
                         <select id="NotifyGSceneList" data-mini="true" data-theme="b">
                         </select>
                     </fieldset>
@@ -1166,7 +1170,7 @@
 
             var page = $(':mobile-pagecontainer').pagecontainer('getActivePage')[0].id;
 
-            if (page == "grouptype" || page == "group") {
+            if (page == "grouptype") {
                 window.clearTimeout(timer);
             }
 
@@ -1177,6 +1181,7 @@
             $("#NotifyGSceneList").html("");
             $("#NotifyGSceneList").selectmenu("refresh", true);
 
+            $("#NotifyGSceneList").append("<option value='0' style='font-size: 15px; padding: 6px;'>None</option>");
             for (var i = 0; i < GSceneConfig.length; i++) {
                 $("#NotifyGSceneList").append("<option value='" + GSceneConfig[i].FileId + "' style='font-size: 15px; padding: 6px;'>" + GSceneConfig[i].Name + "</option>");
             }
@@ -1296,17 +1301,17 @@
                             NotifyConfig = [];
                             localStorage.setItem("NotifyConfig", "[]");
 
-                            alert("User authentication failed!.");
+                            alert("Authentication failed.");
                         }
                     });
                 }
                 else {
-                    alert("Missing application configuration.");
+                    alert("Error while loading application configuration.");
                 }
 
             }
             else {
-                alert("Missing application configuration.");
+                alert("Error while loading application configuration.");
             }
 
 
@@ -1365,7 +1370,7 @@
                 chkConnection();
             }
             else {
-                alert("Storege is undefined!");
+                alert("Browser storege is undefined.");
             }
 
         };
@@ -2917,7 +2922,8 @@
                     ALSReadAjaxRequest(queryStr, JSON.stringify(notifyInfo[0]), function (data) {
                         try {
                             $.mobile.changePage("index.html#notificationDetailsDialogPage", { transition: "none", role: "dialog" });
-                            document.getElementById("lblnotificationDialogHeader").innerHTML = notifyName + " Notify Details!";
+                            //document.getElementById("lblnotificationDialogHeader").innerHTML = notifyName + " Notify Details!";
+                            document.getElementById("lblEnableDisable").innerHTML = notifyName + " notification :";
 
                             var intNotifyActionNumber = parseInt(data.trim());
                             var strNotifyActionNumber = data.trim();
@@ -2950,13 +2956,15 @@
                                     //$("#smsNotify").attr("checked", true);
                                     $("#smsNotify").prop("checked", true);
                                 }
-                                else {
+                                else if (notifySMSCallBothVal == "1") {
                                     $("#callNotify").prop("checked", true);
                                 }
-
-                                //                                else {
-                                //                                    $("#smscallNotify").prop("checked", true);
-                                //                                }
+                                else if (notifySMSCallBothVal == "2") {
+                                    $("#smscallNotify").prop("checked", true);
+                                }
+                                else {
+                                    $("#noneNotify").prop("checked", true);
+                                }
 
                                 $("input[name=notifyBy]").checkboxradio("refresh");
 
@@ -3077,7 +3085,7 @@
                 if (!IsAuthenticated) {
                     // var userpassInfo = getUserNamePasswordInfo();
                     getUserNamePasswordInfo(function (data) {
-                        //alert(data.user + ' : ' + user.pass);
+                        //alert(data.user + ':' + data.pass);
                         ALSUserAuthenticationRequest(queryStr, JSON.stringify(data), function (data) {
                             if (data == "true")
                                 IsAuthenticated = true;
