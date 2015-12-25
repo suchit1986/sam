@@ -2927,7 +2927,7 @@
 
                             var intNotifyActionNumber = parseInt(data.trim());
                             var strNotifyActionNumber = data.trim();
-                            if (strNotifyActionNumber.length == 5) {
+                            if (strNotifyActionNumber.length >= 4) {
                                 var notifyEnableDisableVal = strNotifyActionNumber.substring(0, 1);
                                 var notifySMSCallBothVal = strNotifyActionNumber.substring(1, 2);
                                 var notifyTrigerVal = strNotifyActionNumber.substring(2, 3);
