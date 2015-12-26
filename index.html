@@ -230,11 +230,11 @@
                                         </center>-->
                                         <div class="menu">
                                             <ul>
-                                                <li><a id="GT1" class="ui-link" onclick="if(IsAuthenticated){if(UUIDConfig.length > 0){menubtn_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};"
+                                                <li><a id="GT1" class="ui-link" onclick="if(IsAuthenticated){if(UUIDConfig.length > 0 && LTypeConfig.length > 0 && ITypeConfig.length > 0 && ISubTypeConfig.length > 0 ){menubtn_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};"
                                                     name="Light" href="#">
                                                     <img src="css/images/icons/bulb.png" alt="light" />
                                                     <span class="spanGType">Lighting</span> </a></li>
-                                                <li><a id="GT2" class="ui-link" onclick="if(IsAuthenticated){if(UUIDConfig.length > 0){menubtn_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};"
+                                                <li><a id="GT2" class="ui-link" onclick="if(IsAuthenticated){if(UUIDConfig.length > 0 && LTypeConfig.length > 0 && ITypeConfig.length > 0 && ISubTypeConfig.length > 0){menubtn_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};"
                                                     name="Fan" href="#">
                                                     <img src="css/images/icons/fan.png" alt="dimmer" />
                                                     <span class="spanGType">Fan</span> </a></li>
@@ -246,7 +246,7 @@
                                                     href="#">
                                                     <img src="css/images/icons/Temp1.png" alt="Temp" />
                                                     <span class="spanGType">AC</span> </a></li>-->
-                                                <li><a id="GT5" class="ui-link" onclick="if(IsAuthenticated){if(UUIDConfig.length > 0){menubtn_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};"
+                                                <li><a id="GT5" class="ui-link" onclick="if(IsAuthenticated){if(UUIDConfig.length > 0 && LTypeConfig.length > 0 && ITypeConfig.length > 0 && ISubTypeConfig.length > 0){menubtn_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};"
                                                     name="Plug" href="#">
                                                     <img src="css/images/icons/plug1.png" alt="plug" />
                                                     <span class="spanGType">A Plug</span> </a></li>
@@ -254,11 +254,11 @@
                                                     name="Local Scene" href="#">
                                                     <img src="css/images/icons/local_scene.png" alt="LScenes" />
                                                     <span class="spanGType">Local Scenes</span> </a></li>-->
-                                                <li><a id="GT7" class="ui-link" onclick="if(IsAuthenticated){if(IRConfig.length > 0){menubtn_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};"
+                                                <li><a id="GT7" class="ui-link" onclick="if(IsAuthenticated){if(IRConfig.length > 0 && LTypeConfig.length > 0 && ITypeConfig.length > 0 && ISubTypeConfig.length > 0){menubtn_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};"
                                                     name="IR-AC" href="#">
                                                     <img src="css/images/icons/irac.png" alt="IRAC" />
                                                     <span class="spanGType">IR-AC</span> </a></li>
-                                                <li><a id="btnGScene" class="ui-link" name="Global Scenes" href="#" onclick="if(IsAuthenticated){if(GSceneConfig.length > 0){menuGScene_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};">
+                                                <li><a id="btnGScene" class="ui-link" name="Global Scenes" href="#" onclick="if(IsAuthenticated){if(GSceneConfig.length > 0 && LTypeConfig.length > 0 && ITypeConfig.length > 0 && ISubTypeConfig.length > 0){menuGScene_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};">
                                                     <img src="css/images/icons/global_scene.png" alt="GScene" />
                                                     <span class="spanGType">Global Scenes</span> </a></li>
                                                 <!--<li><a id="GT4" class="ui-link" onclick="GroupType_Click(this);" name="15 A Plug"
@@ -275,7 +275,7 @@
                                                     <img src="css/images/icons/tv.png" alt="tv" />
                                                     <span class="spanGType">TV</span> </a></li>-->
                                                 <!--onclick="if(NotifyConfig.length > 0){menuNotification_Click(this);}else{alert('please try again...');};"-->
-                                                <li><a id="btnNotification" class="ui-link" name="Notification" href="#" onclick="if(IsAuthenticated){if(NotifyConfig.length > 0){menuNotification_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};">
+                                                <li><a id="btnNotification" class="ui-link" name="Notification" href="#" onclick="if(IsAuthenticated){if(NotifyConfig.length > 0 && LTypeConfig.length > 0 && ITypeConfig.length > 0 && ISubTypeConfig.length > 0){menuNotification_Click(this);}else{alert('Error while loading configuration. Please check network connection.');};}else{alert('Authentication failed. Please check username and password.');};">
                                                     <img src="css/images/icons/notification.png" alt="Notification" />
                                                     <span class="spanGType">Notification</span> </a></li>
                                                 <li><a id="btnSettings" class="ui-link" name="setting" href="#" data-rel="dialog"
@@ -1061,6 +1061,7 @@
                         data-mini="true">
                         <legend class="ui-field-contain" style="color: #333333;">Trigger action</legend>
                         <label for="smsNotify">
+                            <!--style="font-weight: lighter;"-->
                             Sms</label>
                         <input type="radio" name="notifyBy" id="smsNotify" value="0" checked data-theme="b" />
                         <label for="callNotify">
@@ -1127,15 +1128,31 @@
     <script src="Js/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="Js/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
     <!--  If Want to build Mobile app remove cordova.js comment below-->
-    <script src="phonegap.js"></script>
+    <!--<script src="phonegap.js"></script>-->
     <script type="text/javascript">
         var UUIDConfig = [];
         var IRConfig = [];
         var GSceneConfig = [];
         var NotifyConfig = [];
+
+        //get enum type
+        var LTypeConfig = [];
+        var ITypeConfig = [];
+        var ISubTypeConfig = [];
+        //        LTypeConfig = [
+        //        { "Id": 1, "name": "Paresh" },
+        //        { "Id": 2, "name": "Paresh" },
+        //        { "Id": 3, "name": "Paresh" },
+        //        { "Id": 4, "name": "Paresh" },
+        //        { "Id": 5, "name": "Paresh" },
+        //        { "Id": 6, "name": "Paresh" },
+        //        { "Id": 7, "name": "Paresh" }
+        //        ];
+
+
         //$.mobile.allowCrossDomainPages = true;
         var uniqueAutoLoadingInfo;
-        var isBrowser = false; //If Used in browser then 'true' and for mobile app make it 'false'.
+        var isBrowser = true; //If Used in browser then 'true' and for mobile app make it 'false'.
         var timer;
         var chkConnectionDelay = 10000;
         var chkConnectionTimer;
@@ -1258,6 +1275,16 @@
                 if (localStorage.getItem("NotifyConfig") != null) {
                     NotifyConfig = JSON.parse(localStorage.getItem("NotifyConfig"));
                 }
+
+                if (localStorage.getItem("LTypeConfig") != null) {
+                    LTypeConfig = JSON.parse(localStorage.getItem("LTypeConfig"));
+                }
+                if (localStorage.getItem("ITypeConfig") != null) {
+                    ITypeConfig = JSON.parse(localStorage.getItem("ITypeConfig"));
+                }
+                if (localStorage.getItem("ISubTypeConfig") != null) {
+                    ISubTypeConfig = JSON.parse(localStorage.getItem("ISubTypeConfig"));
+                }
                 //
                 //SettingsAuth();
             }
@@ -1280,9 +1307,15 @@
                                 GetIRConfiguration(function (data) {
                                     GetGSceneConfiguration(function (data) {
                                         GetNotifyConfig(function (data) {
-                                            chkConnectionTimer = setTimeout(function () {
-                                                chkConnection();
-                                            }, chkConnectionDelay);
+                                            GetLTypeConfiguration(function (data) {
+                                                GetITypeConfiguration(function (data) {
+                                                    GetISubTypeConfiguration(function (data) {
+                                                        chkConnectionTimer = setTimeout(function () {
+                                                            chkConnection();
+                                                        }, chkConnectionDelay);
+                                                    });
+                                                });
+                                            });
                                         });
                                     });
                                 });
@@ -1300,6 +1333,13 @@
 
                             NotifyConfig = [];
                             localStorage.setItem("NotifyConfig", "[]");
+
+                            LTypeConfig = [];
+                            localStorage.setItem("LTypeConfig", "[]");
+                            ITypeConfig = [];
+                            localStorage.setItem("ITypeConfig", "[]");
+                            ISubTypeConfig = [];
+                            localStorage.setItem("ISubTypeConfig", "[]");
 
                             alert("Authentication failed.");
                         }
@@ -1363,6 +1403,13 @@
 
                 NotifyConfig = [];
                 localStorage.setItem("NotifyConfig", "[]");
+
+                LTypeConfig = [];
+                localStorage.setItem("LTypeConfig", "[]");
+                ITypeConfig = [];
+                localStorage.setItem("ITypeConfig", "[]");
+                ISubTypeConfig = [];
+                localStorage.setItem("ISubTypeConfig", "[]");
 
                 LoadSettings();
                 IsAuthenticated = false;
@@ -1654,192 +1701,213 @@
 
         function getLocationTypeName(lType) {
             var rtnString = "";
-            switch (lType) {
-                case 1:
-                    rtnString = "Living Room";
+            for (var i = 0; i < LTypeConfig.length; i++) {
+                if (LTypeConfig[i].Id == lType) {
+                    rtnString = LTypeConfig[i].Name
                     break;
-                case 2:
-                    rtnString = "Kitchen";
-                    break;
-                case 3:
-                    rtnString = "Bathroom";
-                    break;
-                case 4:
-                    rtnString = "Bedroom";
-                    break;
-                case 5:
-                    rtnString = "Storeroom";
-                    break;
-                case 6:
-                    rtnString = "Servant room";
-                    break;
-                case 7:
-                    rtnString = "Entrance";
-                    break;
-                case 8:
-                    rtnString = "Lobby";
-                    break;
-                case 9:
-                    rtnString = "Terrace";
-                    break;
-                case 10:
-                    rtnString = "Garden";
-                    break;
-                case 11:
-                    rtnString = "Wash Area";
-                    break;
-                case 12:
-                    rtnString = "Dining";
-                    break;
-                case 13:
-                    rtnString = "Pooja Room";
-                    break;
-                case 14:
-                    rtnString = "Master bedroom";
-                    break;
-                case 15:
-                    rtnString = "Kid’s Room";
-                    break;
-                case 16:
-                    rtnString = "Parent’s Room";
-                    break;
-                case 17:
-                    rtnString = "Life Style Room";
-                    break;
-                case 18:
-                    rtnString = "Library";
-                    break;
-                case 19:
-                    rtnString = "Home Theatre";
-                    break;
-                case 20:
-                    rtnString = "Study Room";
-                    break;
-                case 21:
-                    rtnString = "Family Area";
-                    break;
-                case 22:
-                    rtnString = "Balcony";
-                    break;
-                case 23:
-                    rtnString = "Vestibule";
-                    break;
-                case 24:
-                    rtnString = "Parking";
-                    break;
-                case 25:
-                    rtnString = "Garden";
-                    break;
+                }
             }
             return rtnString;
+            //            switch (lType) {
+            //                case 1:
+            //                    rtnString = "Living Room";
+            //                    break;
+            //                case 2:
+            //                    rtnString = "Kitchen";
+            //                    break;
+            //                case 3:
+            //                    rtnString = "Bathroom";
+            //                    break;
+            //                case 4:
+            //                    rtnString = "Bedroom";
+            //                    break;
+            //                case 5:
+            //                    rtnString = "Storeroom";
+            //                    break;
+            //                case 6:
+            //                    rtnString = "Servant room";
+            //                    break;
+            //                case 7:
+            //                    rtnString = "Entrance";
+            //                    break;
+            //                case 8:
+            //                    rtnString = "Lobby";
+            //                    break;
+            //                case 9:
+            //                    rtnString = "Terrace";
+            //                    break;
+            //                case 10:
+            //                    rtnString = "Garden";
+            //                    break;
+            //                case 11:
+            //                    rtnString = "Wash Area";
+            //                    break;
+            //                case 12:
+            //                    rtnString = "Dining";
+            //                    break;
+            //                case 13:
+            //                    rtnString = "Pooja Room";
+            //                    break;
+            //                case 14:
+            //                    rtnString = "Master bedroom";
+            //                    break;
+            //                case 15:
+            //                    rtnString = "Kid’s Room";
+            //                    break;
+            //                case 16:
+            //                    rtnString = "Parent’s Room";
+            //                    break;
+            //                case 17:
+            //                    rtnString = "Life Style Room";
+            //                    break;
+            //                case 18:
+            //                    rtnString = "Library";
+            //                    break;
+            //                case 19:
+            //                    rtnString = "Home Theatre";
+            //                    break;
+            //                case 20:
+            //                    rtnString = "Study Room";
+            //                    break;
+            //                case 21:
+            //                    rtnString = "Family Area";
+            //                    break;
+            //                case 22:
+            //                    rtnString = "Balcony";
+            //                    break;
+            //                case 23:
+            //                    rtnString = "Vestibule";
+            //                    break;
+            //                case 24:
+            //                    rtnString = "Parking";
+            //                    break;
+            //                case 25:
+            //                    rtnString = "Garden";
+            //                    break;
+            //            }
+
         };
 
         function getInterfaceTypeName(iType) {
             var rtnString = "";
-            switch (iType) {
-                case 1:
-                    rtnString = "Light";
+            for (var i = 0; i < ITypeConfig.length; i++) {
+                if (ITypeConfig[i].Id == iType) {
+                    rtnString = ITypeConfig[i].Name
                     break;
-                case 2:
-                    rtnString = "Fan";
-                    break;
-                case 3:
-                    rtnString = "Dimmer";
-                    break;
-                case 4:
-                    rtnString = "AC";
-                    break;
-                case 5:
-                    rtnString = "Plug";
-                    break;
-                case 6:
-                    rtnString = "Local Scene";
-                    break;
-                case 7:
-                    rtnString = "IR-AC";
-                    break;
-
+                }
             }
             return rtnString;
+            //            switch (iType) {
+            //                case 1:
+            //                    rtnString = "Light";
+            //                    break;
+            //                case 2:
+            //                    rtnString = "Fan";
+            //                    break;
+            //                case 3:
+            //                    rtnString = "Dimmer";
+            //                    break;
+            //                case 4:
+            //                    rtnString = "AC";
+            //                    break;
+            //                case 5:
+            //                    rtnString = "Plug";
+            //                    break;
+            //                case 6:
+            //                    rtnString = "Local Scene";
+            //                    break;
+            //                case 7:
+            //                    rtnString = "IR-AC";
+            //                    break;
+
+            //            }
+            //            return rtnString;
         };
 
         function getInterfaceSubTypeName(iSubType) {
             var rtnString = "";
-            switch (iSubType) {
-                case 1:
-                    rtnString = "Ceiling";
+            for (var i = 0; i < ISubTypeConfig.length; i++) {
+                if (ISubTypeConfig[i].Id == iSubType) {
+                    rtnString = ISubTypeConfig[i].Name
                     break;
-                case 2:
-                    rtnString = "Bracket";
-                    break;
-                case 3:
-                    rtnString = "Focus";
-                    break;
-                case 4:
-                    rtnString = "LED";
-                    break;
-                case 5:
-                    rtnString = "Zhumar";
-                    break;
-                case 6:
-                    rtnString = "Night Lamp";
-                    break;
-                case 7:
-                    rtnString = "AC";
-                    break;
-                case 8:
-                    rtnString = "TV";
-                    break;
-                case 9:
-                    rtnString = "Set-Top Box";
-                    break;
-                case 10:
-                    rtnString = "CPU";
-                    break;
-                case 11:
-                    rtnString = "Monitor";
-                    break;
-                case 12:
-                    rtnString = "AV System";
-                    break;
-                case 13:
-                    rtnString = "Oven";
-                    break;
-                case 14:
-                    rtnString = "Fridge";
-                    break;
-                case 15:
-                    rtnString = "Water Heater";
-                    break;
-                case 16:
-                    rtnString = "Room Heater";
-                    break
-                case 17:
-                    rtnString = "Chimney";
-                    break
-                case 18:
-                    rtnString = "Water Purifier";
-                    break
-                case 19:
-                    rtnString = "Dishwasher";
-                    break
-                case 20:
-                    rtnString = "Vaccum Cleaner";
-                    break
-                case 21:
-                    rtnString = "Washing Machine";
-                    break
-                case 22:
-                    rtnString = "Printer";
-                    break
-                case 23:
-                    rtnString = "Laptop";
-                    break
-                case 24:
-                    rtnString = "Networking Device";
-                    break
+                }
             }
             return rtnString;
+            //            switch (iSubType) {
+            //                case 1:
+            //                    rtnString = "Ceiling";
+            //                    break;
+            //                case 2:
+            //                    rtnString = "Bracket";
+            //                    break;
+            //                case 3:
+            //                    rtnString = "Focus";
+            //                    break;
+            //                case 4:
+            //                    rtnString = "LED";
+            //                    break;
+            //                case 5:
+            //                    rtnString = "Zhumar";
+            //                    break;
+            //                case 6:
+            //                    rtnString = "Night Lamp";
+            //                    break;
+            //                case 7:
+            //                    rtnString = "AC";
+            //                    break;
+            //                case 8:
+            //                    rtnString = "TV";
+            //                    break;
+            //                case 9:
+            //                    rtnString = "Set-Top Box";
+            //                    break;
+            //                case 10:
+            //                    rtnString = "CPU";
+            //                    break;
+            //                case 11:
+            //                    rtnString = "Monitor";
+            //                    break;
+            //                case 12:
+            //                    rtnString = "AV System";
+            //                    break;
+            //                case 13:
+            //                    rtnString = "Oven";
+            //                    break;
+            //                case 14:
+            //                    rtnString = "Fridge";
+            //                    break;
+            //                case 15:
+            //                    rtnString = "Water Heater";
+            //                    break;
+            //                case 16:
+            //                    rtnString = "Room Heater";
+            //                    break
+            //                case 17:
+            //                    rtnString = "Chimney";
+            //                    break
+            //                case 18:
+            //                    rtnString = "Water Purifier";
+            //                    break
+            //                case 19:
+            //                    rtnString = "Dishwasher";
+            //                    break
+            //                case 20:
+            //                    rtnString = "Vaccum Cleaner";
+            //                    break
+            //                case 21:
+            //                    rtnString = "Washing Machine";
+            //                    break
+            //                case 22:
+            //                    rtnString = "Printer";
+            //                    break
+            //                case 23:
+            //                    rtnString = "Laptop";
+            //                    break
+            //                case 24:
+            //                    rtnString = "Networking Device";
+            //                    break
+            //            }
+            //            return rtnString;
         };
 
 
@@ -2203,24 +2271,33 @@
                 var lTypeNumValArray = lTypeNumVal.split("_");
                 $("#selInterface_" + iType).append("<option value='' style='font-size: 15px; padding: 6px;'>Select Appliances...</option>");
                 if (lTypeNumValArray.length == 2) {
-                    var InterfaceDB = [];
                     var uniqueIDB = [];
+                    var InterfaceDB = [];
                     if (getInterfaceTypeName(parseInt(iType)) == "IR-AC") {
                         InterfaceDB = GetIRInterfaceByLocationAndInterfaceType(lTypeNumValArray[0], lTypeNumValArray[1], iType);
-                        for (var i = 0; i < InterfaceDB.length; i++) {
-                            if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
-                                $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].locationType + "_" + InterfaceDB[i].locationNumber + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
-                                uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber);
-                            }
-                        }
+                        //                        for (var i = 0; i < InterfaceDB.length; i++) {
+                        //                            //if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
+                        //                            if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType) === -1) {
+                        //                                $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].locationType + "_" + InterfaceDB[i].locationNumber + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
+                        //                                uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType);
+                        //                            }
+                        //                        }
                     }
                     else {
                         InterfaceDB = GetInterfaceByLocationAndInterfaceType(lTypeNumValArray[0], lTypeNumValArray[1], iType);
-                        for (var i = 0; i < InterfaceDB.length; i++) {
-                            if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
-                                $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].busId + "_" + InterfaceDB[i].deviceId + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
-                                uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber);
-                            }
+                        //                        for (var i = 0; i < InterfaceDB.length; i++) {
+                        //                            //if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
+                        //                            if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType) === -1) {
+                        //                                $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].busId + "_" + InterfaceDB[i].deviceId + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
+                        //                                uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType);
+                        //                            }
+                        //                        }
+                    }
+                    for (var i = 0; i < InterfaceDB.length; i++) {
+                        //if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
+                        if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType) === -1) {
+                            $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].busId + "_" + InterfaceDB[i].deviceId + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
+                            uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType);
                         }
                     }
 
@@ -3238,6 +3315,90 @@
                         catch (err) {
                             NotifyConfig = [];
                             localStorage.setItem("NotifyConfig", "[]");
+                            callback("false");
+                        }
+                    });
+                }
+                else {
+                    callback("true");
+                }
+            }
+            catch (err) { callback("false"); }
+        };
+
+        function GetLTypeConfiguration(callback) {
+
+            try {
+                var queryStr = "/file.html?name=config,ltype.csv";
+                if (LTypeConfig.length < 1) {
+                    GetLocationTypeConfig(queryStr, function (data) {
+                        try {
+                            var strCSV = data.substring(3, data.length - 5);
+                            strCSV = strCSV.replace(/[\r]/g, '');
+                            strCSV = ConverCsvTOJSON(strCSV);
+                            localStorage.setItem("LTypeConfig", strCSV);
+                            LTypeConfig = JSON.parse(strCSV);
+                            callback("true");
+                        }
+                        catch (err) {
+                            LTypeConfig = [];
+                            localStorage.setItem("LTypeConfig", "[]");
+                            callback("false");
+                        }
+                    });
+                }
+                else {
+                    callback("true");
+                }
+            }
+            catch (err) { callback("false"); }
+        };
+
+        function GetITypeConfiguration(callback) {
+
+            try {
+                var queryStr = "/file.html?name=config,itype.csv";
+                if (ITypeConfig.length < 1) {
+                    GetInterfaceTypeConfig(queryStr, function (data) {
+                        try {
+                            var strCSV = data.substring(3, data.length - 5);
+                            strCSV = strCSV.replace(/[\r]/g, '');
+                            strCSV = ConverCsvTOJSON(strCSV);
+                            localStorage.setItem("ITypeConfig", strCSV);
+                            ITypeConfig = JSON.parse(strCSV);
+                            callback("true");
+                        }
+                        catch (err) {
+                            ITypeConfig = [];
+                            localStorage.setItem("ITypeConfig", "[]");
+                            callback("false");
+                        }
+                    });
+                }
+                else {
+                    callback("true");
+                }
+            }
+            catch (err) { callback("false"); }
+        };
+
+        function GetISubTypeConfiguration(callback) {
+
+            try {
+                var queryStr = "/file.html?name=config,istype.csv";
+                if (ISubTypeConfig.length < 1) {
+                    GetInterfaceSubTypeConfig(queryStr, function (data) {
+                        try {
+                            var strCSV = data.substring(3, data.length - 5);
+                            strCSV = strCSV.replace(/[\r]/g, '');
+                            strCSV = ConverCsvTOJSON(strCSV);
+                            localStorage.setItem("ISubTypeConfig", strCSV);
+                            ISubTypeConfig = JSON.parse(strCSV);
+                            callback("true");
+                        }
+                        catch (err) {
+                            ISubTypeConfig = [];
+                            localStorage.setItem("ISubTypeConfig", "[]");
                             callback("false");
                         }
                     });

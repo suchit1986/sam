@@ -125,6 +125,81 @@ function GetNotificationConfig(queryString, callback) {
     });
 };
 
+function GetLocationTypeConfig(queryString, callback) {
+    Handler = GetNewHandler();
+    $.ajax({
+        url: Handler + queryString,
+        data: {},
+        type: "GET",
+        timeout: ajaxReqTimeOut,
+        beforeSend: function (xhr) {
+
+        },
+        complete: function () {
+
+        },
+        success: function (data) {
+            callback(data);
+        },
+        error: function (data) {
+            $.mobile.loading("hide");
+            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            callback(data);
+        }
+
+    });
+};
+
+function GetInterfaceTypeConfig(queryString, callback) {
+    Handler = GetNewHandler();
+    $.ajax({
+        url: Handler + queryString,
+        data: {},
+        type: "GET",
+        timeout: ajaxReqTimeOut,
+        beforeSend: function (xhr) {
+
+        },
+        complete: function () {
+
+        },
+        success: function (data) {
+            callback(data);
+        },
+        error: function (data) {
+            $.mobile.loading("hide");
+            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            callback(data);
+        }
+
+    });
+};
+
+function GetInterfaceSubTypeConfig(queryString, callback) {
+    Handler = GetNewHandler();
+    $.ajax({
+        url: Handler + queryString,
+        data: {},
+        type: "GET",
+        timeout: ajaxReqTimeOut,
+        beforeSend: function (xhr) {
+
+        },
+        complete: function () {
+
+        },
+        success: function (data) {
+            callback(data);
+        },
+        error: function (data) {
+            $.mobile.loading("hide");
+            try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
+            callback(data);
+        }
+
+    });
+};
+
 function SetGlobalScene(queryString, callback) {
     Handler = GetNewHandler();
     $.ajax({
