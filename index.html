@@ -3105,8 +3105,11 @@
                 var iTypeNumIdValArray = iTypeNumVal.split("_");
 
                 if (lTypeNumValArray.length == 2 && iTypeNumIdValArray.length == 7) {
+
                     //iTypeNumIdValArray 0-id 1-busID 2-deviceId 3-channelId 4-interfaceType 5-interfaceNumber
-                    var modeInfo = GetModeInfo(iTypeNumIdValArray[1], iTypeNumIdValArray[2], iTypeNumIdValArray[3]);
+                    var tmpChannelID = (($.mobile.activePage.is("#fanPage") && iType == "2") || ($.mobile.activePage.is("#dimmerPage") && iType == "3")) ? (parseInt(iTypeNumIdValArray[3]) + 1).toString() : iTypeNumIdValArray[3]; // for  fan or dimmer get mode info based on channelID + 1.
+
+                    var modeInfo = GetModeInfo(iTypeNumIdValArray[1], iTypeNumIdValArray[2], tmpChannelID); //iTypeNumIdValArray[3]);
                     if (modeInfo.length > 0) {
                         var queryStr = "/info.html";
                         modeInfo[0].readWrite = 0;
