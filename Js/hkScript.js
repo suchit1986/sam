@@ -1,5 +1,5 @@
 ﻿var Handler = "";
-var authAjaxReqTimeOut = 2000;
+var authAjaxReqTimeOut = 15000;
 var ajaxReqTimeOut = 60000;
 function ALSUserAuthenticationRequest(queryString, param, callback) {
     Handler = GetNewHandler();
