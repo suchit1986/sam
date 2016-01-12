@@ -18,8 +18,7 @@
     <link type="text/css" rel="stylesheet" href="css/swipebox.css" />
     <link href="css/hkStyle.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
-        .ui-loader-background
-        {
+        .ui-loader-background {
             width: 100%;
             height: 100%;
             top: 0;
@@ -30,177 +29,157 @@
             position: fixed;
             z-index: 100;
         }
-        
-        .ui-page
-        {
+
+        .ui-page {
             -webkit-backface-visibility: hidden;
         }
-        .ui-listview > .ui-li-static.ui-last-child, .ui-listview > .ui-li-divider.ui-last-child, .ui-listview > li.ui-last-child > a.ui-btn
-        {
+
+        .ui-listview > .ui-li-static.ui-last-child, .ui-listview > .ui-li-divider.ui-last-child, .ui-listview > li.ui-last-child > a.ui-btn {
             border-bottom-width: 0;
         }
-        .ui-listview > .ui-li-static, .ui-listview > .ui-li-divider, .ui-listview > li > a.ui-btn
-        {
+
+        .ui-listview > .ui-li-static, .ui-listview > .ui-li-divider, .ui-listview > li > a.ui-btn {
             border-style: none;
             border-width: 1px 0 0;
         }
-        .ui-btn .ui-corner-all .ui-btn-inherit .ui-btn-active .ui-checkbox-on
-        {
+
+        .ui-btn .ui-corner-all .ui-btn-inherit .ui-btn-active .ui-checkbox-on {
             color: Green;
         }
-        .ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head + body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on:after, html .ui-bar-a .ui-checkbox-on:after, html .ui-body-a .ui-checkbox-on:after, html body .ui-group-theme-a .ui-checkbox-on:after, .ui-btn.ui-checkbox-on.ui-btn-a:after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active
-        {
+
+        .ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head + body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on:after, html .ui-bar-a .ui-checkbox-on:after, html .ui-body-a .ui-checkbox-on:after, html body .ui-group-theme-a .ui-checkbox-on:after, .ui-btn.ui-checkbox-on.ui-btn-a:after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active {
             background-color: #8CC63F;
         }
-        #index .ui-listview > .ui-li-static, .ui-listview > .ui-li-divider, .ui-listview > li > a.ui-btn
-        {
+
+        #index .ui-listview > .ui-li-static, .ui-listview > .ui-li-divider, .ui-listview > li > a.ui-btn {
             border-style: solid;
             border-width: 1px 0 0;
         }
-        .noCorner .ui-corner-all
-        {
+
+        .noCorner .ui-corner-all {
             border-radius: 0 !important;
         }
-        .ui-selectmenu .ui-header
-        {
+
+        .ui-selectmenu .ui-header {
             border-width: 0;
             margin: 0;
             padding: 5px;
         }
-        .ui-dialog .ui-header .ui-btn-icon-notext
-        {
+
+        .ui-dialog .ui-header .ui-btn-icon-notext {
             display: none;
         }
     </style>
     <!-- IR-AC -->
     <style type="text/css">
-        .btnCool
-        {
+        .btnCool {
             display: block;
             width: 77px;
             height: 44px;
             background: url(css/images/IRicons/ac/cool1.png) no-repeat top;
         }
-        
-        .btnCool:active
-        {
-            background: url(css/images/IRicons/ac/cool2.png) no-repeat bottom;
-        }
-        
-        .btnPowerOn
-        {
+
+            .btnCool:active {
+                background: url(css/images/IRicons/ac/cool2.png) no-repeat bottom;
+            }
+
+        .btnPowerOn {
             display: block;
             width: 77px;
             height: 44px;
             background: url(css/images/IRicons/ac/on1.png) no-repeat top;
         }
-        
-        .btnPowerOn:active
-        {
-            background: url(css/images/IRicons/ac/on2.png) no-repeat bottom;
-        }
-        
-        .btnPowerOff
-        {
+
+            .btnPowerOn:active {
+                background: url(css/images/IRicons/ac/on2.png) no-repeat bottom;
+            }
+
+        .btnPowerOff {
             display: block;
             width: 77px;
             height: 44px;
             background: url(css/images/IRicons/ac/off1.png) no-repeat top;
         }
-        
-        .btnPowerOff:active
-        {
-            background: url(css/images/IRicons/ac/off2.png) no-repeat bottom;
-        }
-        
-        .btnDry
-        {
+
+            .btnPowerOff:active {
+                background: url(css/images/IRicons/ac/off2.png) no-repeat bottom;
+            }
+
+        .btnDry {
             display: block;
             width: 77px;
             height: 44px;
             background: url(css/images/IRicons/ac/dry1.png) no-repeat top;
         }
-        
-        .btnDry:active
-        {
-            background: url(css/images/IRicons/ac/dry2.png) no-repeat bottom;
-        }
-        
-        .btnSwingUp
-        {
+
+            .btnDry:active {
+                background: url(css/images/IRicons/ac/dry2.png) no-repeat bottom;
+            }
+
+        .btnSwingUp {
             display: block;
             width: 77px;
             height: 44px;
             background: url(css/images/IRicons/ac/swing-up1.png) no-repeat top;
         }
-        
-        .btnSwingUp:active
-        {
-            background: url(css/images/IRicons/ac/swing-up2.png) no-repeat bottom;
-        }
-        
-        .btnFan
-        {
+
+            .btnSwingUp:active {
+                background: url(css/images/IRicons/ac/swing-up2.png) no-repeat bottom;
+            }
+
+        .btnFan {
             display: block;
             width: 77px;
             height: 44px;
             background: url(css/images/IRicons/ac/fan1.png) no-repeat top;
         }
-        
-        .btnFan:active
-        {
-            background: url(css/images/IRicons/ac/fan2.png) no-repeat bottom;
-        }
-        
-        .btnSwingDown
-        {
+
+            .btnFan:active {
+                background: url(css/images/IRicons/ac/fan2.png) no-repeat bottom;
+            }
+
+        .btnSwingDown {
             display: block;
             width: 77px;
             height: 44px;
             background: url(css/images/IRicons/ac/swing-down1.png) no-repeat top;
         }
-        
-        .btnSwingDown:active
-        {
-            background: url(css/images/IRicons/ac/swing-down2.png) no-repeat bottom;
-        }
-        
-        .btnIncreseTemp
-        {
+
+            .btnSwingDown:active {
+                background: url(css/images/IRicons/ac/swing-down2.png) no-repeat bottom;
+            }
+
+        .btnIncreseTemp {
             display: block;
             width: 77px;
             height: 44px;
             background: url(css/images/IRicons/ac/temp-plus1.png) no-repeat top;
         }
-        
-        .btnIncreseTemp:active
-        {
-            background: url(css/images/IRicons/ac/temp-plus2.png) no-repeat bottom;
-        }
-        
-        .btnDecreseTemp
-        {
+
+            .btnIncreseTemp:active {
+                background: url(css/images/IRicons/ac/temp-plus2.png) no-repeat bottom;
+            }
+
+        .btnDecreseTemp {
             display: block;
             width: 77px;
             height: 44px;
             background: url(css/images/IRicons/ac/temp-minus1.png) no-repeat top;
         }
-        
-        .btnDecreseTemp:active
-        {
-            background: url(css/images/IRicons/ac/temp-minus2.png) no-repeat bottom;
-        }
+
+            .btnDecreseTemp:active {
+                background: url(css/images/IRicons/ac/temp-minus2.png) no-repeat bottom;
+            }
     </style>
     <!-- End -->
     <style type="text/css">
-        .mainPage_bg
-        {
+        .mainPage_bg {
             background-image: url("colors/green/images/bg-green.jpg");
             background-position: center center;
             background-repeat: no-repeat;
         }
-        .sliderbg_menu
-        {
+
+        .sliderbg_menu {
             background-image: none;
         }
     </style>
@@ -360,8 +339,7 @@
                     <div>
                         <a href="#" data-role="button" data-inline="true" onclick="writeOn('1');">ON</a>
                         <a href="#" data-role="button" data-inline="true" onclick="writeOff('1');">OFF</a>
-                        <a id="btnMode_1" name="" href="#" data-role="button" data-inline="true" onclick="modeWinShow(this,'1');">
-                            MODE</a>
+                        <a id="btnMode_1" name="" href="#" data-role="button" data-inline="true" onclick="modeWinShow(this,'1');">MODE</a>
                     </div>
                 </fieldset>
             </div>
@@ -370,8 +348,8 @@
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f;
-                        border-color: #4d6c22;" onclick="Logout();">Sign Out</a></li>
+                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f; border-color: #4d6c22;"
+                        onclick="Logout();">Sign Out</a></li>
                 </ul>
             </div>
         </div>
@@ -413,16 +391,14 @@
                                 data-enhance="false" />
                         </div>
                     </div>
-                    <a href="#" id="lblStatus_2" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-right ui-icon-info">
-                        Fan Status :</a>
+                    <a href="#" id="lblStatus_2" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-right ui-icon-info">Fan Status :</a>
                     <!--ui-icon-alert , info ,greenBtn, redBtn -->
                 </fieldset>
                 <fieldset class="ui-field-contain" style="width: 90%">
                     <div>
                         <a href="#" data-role="button" data-inline="true" onclick="writeOn('2');">ON</a>
                         <a href="#" data-role="button" data-inline="true" onclick="writeOff('2');">OFF</a>
-                        <a id="btnMode_2" name="" href="#" data-role="button" data-inline="true" onclick="modeWinShow(this,'2');">
-                            MODE</a>
+                        <a id="btnMode_2" name="" href="#" data-role="button" data-inline="true" onclick="modeWinShow(this,'2');">MODE</a>
                     </div>
                 </fieldset>
             </div>
@@ -433,8 +409,8 @@
                 <ul>
                     <!-- <li><a href="#" data-icon="home" class="ui-btn-active" style="background-color: #8cc63f;
                         border-color: #4d6c22;">Home</a></li>-->
-                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f;
-                        border-color: #4d6c22;" onclick="Logout();">Sign Out</a></li>
+                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f; border-color: #4d6c22;"
+                        onclick="Logout();">Sign Out</a></li>
                 </ul>
             </div>
         </div>
@@ -473,15 +449,13 @@
                                 data-thickness=".5" data-enhance="false" />
                         </div>
                     </div>
-                    <a href="#" id="lblStatus_3" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-right ui-icon-info">
-                        Fan Status :</a>
+                    <a href="#" id="lblStatus_3" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-right ui-icon-info">Fan Status :</a>
                 </fieldset>
                 <fieldset class="ui-field-contain" style="width: 90%">
                     <div>
                         <a href="#" data-role="button" data-inline="true" onclick="writeOn('3');">ON</a>
                         <a href="#" data-role="button" data-inline="true" onclick="writeOff('3');">OFF</a>
-                        <a id="btnMode_3" name="" href="#" data-role="button" data-inline="true" onclick="modeWinShow(this,'3');">
-                            MODE</a>
+                        <a id="btnMode_3" name="" href="#" data-role="button" data-inline="true" onclick="modeWinShow(this,'3');">MODE</a>
                     </div>
                 </fieldset>
             </div>
@@ -492,8 +466,8 @@
                 <ul>
                     <!-- <li><a href="#" data-icon="home" class="ui-btn-active" style="background-color: #8cc63f;
                         border-color: #4d6c22;">Home</a></li>-->
-                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f;
-                        border-color: #4d6c22;" onclick="Logout();">Sign Out</a></li>
+                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f; border-color: #4d6c22;"
+                        onclick="Logout();">Sign Out</a></li>
                 </ul>
             </div>
         </div>
@@ -535,8 +509,7 @@
                     <div>
                         <a href="#" data-role="button" data-inline="true" onclick="writeOn('5');">ON</a>
                         <a href="#" data-role="button" data-inline="true" onclick="writeOff('5');">OFF</a>
-                        <a id="btnMode_5" name="" href="#" data-role="button" data-inline="true" onclick="modeWinShow(this,'5');">
-                            MODE</a>
+                        <a id="btnMode_5" name="" href="#" data-role="button" data-inline="true" onclick="modeWinShow(this,'5');">MODE</a>
                     </div>
                 </fieldset>
             </div>
@@ -547,8 +520,8 @@
                 <ul>
                     <!--  <li><a href="#" data-icon="home" class="ui-btn-active" style="background-color: #8cc63f;
                         border-color: #4d6c22;">Home</a></li>-->
-                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f;
-                        border-color: #4d6c22;" onclick="Logout();">Sign Out</a></li>
+                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f; border-color: #4d6c22;"
+                        onclick="Logout();">Sign Out</a></li>
                 </ul>
             </div>
         </div>
@@ -581,21 +554,18 @@
                 </fieldset>
                 <!--<fieldset data-corners="true" style="background-color: black; border-radius: 12px;
                     width: 250px; height: 140px; opacity: 0.6">-->
-                <div data-corners="true" style="background-color: black; border-radius: 12px; width: 250px;
-                    height: 120px; opacity: 0.6">
+                <div data-corners="true" style="background-color: black; border-radius: 12px; width: 250px; height: 120px; opacity: 0.6">
                     <table>
                         <tr>
                             <td align="right">
-                                <label id="lblIRTemp_7" style="font-size: 55px; color: #15e7f5; padding-top: 50px;
-                                    padding-bottom: 25px">
+                                <label id="lblIRTemp_7" style="font-size: 55px; color: #15e7f5; padding-top: 50px; padding-bottom: 25px">
                                     26</label>
                                 <!--<label style="display: inline-block; font-size: 45px; color: #15e7f5; padding-top: 50px;
                                         padding-bottom: 25px">
                                         &#8451;</label>-->
                             </td>
                             <td align="left">
-                                <label style="display: inline-block; font-size: 45px; color: #15e7f5; padding-top: 50px;
-                                    padding-bottom: 25px">
+                                <label style="display: inline-block; font-size: 45px; color: #15e7f5; padding-top: 50px; padding-bottom: 25px">
                                     &#8451;</label>
                             </td>
                         </tr>
@@ -637,36 +607,28 @@
                         <tbody>
                             <tr>
                                 <td style="padding: 5px;">
-                                    <a class="btnCool" onclick="WriteIRCommand('7','7',false,false);"></a><span style="color: black;
-                                        margin-left: 25px">Cool</span>
+                                    <a class="btnCool" onclick="WriteIRCommand('7','7',false,false);"></a><span style="color: black; margin-left: 25px">Cool</span>
                                 </td>
                                 <td style="padding: 5px;">
-                                    <a class="btnPowerOn" onclick="WriteIRCommand('5','7',false,false);"></a><span style="color: black;
-                                        margin-left: 31px">On</span>
+                                    <a class="btnPowerOn" onclick="WriteIRCommand('5','7',false,false);"></a><span style="color: black; margin-left: 31px">On</span>
                                 </td>
                                 <td style="padding: 5px;">
-                                    <a class="btnPowerOff" onclick="WriteIRCommand('6','7',false,false);"></a><span style="color: black;
-                                        margin-left: 30px">Off</span>
+                                    <a class="btnPowerOff" onclick="WriteIRCommand('6','7',false,false);"></a><span style="color: black; margin-left: 30px">Off</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding: 5px;">
-                                    <a class="btnDry" onclick="WriteIRCommand('9','7',false,false);"></a><span style="color: black;
-                                        margin-left: 29px">Dry</span>
+                                    <a class="btnDry" onclick="WriteIRCommand('9','7',false,false);"></a><span style="color: black; margin-left: 29px">Dry</span>
                                 </td>
                                 <td style="padding: 5px;">
-                                    <a class="btnSwingUp" onclick="WriteIRCommand('12','7',false,false);"></a><span style="color: black;
-                                        margin-left: 12px">Swing-On</span>
+                                    <a class="btnSwingUp" onclick="WriteIRCommand('12','7',false,false);"></a><span style="color: black; margin-left: 12px">Swing-On</span>
                                 </td>
                                 <td rowspan="2" style="background-color: #8A8A8A; border-radius: 12px;">
-                                    <a class="btnIncreseTemp" onclick="WriteIRCommand('10','7',true,true);" style="margin-left: 5px;">
-                                    </a>
+                                    <a class="btnIncreseTemp" onclick="WriteIRCommand('10','7',true,true);" style="margin-left: 5px;"></a>
                                     <!--<span style="color: black; font-size: 12px;margin-bottom: 9px; ">Fan</span>-->
-                                    <label style="color: black; margin-top: 0px; margin-bottom: 9px; font-size: 12px;
-                                        text-align: center;">
+                                    <label style="color: black; margin-top: 0px; margin-bottom: 9px; font-size: 12px; text-align: center;">
                                         Temp</label>
-                                    <a class="btnDecreseTemp" onclick="WriteIRCommand('11','7',true,false);" style="margin-left: 5px">
-                                    </a>
+                                    <a class="btnDecreseTemp" onclick="WriteIRCommand('11','7',true,false);" style="margin-left: 5px"></a>
                                 </td>
                             </tr>
                             <tr>
@@ -702,8 +664,8 @@
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f;
-                        border-color: #4d6c22;" onclick="Logout();">Sign Out</a></li>
+                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f; border-color: #4d6c22;"
+                        onclick="Logout();">Sign Out</a></li>
                 </ul>
             </div>
         </div>
@@ -771,8 +733,8 @@
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f;
-                        border-color: #4d6c22;" onclick="Logout();">Sign Out</a></li>
+                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f; border-color: #4d6c22;"
+                        onclick="Logout();">Sign Out</a></li>
                 </ul>
             </div>
         </div>
@@ -825,8 +787,8 @@
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f;
-                        border-color: #4d6c22;" onclick="Logout();">Sign Out</a></li>
+                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f; border-color: #4d6c22;"
+                        onclick="Logout();">Sign Out</a></li>
                 </ul>
             </div>
         </div>
@@ -914,8 +876,8 @@
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f;
-                        border-color: #4d6c22;" onclick="Logout();">Sign Out</a></li>
+                    <li><a href="#" data-icon="power" class="ui-btn-active" style="background-color: #8cc63f; border-color: #4d6c22;"
+                        onclick="Logout();">Sign Out</a></li>
                 </ul>
             </div>
         </div>
@@ -954,8 +916,7 @@
                 </fieldset>
                 <fieldset class="ui-field-contain" style="width: 75%">
                     <a href="#" data-role="button" id="sTagWrite_btn" name="sTagWrite_btn" class="write"
-                        data-mini="true" data-inline="true" style="background: #8CC63F;" onclick="writeSimpleMode(this)">
-                        Done</a> <a href="#" data-role="button" id="A13" data-mini="true" data-inline="true"
+                        data-mini="true" data-inline="true" style="background: #8CC63F;" onclick="writeSimpleMode(this)">Done</a> <a href="#" data-role="button" id="A13" data-mini="true" data-inline="true"
                             style="background: #3090C7;" data-rel="back">Back</a>
                     <!--onclick="Dimmer_Back_Click();"-->
                 </fieldset>
@@ -990,24 +951,18 @@
         <div data-role="content">
             <center>
                 <fieldset class="ui-field-contain" style="width: 90%">
-                    <input type="text" id="username" placeholder="Username" style="height: 30px; text-align: center;
-                        background-color: Gray; font-weight: bold; font-size: 16px;" value="clientadmin" />
-                    <input type="password" id="password" placeholder="Password" style="height: 30px;
-                        text-align: center; background-color: Gray; font-weight: bold; font-size: 16px;"
+                    <input type="text" id="username" placeholder="Username" style="height: 30px; text-align: center; background-color: Gray; font-weight: bold; font-size: 16px;"
+                        value="clientadmin" />
+                    <input type="password" id="password" placeholder="Password" style="height: 30px; text-align: center; background-color: Gray; font-weight: bold; font-size: 16px;"
                         value="clientadmin@123" />
-                    <input type="text" id="ip" placeholder="Server Address" style="height: 30px; text-align: center;
-                        background-color: Gray; font-weight: bold; font-size: 16px;" />
-                    <input type="text" id="port" placeholder="Port" style="height: 30px; text-align: center;
-                        background-color: Gray; font-weight: bold; font-size: 16px;" />
-                    <input type="text" id="delay" placeholder="Set Delay" style="height: 30px; text-align: center;
-                        background-color: Gray; font-weight: bold; font-size: 16px;" />
+                    <input type="text" id="ip" placeholder="Server Address" style="height: 30px; text-align: center; background-color: Gray; font-weight: bold; font-size: 16px;" />
+                    <input type="text" id="port" placeholder="Port" style="height: 30px; text-align: center; background-color: Gray; font-weight: bold; font-size: 16px;" />
+                    <input type="text" id="delay" placeholder="Set Delay" style="height: 30px; text-align: center; background-color: Gray; font-weight: bold; font-size: 16px;" />
                 </fieldset>
                 <fieldset class="ui-field-contain" style="width: 75%">
                     <a href="#" data-rel="back" data-role="button" id="save" onclick="SaveSettings()"
-                        data-inline="true" style="font-weight: bold; background: #8CC63F;" data-mini="true">
-                        Update Settings</a> <a href="#" data-rel="back" data-role="button" id="btnSettingBack"
-                            data-inline="true" style="font-weight: bold; background: #3090C7;" data-mini="true">
-                            Back</a>
+                        data-inline="true" style="font-weight: bold; background: #8CC63F;" data-mini="true">Update Settings</a> <a href="#" data-rel="back" data-role="button" id="btnSettingBack"
+                            data-inline="true" style="font-weight: bold; background: #3090C7;" data-mini="true">Back</a>
                 </fieldset>
             </center>
         </div>
@@ -1442,7 +1397,7 @@
             chkConnection();
             //document.getElementById("lblCopyright").innerHtml = "Hari";
             //$("#lblCopyright").val("Hari");
-        });    
+        });
     </script>
     <script src="Js/jquery.knob.min.js" type="text/javascript"></script>
     <script src="Js/hkScript.js" type="text/javascript"></script>
@@ -2275,33 +2230,31 @@
                     var InterfaceDB = [];
                     if (getInterfaceTypeName(parseInt(iType)) == "IR-AC") {
                         InterfaceDB = GetIRInterfaceByLocationAndInterfaceType(lTypeNumValArray[0], lTypeNumValArray[1], iType);
-                        //                        for (var i = 0; i < InterfaceDB.length; i++) {
-                        //                            //if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
-                        //                            if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType) === -1) {
-                        //                                $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].locationType + "_" + InterfaceDB[i].locationNumber + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
-                        //                                uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType);
-                        //                            }
-                        //                        }
+                        for (var i = 0; i < InterfaceDB.length; i++) {
+                            //if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
+                            if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType) === -1) {
+                                $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].locationType + "_" + InterfaceDB[i].locationNumber + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
+                                uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType);
+                            }
+                        }
                     }
                     else {
                         InterfaceDB = GetInterfaceByLocationAndInterfaceType(lTypeNumValArray[0], lTypeNumValArray[1], iType);
-                        //                        for (var i = 0; i < InterfaceDB.length; i++) {
-                        //                            //if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
-                        //                            if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType) === -1) {
-                        //                                $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].busId + "_" + InterfaceDB[i].deviceId + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
-                        //                                uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType);
-                        //                            }
-                        //                        }
-                    }
-                    for (var i = 0; i < InterfaceDB.length; i++) {
-                        //if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
-                        if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType) === -1) {
-                            $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].busId + "_" + InterfaceDB[i].deviceId + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
-                            uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType);
+                        for (var i = 0; i < InterfaceDB.length; i++) {
+                            //if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
+                            if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType) === -1) {
+                                $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].busId + "_" + InterfaceDB[i].deviceId + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
+                                uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType);
+                            }
                         }
                     }
-
-
+                    //for (var i = 0; i < InterfaceDB.length; i++) {
+                    //    //if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber) === -1) {
+                    //    if (uniqueIDB.indexOf(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType) === -1) {
+                    //        $("#selInterface_" + iType).append("<option value='" + InterfaceDB[i].Id + "_" + InterfaceDB[i].busId + "_" + InterfaceDB[i].deviceId + "_" + InterfaceDB[i].channelId + "_" + InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType + "' style='font-size: 15px; padding: 6px;'>" + getInterfaceTypeName(InterfaceDB[i].interfaceType) + " - " + getInterfaceSubTypeName(InterfaceDB[i].interfaceSubType) + "-" + InterfaceDB[i].interfaceNumber + "</option>");
+                    //        uniqueIDB.push(InterfaceDB[i].interfaceType + "_" + InterfaceDB[i].interfaceNumber + "_" + InterfaceDB[i].interfaceSubType);
+                    //    }
+                    //}                    
                 }
                 $("#selInterface_" + iType).val("").attr('selected', true).siblings('option').removeAttr('selected');
                 $("#selInterface_" + iType).selectmenu("refresh", true);
@@ -3155,7 +3108,7 @@
             //activePage = "errorDialog";
         };
 
-               
+
     </script>
     <script type="text/javascript">
 
@@ -3453,7 +3406,7 @@
                 return "";
             }
         };
-    
+
     </script>
     <!-- <script type="text/javascript">
         //        $(document).on("pagecreate", "#notificationPage", function () {
