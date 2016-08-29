@@ -199,6 +199,7 @@
             background-image: url("colors/green/images/bg-green.jpg");
             background-position: center center;
             background-repeat: no-repeat;
+            background-size: cover;
         }
         .sliderbg_menu
         {
@@ -1057,9 +1058,9 @@
                     <!-- <div id="tabs" data-role="navbar"> style="display: none;"-->
                     <ul>
                         <li><a id="t1" href="#tabs-1" data-theme="a" data-ajax="false" class="ui-btn-active">
-                            GS3 Settings</a></li>
-                        <li><a id="t3" href="#tabs-3" data-theme="a" data-ajax="false">Time Settings</a></li>
-                        <li><a id="t2" href="#tabs-2" data-theme="a" data-ajax="false">Change Password</a></li>
+                            GS3</a></li>
+                        <li><a id="t3" href="#tabs-3" data-theme="a" data-ajax="false">Time</a></li>
+                        <li><a id="t2" href="#tabs-2" data-theme="a" data-ajax="false">Password</a></li>
                     </ul>
                 </div>
                 <!--</div>-->
@@ -1522,7 +1523,7 @@
         };
 
         function backButtonCallback() {
-            navigator.notification.confirm('do you want to exit the HK GS3?', confirmCallback);
+            navigator.notification.confirm('Do you want to exit the HK GS3?', confirmCallback);
         };
 
         function confirmCallback(buttonIndex) {
@@ -1737,7 +1738,7 @@
                         $.mobile.loading("hide");
                         try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
                     }
-                    alert("GS3 application configuration data is missing or incorrect. PLease verify application settings.");
+                    alert("GS3 application configuration data is missing or incorrect. Please verify application settings.");
                     callback("false");
                 }
 
@@ -1985,7 +1986,7 @@
                             else {
                                 $.mobile.loading("hide");
                                 try { var elMask = document.getElementById('loaddiv'); elMask.parentNode.removeChild(elMask); } catch (msg) { }
-                                alert("An error occurred while change password. PLease retry.");
+                                alert("An error occurred while change password. Please retry.");
                             }
                         });
                     });
@@ -2901,21 +2902,21 @@
                     setKnobOffImgHide(iType);
                     //activePage = "dimmerPage";
                     break;
-                //                case "4": //AC                                                                       
-                //                    //                    $.mobile.changePage("index.html#acPage");                                                                       
-                //                    //                    ResetImageSrc(iType);                                                                       
-                //                    //                    activePage = "acPage";                                                                       
-                //                    break;                                                                       
+                //                case "4": //AC                                                                         
+                //                    //                    $.mobile.changePage("index.html#acPage");                                                                         
+                //                    //                    ResetImageSrc(iType);                                                                         
+                //                    //                    activePage = "acPage";                                                                         
+                //                    break;                                                                         
                 case "5": //Plug                    
                     $.mobile.changePage("index.html#plugPage");
                     ResetImageSrc(iType);
                     //activePage = "plugPage";
                     break;
-                //                case "6": //Local Scene                                                                       
-                //                    $.mobile.changePage("index.html#localScenePage");                                                                       
-                //                    //activePage = "localScenePage";                                                                       
-                //                    $("#sceneList_" + iType).html("");                                                                       
-                //                    break;                                                                       
+                //                case "6": //Local Scene                                                                         
+                //                    $.mobile.changePage("index.html#localScenePage");                                                                         
+                //                    //activePage = "localScenePage";                                                                         
+                //                    $("#sceneList_" + iType).html("");                                                                         
+                //                    break;                                                                         
                 case "7": //IR-AC                    
                     $.mobile.changePage("index.html#irACPage");
                     //activePage = "irACPage";
